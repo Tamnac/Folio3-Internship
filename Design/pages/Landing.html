@@ -40,7 +40,7 @@
                                 <a class="nav-link" href="#">Contact Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " data-toggle="modal" data-target="#exampleModalCenter" href="#">Login</a>
+                                <a class="nav-link " data-toggle="modal" data-target="#login-modal" href="#">Login</a>
                             </li>
                             <li class="nav-item float-right">
                                 <a class="nav-link" href="#">Sign Up</a>
@@ -186,6 +186,7 @@
                 <textarea class="form-control" id="input_message" rows=6></textarea>
             </div>
         </div>
+        <button type="button" class="btn btnn-primary text-white mb-2">Send</button>
     </section>
     <footer class=" text-white">
         <div class="container">
@@ -235,22 +236,34 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <h5 class="modal-title" id="login-modalTitle">Login</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div>
+                        <div class="input-group mb-3">
+
+                            <input type="email" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+
+                            <input type="password" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1">
+                        </div>
+                        <button type="button" class="btn btnn-primary text-white btn-block">Login</button>
+                        <div class="row pt-2">
+                            <div class="col-md-6"><a href="">Creat new account</a></div>
+                            <div class="col-md-6 text-right"><a href="">Forgot your password?</a></div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+
             </div>
         </div>
     </div>
