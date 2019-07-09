@@ -26,3 +26,31 @@
 #banner {
     margin-top: 75px;
 }
+
+
+/* Mabashira's Styles */
+
+#testimonials {
+    /* The image used */
+    background-image: url("pic5.png");
+    /* Full height */
+    /* Center and scale the image nicely */
+    min-height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#testimonials .row {
+    min-height: 100vh;
+}
+
+#testimonials .carousel-item {
+    padding: 0 4rem 0 4rem;
+}
+
+#testimonials .carousel-item img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
