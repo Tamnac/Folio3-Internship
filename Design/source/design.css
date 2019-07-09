@@ -13,3 +13,16 @@
 .footer-hr {
     background: rgba(255, 255, 255, 0.233);
 }
+
+.nav-icon {
+    font-weight: 200;
+    font-size: large;
+}
+
+.nav-item a {
+    color: black !important;
+}
+
+#banner {
+    margin-top: 75px;
+}
