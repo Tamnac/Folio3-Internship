@@ -58,7 +58,7 @@ footer {
 
 #banner {
     margin-top: 75px;
-    background: url(file:///C:/Users/f3student18/Downloads/body-clouds-cloudy-skies-460524.jpg);
+    background: url(./landing-g.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center
@@ -88,10 +88,11 @@ footer {
     width: 100px;
     height: 100px;
 }
-.labels{
-    background-color: #e25c44;
+
+.labels {
+    background-color: #de1700;
 }
 
-.table-date{
+.table-date {
     padding: 0 3em 0 3em;
 }
