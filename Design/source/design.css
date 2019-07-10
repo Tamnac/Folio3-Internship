@@ -1,3 +1,32 @@
+#logo-u {
+    color: #de1700 !important;
+    font-size: 2rem;
+}
+
+#banner .row {
+    min-height: 100vh !important;
+}
+
+#banner-logo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800 !important;
+    font-size: 4rem !important
+}
+
+#banner-logo-u {
+    color: #de1700;
+    font-size: 10rem;
+}
+
+.btnn-primary {
+    color: white;
+    background-color: #de1700 !important;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.164);
+}
+
 .footer-item span {
     padding: 0 1em 0 1em;
 }
@@ -8,6 +37,10 @@
 
 .credits {
     font-size: 1em
+}
+
+footer {
+    background-color: black !important;
 }
 
 .footer-hr {
@@ -25,6 +58,10 @@
 
 #banner {
     margin-top: 75px;
+    background: url(./landing-g.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center
 }
 
 
@@ -32,25 +69,30 @@
 
 #testimonials {
     /* The image used */
-    background-image: url("pic5.png");
+    background-color: black;
     /* Full height */
     /* Center and scale the image nicely */
-    min-height: 100vh;
+    min-height: 80vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-#testimonials .row {
-    min-height: 100vh;
-}
-
 #testimonials .carousel-item {
     padding: 0 4rem 0 4rem;
+    background-color: #de1700;
 }
 
 #testimonials .carousel-item img {
     border-radius: 100%;
     width: 100px;
     height: 100px;
+}
+
+.labels {
+    background-color: #de1700;
+}
+
+.table-date {
+    padding: 0 3em 0 3em;
 }
