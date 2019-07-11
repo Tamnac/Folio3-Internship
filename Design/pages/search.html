@@ -30,6 +30,7 @@
 
 
     <script>
+        //!! if length is < 3 don't search
         $(function() {
             $.get('https://api.edamam.com/api/food-database/parser?category=generic-foods&ingr=eggs&app_id=d15954a8&app_key=853be5bff9bae2b36c49b362524e0404', function(data) {
                 console.log(data.hints)
