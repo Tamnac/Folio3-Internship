@@ -102,4 +102,12 @@ footer {
 }
 .divider{
     background-color: black
+}    
+
+.card {
+    box-shadow: 10px 10px 8px #888888
+}
+
+.bg-primary {
+    background-color: #de1700 !important;
 }
