@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/87ad30c39c.js"></script>
+
+
+    <script src="design.js"></script>
+    <title>Goal Details</title>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="dropdown">
+            <input type="search" id="searchBar" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu" id="search-dropdown-menu" aria-labelledby="searchBar" style="max-height: 400px;overflow-y: scroll;width: 100%">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(function() {
+            $.get('https://api.edamam.com/api/food-database/parser?category=generic-foods&ingr=eggs&app_id=d15954a8&app_key=853be5bff9bae2b36c49b362524e0404', function(data) {
+                console.log(data.hints)
+            })
+        })
+        clearDrpChildren = function(label, foodId) {
+            $("#search-dropdown-menu").html("")
+        }
+        addDrpChildren = function(label, foodId) {
+            $("#search-dropdown-menu").append('<a class="dropdown-item" href="' + foodId + '">' + label + '</a>')
+        }
+
+        $("#searchBar").keyup(function(event) {
+            clearDrpChildren()
+            searchBar = $(this)
+            searchBar.dropdown('show')
+            var query = searchBar.val()
+
+            $.get('https://api.edamam.com/api/food-database/parser?category=generic-foods&ingr=' + query + '&app_id=d15954a8&app_key=853be5bff9bae2b36c49b362524e0404', function(data) {
+                var results = []
+                results = data.hints
+                console.log(results)
+                for (var i = 0; i < results.length; i++) {
+                    addDrpChildren(results[i].food.label, results[i].food.foodId)
+                }
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>
