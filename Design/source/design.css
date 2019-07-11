@@ -100,3 +100,11 @@ footer {
 .table-date {
     padding: 0 3em 0 3em;
 }
+
+.card {
+    box-shadow: 10px 10px 8px #888888
+}
+
+.bg-primary {
+    background-color: #de1700 !important;
+}

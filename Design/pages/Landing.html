@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/87ad30c39c.js"></script>
     <link rel="stylesheet" href="../source/design.css">
     <script src="design.js"></script>
@@ -43,14 +40,11 @@
                                 <a class="nav-link " data-toggle="modal" data-target="#login-modal" href="#">Login</a>
                             </li>
                             <li class="nav-item float-right">
-                                <a class="nav-link" href="#">Sign Up</a>
+                                <a class="nav-link " data-toggle="modal" data-target="#signup-modal" href="#">Signup</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-2">
-                        <li class="fa fa-bell fa-2x nav-icon"></li>
-                        <li class="fa fa-user fa-2x ml-3 nav-icon"></li>
-                    </div>
+
 
                 </div>
                 </span>
@@ -237,7 +231,7 @@
     <!-- Button trigger modal -->
 
 
-    <!-- Modal -->
+    <!-- Login Modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -270,7 +264,42 @@
         </div>
     </div>
 
+    <!-- Signup Modal Start -->
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signup-modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signup-modalTitle">Signup</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div>
+                            <div class="input-group mb-3">
 
+                                <input type="email" class="form-control" placeholder="email" aria-label="email" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="password" name="password-1" class="form-control" placeholder="password" aria-label="password" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="password" name="password-2" class="form-control" placeholder="confirm password" aria-label="password" aria-describedby="basic-addon1">
+                            </div>
+                            <a type="button" href="./profile.html" class="btn btnn-primary text-white btn-block">signup</a>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Signup Modal End -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 

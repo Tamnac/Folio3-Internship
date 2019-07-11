@@ -5,17 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/87ad30c39c.js"></script>
     <link rel="stylesheet" href="../source/design.css">
 
@@ -26,51 +16,85 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
         <div class="container">
-            <span class="navbar-brand mb-0 h1 "><span style="color: #de1700; font-size: 2rem"><b>U</b></span>fit.</span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
+            <span class="navbar-brand mb-0 h1"><span style="color: #de1700;
+                                font-size: 2rem"><b>U</b></span>fit.</span>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        
+                            <span class="navbar-toggler-icon"></span>
+        
+                        </button>
+
             <div class="collapse navbar-collapse" id="navbarText">
+
                 <div class="row w-100">
-                    <div class="col-md-8 ">
+
+                    <div class="col-md-8">
+
                         <ul class="navbar-nav">
+
                             <li class="nav-item active">
+
                                 <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
                             </li>
+
                             <li class="nav-item">
+
                                 <a class="nav-link" href="./Home.html">Home</a>
                             </li>
+
                             <li class="nav-item">
+
                                 <a class="nav-link" href="./Goals.html">Goals</a>
                             </li>
+
                             <li class="nav-item">
+
                                 <a class="nav-link" href="./food.html">Food</a>
                             </li>
+
                             <li class="nav-item">
+
                                 <a class="nav-link" href="./exercise.html">Exercise</a>
                             </li>
                         </ul>
-
                     </div>
-                    <div class="col-md-4">
+
+                    <div class="col-md-4 text-right">
+
                         <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                                 <b>Atif Mehmood</b>
+
                                 <li class="fa fa-user ml-3 nav-icon"></li>
                             </a>
+
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
                                 <a class="dropdown-item" href="./Landing.html">Logout</a>
+
                                 <a class="dropdown-item" href="./profile.html">Profile</a>
+
                             </div>
+
                         </div>
 
+
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </nav>
 
     <section class="container">
@@ -80,11 +104,10 @@
             </div>
         </div>
         <div class="row p-3">
-            <div class="col-lg-4 pt-3">
+            <div class="col-md-4 pt-3">
                 <div class="card card-body">
                     <h3 class="card-title text-center">Current Goal</h3>
                     <table class="table">
-
                         <tr>
                             <td>Goal weight</td>
                             <td class="text-right">96 lbs</td>
@@ -111,7 +134,15 @@
                         <button class="btn ml-auto btnn-primary">Edit Goal</button>
                     </div>
                 </div>
-                Log weight goes here
+                <form action="">
+                    <div class="form-inline pt-4">
+                        <lable class="lable mr-1">Weight</lable>
+                        <input type="number" class="form-control mr-1">
+                        <button class="btn btnn-primary text-white">Log</button>
+                    </div>
+
+
+                </form>
             </div>
             <div class="col-lg-8 text-center">Graph goes here</div>
         </div>
@@ -150,30 +181,8 @@
                         </tbody>
                     </table>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" style="width:96% " role="progressbar" aria-valuemin="0"
-                            aria-valuemax="100" aria-valuenow="96">96%</div>
+                        <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96">96%</div>
                     </div>
-                    <!-- <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Start</td>
-                                <td>23/2/19</td>
-                            </tr>
-                            <tr>
-                                <td>End</td>
-                                <td>11/3/19</td>
-                            </tr>
-                            <tr>
-                                <td>Starting Weight</td>
-                                <td>113 lbs</td>
-                            </tr>
-                            <tr>
-                                <td>Ending Weight</td>
-                                <td>97 lbs</td>
-                            </tr>
-                        </tbody>
-                    </table>  -->
-
                 </div>
             </div>
             <div class="col-lg-6">
@@ -200,8 +209,7 @@
                         </tbody>
                     </table>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" style="width:96% " role="progressbar" aria-valuemin="0"
-                            aria-valuemax="100" aria-valuenow="96">96%</div>
+                        <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96">96%</div>
                     </div>
                 </div>
             </div>
@@ -231,12 +239,11 @@
                         </tbody>
                     </table>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" style="width:96% " role="progressbar" aria-valuemin="0"
-                            aria-valuemax="100" aria-valuenow="96">96%</div>
+                        <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96">96%</div>
                     </div>
                 </div>
             </div>
-                <div class="col-lg-6">
+            <div class="col-lg-6">
                 <div class="card card-body">
                     <table class="table table-borderless">
                         <thead>
@@ -260,59 +267,88 @@
                         </tbody>
                     </table>
                     <div class="progress">
-                        <div class="progress-bar bg-danger" style="width:96% " role="progressbar" aria-valuemin="0"
-                            aria-valuemax="100" aria-valuenow="96">96%</div>
+                        <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96">96%</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class=" text-white">
+    <footer class="text-white">
+
         <div class="container">
+
             <div class="pt-3">
+
                 <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
             </div>
+
             <div class='row pt-4'>
+
+                <div class="col-lg-6">
+
+
+
+                    <div class="footer-item">
+
+                        <li class="fas fa-envelope"></li><span>email@email.com</span>
+                    </div>
+
+                    <div class="footer-item">
+
+                        <li class="fas fa-phone"></li><span>+92-12345678-0</span>
+                    </div>
+
+                </div>
+
                 <div class="col-lg-6">
 
                     <div class="footer-item">
-                        <li class="fas fa-envelope"></li><span>email@email.com</span>
-                    </div>
-                    <div class="footer-item">
-                        <li class="fas fa-phone"></li><span>+92-12345678-0</span>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="footer-item">
+
                         <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        <a href="" class="text-white ml-3">
-                            Login</a>
-                    </div>
-                    <div class="footer-item">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        <a href="" class="text-white ml-3">Sign
-                            Up</a>
+
+                        <a href="./Landing.html" class="text-white ml-3">
+    
+                                Logout</a>
+
                     </div>
                     <div class="text-right">
                         <i class="fab fa-facebook-square fa-2x
-                                                pl-2" aria-hidden="true"></i>
+    
+                                pl-2" aria-hidden="true"></i>
+
                         <i class="fab fa-linkedin fa-2x pl-2" aria-hidden="true"></i>
+
                         <i class="fab fa-twitter-square fa-2x
-                                                pl-2" aria-hidden="true"></i>
+    
+                                pl-2" aria-hidden="true"></i>
+
                     </div>
+
                 </div>
+
             </div>
+
+
+
 
 
             <hr class="footer-hr">
+
             <div class="text-center credits pb-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe blanditiis libero fuga fugiat minus
-                necessitatibus expedita eligendi deleniti, enim itaque voluptate neque? Explicabo iure doloremque sequi
-                accusantium! Dignissimos, mollitia alias!
+
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+
             </div>
 
+
+
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
