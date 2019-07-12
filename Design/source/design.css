@@ -28,7 +28,7 @@
 }
 
 .overlay {
-    background-color: rgba(0, 0, 0, 0.164);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .footer-item span {
@@ -69,13 +69,10 @@ footer {
 }
 
 
-/* Mabashira's Styles */
+
 
 #testimonials {
-    /* The image used */
     background-color: black;
-    /* Full height */
-    /* Center and scale the image nicely */
     min-height: 80vh;
     background-position: center;
     background-repeat: no-repeat;

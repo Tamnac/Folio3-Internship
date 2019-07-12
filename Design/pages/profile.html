@@ -15,19 +15,16 @@
 </head>
 
 <body>
+    <!--Navbar start-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
         <div class="container">
+            <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 
-            <span class="navbar-brand mb-0 h1"><span style="color: #de1700;
-                                font-size: 2rem"><b>U</b></span>fit.</span>
+                <span class="navbar-toggler-icon"></span>
 
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        
-                            <span class="navbar-toggler-icon"></span>
-        
-                        </button>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarText">
 
@@ -68,14 +65,15 @@
 
                         <div class="nav-item dropdown">
 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <b>Atif Mehmood</b>
 
                                 <li class="fa fa-user ml-3 nav-icon"></li>
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 
                                 <a class="dropdown-item" href="./Landing.html">Logout</a>
 
@@ -96,6 +94,7 @@
         </div>
 
     </nav>
+    <!--Navbar end-->
     <div class="container mb-3">
         <form>
             <div class="form-row">
@@ -107,33 +106,33 @@
             <div class="form-row">
                 <div class="form-group  col-md-4  ">
                     <label for="full-name">Full Name</label>
-                    <input type="text" class="form-control" name="fullName" id="full-name" placeholder="Full Name" value="Atif Mehmood">
+                    <input required type="text" class="form-control" name="fullName" id="full-name" placeholder="Full Name" value="Atif Mehmood">
                 </div>
                 <div class="form-group  col-md-4  ">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="am02464@st.habib.edu.pk">
+                    <input required type="email" class="form-control" name="email" id="email" placeholder="Email" value="am02464@st.habib.edu.pk">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-12 ">
-                    <label for="input">Height (Feet, Inch.)</label>
+                    <label for="input" required>Height (Feet, Inch.)</label>
                 </div>
                 <div class="form-group col-md-4 ">
-                    <input type="number" name="heightFeet" class="form-control w-100" id="input" placeholder="feet" value="5">
+                    <input required type="number" name="heightFeet" class="form-control w-100" id="input" required placeholder="feet" value="5">
                 </div>
                 <div class="form-group col-md-4 ">
-                    <input type="number" name="heightInches" class="form-control" id="input" placeholder="inches" value="4">
+                    <input required type="number" name="heightInches" class="form-control" id="input" required placeholder="inches" value="4">
                 </div>
 
             </div>
             <div class="form-row">
                 <div class="col-md-4">
                     <label class="control-label" for="date">Date of Birth</label>
-                    <input class="form-control" name="dateOfBirth" id="date" name="date" placeholder="MM/DD/YYY" type="date" />
+                    <input required class="form-control" name="dateOfBirth" id="date" name="date" placeholder="MM/DD/YYY" type="date" />
                 </div>
                 <div class="col-md-4 ">
                     <label for="number">Weight</label>
-                    <input type="number" class="form-control" name="wight" id="number" placeholder="lbs" value="110.231">
+                    <input required type="number" class="form-control" name="wight" id="number" placeholder="lbs" value="110.231">
                 </div>
 
             </div>
@@ -141,13 +140,13 @@
                 <legend class="col-form-label col-md-4 pt-0">Gender
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender-male" value="option1" checked>
+                            <input required class="form-check-input" required type="radio" name="gender" id="gender-male" value="option1" checked>
                             <label class="form-check-label" for="gender-male">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="gender-female" value="option2">
+                            <input required class="form-check-input" required type="radio" name="gender" id="gender-female" value="option2">
                             <label class="form-check-label" for="gender-female">
                                 Female
                             </label>
@@ -157,13 +156,13 @@
                 <legend class="col-form-label col-md-4 pt-0">Marital Status
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marital-status" id="married" value="option1" checked>
+                            <input required class="form-check-input" required type="radio" name="marital-status" id="married" value="option1" checked>
                             <label class="form-check-label" for="married">
                                 Married
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marital-status" id="unmarried" value="option2">
+                            <input required class="form-check-input" required type="radio" name="marital-status" id="unmarried" value="option2">
                             <label class="form-check-label" for="unmarried">
                                 Unmarried
                             </label>
@@ -181,18 +180,18 @@
             <div class="form-row">
                 <div class="form-group col-md-8  mt-3">
                     <label for="password">Current Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="current password">
+                    <input required type="password" class="form-control" id="password" placeholder="current password">
                 </div>
             </div>
             <div class="form-row">
 
                 <div class=" form-group col-md-4  mt-3">
                     <label for="password">New Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="new password">
+                    <input required type="password" class="form-control" id="password" placeholder="new password">
                 </div>
                 <div class=" form-group col-md-4  mt-3">
                     <label for="password">Confirm Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="confirm password">
+                    <input required type="password" class="form-control" id="password" placeholder="confirm password">
                 </div>
             </div>
             <button class="btn btnn-primary text-white" name="submit" type="submit">Update Password</button>

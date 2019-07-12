@@ -10,86 +10,80 @@
     <script src="https://kit.fontawesome.com/87ad30c39c.js"></script>
     <link rel="stylesheet" href="../source/design.css">
 
-    <script src="design.js"></script>
     <title>Goals</title>
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <!--Navbar start-->
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 
-        <div class="container">
+            <span class="navbar-toggler-icon"></span>
 
-            <span class="navbar-brand mb-0 h1"><span style="color: #de1700; font-size: 2rem">
-                    <b>U</b></span>fit.</span>
+        </button>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="collapse navbar-collapse" id="navbarText">
 
-                <span class="navbar-toggler-icon"></span>
+            <div class="row w-100">
 
-            </button>
+                <div class="col-md-8">
 
-            <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav">
 
-                <div class="row w-100">
+                        <li class="nav-item active">
 
-                    <div class="col-md-8">
+                            <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                        </li>
 
-                        <ul class="navbar-nav">
+                        <li class="nav-item">
 
-                            <li class="nav-item active">
+                            <a class="nav-link" href="./Home.html">Home</a>
+                        </li>
 
-                                <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-                            </li>
+                        <li class="nav-item">
 
-                            <li class="nav-item">
+                            <a class="nav-link" href="./Goals.html">Goals</a>
+                        </li>
 
-                                <a class="nav-link" href="./Home.html">Home</a>
-                            </li>
+                        <li class="nav-item">
 
-                            <li class="nav-item">
+                            <a class="nav-link" href="./food.html">Food</a>
+                        </li>
 
-                                <a class="nav-link" href="./Goals.html">Goals</a>
-                            </li>
+                        <li class="nav-item">
 
-                            <li class="nav-item">
+                            <a class="nav-link" href="./exercise.html">Exercise</a>
+                        </li>
+                    </ul>
+                </div>
 
-                                <a class="nav-link" href="./food.html">Food</a>
-                            </li>
+                <div class="col-md-4 text-right">
 
-                            <li class="nav-item">
+                    <div class="nav-item dropdown">
 
-                                <a class="nav-link" href="./exercise.html">Exercise</a>
-                            </li>
-                        </ul>
-                    </div>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                    <div class="col-md-4 text-right">
+                            <b>Atif Mehmood</b>
 
-                        <div class="nav-item dropdown">
+                            <li class="fa fa-user ml-3 nav-icon"></li>
+                        </a>
 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 
-                                <b>Atif Mehmood</b>
+                            <a class="dropdown-item" href="./Landing.html">Logout</a>
 
-                                <li class="fa fa-user ml-3 nav-icon"></li>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                                <a class="dropdown-item" href="./Landing.html">Logout</a>
-
-                                <a class="dropdown-item" href="./profile.html">Profile</a>
-
-                            </div>
+                            <a class="dropdown-item" href="./profile.html">Profile</a>
 
                         </div>
 
-
-
                     </div>
+
+
 
                 </div>
 
@@ -97,42 +91,12 @@
 
         </div>
 
-    </nav>
+    </div>
 
-    <section class="modal fade" id="editGoalModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit/Add Goal</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <form>
-                            <div class="form-group row">
-                                <label class="col-form-label">Goal Weight (lbs)</label>
-                                <div class="col-lg-8">
-                                    <input type="number" class="form-control" value=96>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-form-label">Date of Completion</label>
-                                <div class="col-lg-8">
-                                    <input type="date" class="form-control">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btnn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </section>
+</nav>
+<!--Navbar end-->
+
+    
 
     <section class="container">
         <div class="row p-3">
@@ -141,7 +105,7 @@
             </div>
         </div>
         <div class="row p-3">
-            <div class="col-md-4 pt-3">
+            <div class=" col-md-12 col-lg-4 pt-3">
                 <div class="card card-body">
                     <h3 class="card-title text-center">Current Goal</h3>
                     <table class="table">
@@ -173,13 +137,13 @@
                 </div>
                 <form action="">
                     <div class="form-inline pt-4">
-                        <lable class="lable mr-1">Weight</lable>
-                        <input type="number" class="form-control mr-1">
-                        <button class="btn btnn-primary text-white">Log</button>
+                        <lable class="lable mr-1 ">Weight</lable>
+                        <input type="number" class="form-control mr-1 mb-1">
+                        <button class="btn btnn-primary text-white ">Log</button>
                     </div>
                 </form>
             </div>
-            <div class="col-lg-8 text-center">Graph goes here</div>
+            <div class="col-md-12 col-lg-8 text-center">Graph goes here</div>
         </div>
     </section>
     <br>
@@ -389,6 +353,41 @@
 
             </div>
 
+
+            <section class="modal fade" id="editGoalModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-dark">Edit Goal</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-dark">Goal Weight (lbs)</label>
+                                        <div class="col-lg-8">
+                                            <input type="number" class="form-control" value=96>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label text-dark">Date of Completion</label>
+                                        <div class="col-lg-8">
+                                            <input type="date" class="form-control">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btnn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
     </footer>
