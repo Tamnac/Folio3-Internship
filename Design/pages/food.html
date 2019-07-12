@@ -16,14 +16,10 @@
 </head>
 
 <body>
+    <!--Navbar start-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
         <div class="container">
-
-            <span class="navbar-brand mb-0 h1"><span style="color: #de1700;
-                                font-size: 2rem"><b>U</b></span>fit.</span>
-
-
+            <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -78,7 +74,7 @@
                                 <li class="fa fa-user ml-3 nav-icon"></li>
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 
                                 <a class="dropdown-item" href="./Landing.html">Logout</a>
 
@@ -99,122 +95,9 @@
         </div>
 
     </nav>
+    <!--Navbar end-->
 
-    <div class="modal fade" id="log_food" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content container-fluid">
-                <!--Header-->
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Add Food</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-
-                </div>
-                <div class="modal-body">
-                    <!--button group-->
-                    <div class="col-md-12 text-center">
-
-                        <div class="btn-group p-2" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btnn-primary">Breakfast</button>
-                            <button type="button" class="btn btnn-primary">Lunch</button>
-                            <button type="button" class="btn btnn-primary">Dinner</button>
-                        </div>
-
-                    </div>
-
-                    <!-- Actual search box -->
-                    <div class="input-group main pb-3">
-                        <input type="search" class="form-control" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn btnn-primary" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <table class="table-sm table  table-hover">
-                        <thead>
-                            <tr>
-                                <th>Food</th>
-                                <th>Quantity</th>
-                                <th>Calories</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Food 1</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-
-                                            <input class="form-control" type="number" placeholder="qty"
-                                                aria-label="Qunatity">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Food 2</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-
-                                            <input class="form-control" type="number" placeholder="qty"
-                                                aria-label="Qunatity">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Food 3</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-
-                                            <input class="form-control" type="number" placeholder="qty"
-                                                aria-label="Qunatity">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Food 4</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-
-                                            <input class="form-control" type="number" placeholder="qty"
-                                                aria-label="Qunatity">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-
-                            </tr>
-                            <form class="action"></form>
-
-                        </tbody>
-                    </table>
-                    <h5 class="text-center">Total Calories: 1555</h5>
-                </div>
-                <!--Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btnn-primary ">Add</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <section class="container">
         <div class='row pt-4 text-center'>
             <div class="col-lg-12">
@@ -226,65 +109,84 @@
                 <input type="date" class="form-control">
             </div>
             <div class="col-lg-12">
-                <table class="table">
+                <table class="table  table-responsive-sm">
                     <thead class="labels text-white">
                         <tr>
                             <th>Food</th>
                             <th>Quantity</th>
                             <th>Calories</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <thead class="log-thead">
                             <tr>
-                                <th colspan="3" class="">Breakfast</th>
+                                <th colspan="4" class="">Breakfast</th>
                             </tr>
                         </thead>
                         <tr>
-                            <th>Food 1</th>
+                            <td>Food 1 </td>
                             <td>6</td>
                             <td>120</td>
+                            <td class="text-center">
+                                <p class="fa fa-trash-o pr-2 text-center"></p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Food 2</th>
+                            <td>Food 2</td>
                             <td>4</td>
                             <td>160</td>
+                            <td class="text-center">
+                                <p class="fa fa-trash-o pr-2 text-center"></p>
+                            </td>
                         </tr>
+                        
                         <thead class="log-thead">
                             <tr>
-                                <th colspan="3" class="">Lunch</th>
+                                <th colspan="4" class="">Lunch</th>
                             </tr>
                         </thead>
                         <tr>
-                            <th>Food 3</th>
+                            <td>Food 3</td>
                             <td>7.5</td>
                             <td>335</td>
+                            <td class="text-center">
+                                <p class="fa fa-trash-o pr-2 text-center"></p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Food 4</th>
+                            <td>Food 4</td>
                             <td>1.5</td>
                             <td>475</td>
+                            <td class="text-center">
+                                <p class="fa fa-trash-o pr-2 text-center"></p>
+                            </td>
                         </tr>
                         <thead class="log-thead">
                             <tr>
-                                <th colspan="3" class="">Dinner</th>
+                                <th colspan="4" class="">Dinner</th>
                             </tr>
                         </thead>
                         <tr>
-                            <th>Food 3</th>
+                            <td>Food 3</td>
                             <td>7.5</td>
                             <td>335</td>
+                            <td class="text-center">
+                                <p class="fa fa-trash-o pr-2 text-center"></p>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Food 4</th>
+                            <td>Food 4</td>
                             <td>1.5</td>
                             <td>475</td>
+                            <td class="text-center">
+                                <p class="fa fa-trash-o pr-2 text-center"></p>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-flex flex-row-reverse mb-3">
-                    <button class="btn btnn-primary text-white" data-toggle="modal" data-target="#log_food">Add food</button>
-                </div>
+                <button type="button" class="btn btn-sm btnn-primary text-white mb-2" data-toggle="modal"
+                    data-target="#addFoodModal" value="LOG FOOD" button-position="center">LOG FOOD</button>
 
             </div>
         </div>
@@ -326,15 +228,85 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
+    <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="addFoodModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Food</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <!--button group-->
+                <div class="col-md-12 text-center">
+
+                    <div class=" pt-2" role="group">
+                        <label class="m-1">
+                            <input type="radio" name="mealType" value="breakfast" checked>
+                            Breakfast
+                        </label>
+                        <label class="m-1">
+                            <input type="radio" name="mealType" value="lunch">
+                            Lunch
+                        </label>
+                        <label class="m1">
+                            <input type="radio" name="mealType" value="dinner">
+                            Dinner
+                        </label>
+
+                    </div>
+                    <div class="dropdown search">
+                        <input type="search" id="searchBar" placeholder="search food"
+                            class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <div class="dropdown-menu" id="search-dropdown-menu" aria-labelledby="searchBar"
+                            style="max-height: 400px;overflow-y: scroll;width:100%">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+
+                    <table id="food-search-table" class="table-sm table  table-hover text-center table-responsive-sm">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>#</th>
+                                <th>Food</th>
+                                <th>Qunatity</th>
+                                <th>Calories</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <h5 id="total-calories">Total Calories: 0</h5>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">Close</button>
+                    <button class="btn btnn-primary btn-sm ">Add</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script src="../source/loggers.js"></script>
 
 </body>
 
