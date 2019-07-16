@@ -1,5 +1,6 @@
 const express = require('express') // imported express 
 
+
 //copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
@@ -343,3 +344,26 @@ database = {
 
     ],
 }
+
+
+
+
+
+//Database test
+var sqlite3 = require('sqlite3').verbose();
+
+var db = new sqlite3.Database('database.sqlite3')
+
+console.log(db)
+
+
+
+x = db.run('CREATE TABLE User (fname varchar(255), lname varchar(255), email varchar(255))',(err) =>{
+    console.log(err)
+})
+
+
+
+
+
+console.log(x)

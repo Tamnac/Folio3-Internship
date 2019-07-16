@@ -538,4 +538,16 @@
         crossorigin="anonymous"></script>
     <script src="../source/loggers.js"></script>
 </body>
+
+<script>
+
+    let foodToBeAdded = [{foodId:1, cal:1200, mealType:'lunch',qty:1}]
+    $('#id').click((e)=>{
+        $.post('localhost:8000/food-log', foodToBeAdded, (date)=>{
+            
+        })
+    })
+
+
+</script>
 </html>
