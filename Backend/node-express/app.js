@@ -65,6 +65,9 @@ app.post('/weight-log', (req, res) => {
      */
     // -> Atif 
     let body = req.body
+    let date = Date().now()
+
+
 
 })
 
@@ -110,21 +113,52 @@ app.delete('/exercise-log/:id', (req, res) => {
 // ! Exercise Log endpoints end here 
 
 // Food Log endpoints start here 
-app.post('/food-log', (req, res) => {
-    /**
-     * logs food of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
+app.get('/food-log/:date', (req, res) => {
+    let date = new Date(Date.parse(req.params.date))
+    console.log(date)
+    console.log(database.food_log)
+        // filter logs based on date 
+    let food_loggs = database.food_log.filter((obj) => obj.date == date)
+    res.send(food_loggs)
 })
 
-app.put('/food-log/:id', (req, res) => {
+
+app.post('/food-log', upload.array(), (req, res) => {
     /**
      * logs food of the currently logged In user 
      */
-    // -> Atif 
-    let body = req.body
+    let body = req.bod
+
+    //TODO: validations here
+
+    let log = {
+        id: database.food_log.length,
+        mealType: req.body.mealType,
+        date: req.body.date,
+        qty: req.body.qty,
+        foodId: req.body.foodId
+    }
+
+    database.food_log.push(log)
+    req.statusCode = 200
+    res.send(log)
+})
+
+app.put('/food-log', upload.array(), (req, res) => {
+    /**
+     * logs food of the currently logged In user 
+     */
+
+
+    let log_index = database.food_log.findIndex((obj) => req.body.id == obj.id)
+
+    if (log_index != -1) {
+        let food_log = {...database.food_log[0], ...req.body }
+        res.send(food_log)
+    } else {
+        res.statusCode = 404
+        res.send({ error: 'Object Not Found' })
+    }
 
 })
 
@@ -140,11 +174,14 @@ app.delete('/food-log/:id', (req, res) => {
 // ! Food Log endpoints end here 
 
 // * Goals endpoints start here 
-app.get('/goals', (req, res) => {
+app.get('/goals/:goal_Id', (req, res) => {
     /**
      * gets all goals logged In user 
      */
     // -> Taha 
+    const goal_id = req.params.goal_Id
+    var goal = database.goals.find((obj) => obj.goalId == goal_id)
+    res.send(goal)
 })
 
 app.post('/goal', (req, res) => {
@@ -196,43 +233,10 @@ app.listen(8000, () => {
 })
 
 
-// Defining Static info
-var projects = [ //All Projects objects
-
-    {
-        id: 1,
-        name: 'Project 1',
-    },
-    {
-        id: 2,
-        name: 'Project 2',
-    },
-    {
-        id: 3,
-        name: 'Project 3',
-    },
-    {
-        id: 4,
-        name: 'Project 4',
-    },
-    {
-        id: 5,
-        name: 'Project 5',
-    },
-    {
-        id: 6,
-        name: 'Project 6',
-    },
-    {
-        id: 7,
-        name: 'Project 7',
-    }
-]
-
 
 var database = {
     users: [{
-            id: "1",
+            id: 1,
             name: "shahira ",
             emailadd: "mubashramajid123@gmail.com",
             height: "5",
@@ -256,7 +260,8 @@ var database = {
             weight: "52",
             gender: "female",
             dateofbirth: " 5/9/1958"
-        }
+        } >>>
+        >>> > 710 c2d8a976a815e34bd330fb12b7f237ef81993
 
 
 
@@ -329,16 +334,33 @@ var database = {
             dateofbirth: " 5/9/1958"
         }
     ],
-    food_log: [
-
-    ],
+    food_log: [{
+        id: 2,
+        mealType: 'Dinner',
+        foodId: 123,
+        date: new Date(Date.now()),
+        qty: 3
+    }],
     weight_log: [
 
     ],
     exercise_log: [
 
     ],
-    goals: [
+    goals: [{
+            goalId: "1",
+            starting_weight: "119lbs",
+            goal_weight: "96lbs",
+            goal_date: "Dec 13,2019",
+            colaries_per_day: "1100"
+        },
+        {
+            goalId: "2",
+            starting_weight: "67lbs",
+            goal_weight: "94lbs",
+            goal_date: "jan 17,2019",
+            colaries_per_day: "1700"
 
+        }
     ],
 }
