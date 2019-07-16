@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 
 // default route
 app.get('/', (req, res) => { //handels the request
-    
+
     res.send({
         name: 'Atif Mehmood',
         email: 'am02464@st.habib.edu.pk'
@@ -28,29 +28,29 @@ app.get('/', (req, res) => { //handels the request
 })
 
 // * user's endpoints start here
-app.get('/user/:id',(req, res) =>{
+app.get('/user/:id', (req, res) => {
     /**
      * gets a user based on id 
-    */
+     */
     const id = req.params.id
-    var user = users.find((obj) => obj.id == id  )
+    var user = users.find((obj) => obj.id == id)
     res.send(user)
 
 })
 
-app.post('/user',(req, res) =>{
+app.post('/user', (req, res) => {
     /**
      * registers a new user
-    */
-   // -> Taha 
-    
+     */
+    // -> Taha 
+
 })
 
-app.put('/user',(req, res) =>{
+app.put('/user', (req, res) => {
     /**
      * updates a user
-    */
-   // -> Taha 
+     */
+    // -> Taha 
     console.log("put method for user")
     console.log(req.body)
 })
@@ -59,20 +59,20 @@ app.put('/user',(req, res) =>{
 
 
 // * Weight Log endpoints start here
-app.post('/weight-log',(req, res) =>{
+app.post('/weight-log', (req, res) => {
     /**
      * logs wight of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
 
 })
 
-app.put('/wight-log/:id', (req, res) =>{
+app.put('/wight-log/:id', (req, res) => {
     /**
      * updates wight of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
 
 })
@@ -80,61 +80,61 @@ app.put('/wight-log/:id', (req, res) =>{
 // ! Weight's endpoints end here 
 
 // * Exercise Log endpoints start here 
-app.post('/exercise-log',(req, res) =>{
+app.post('/exercise-log', (req, res) => {
     /**
      * logs exercise of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
-     
+
 })
 
-app.put('/exercise-log/:id',(req, res) =>{
+app.put('/exercise-log/:id', (req, res) => {
     /**
      * updates today's exercise of the currently logged In user 
-    */
+     */
     let body = req.body
-    // -> Atif 
-     
+        // -> Atif 
+
 })
 
-app.delete('/exercise-log/:id',(req, res) =>{
+app.delete('/exercise-log/:id', (req, res) => {
     /**
      * delete today's exercise of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
-     
+
 })
 
 // ! Exercise Log endpoints end here 
 
 // Food Log endpoints start here 
-app.post('/food-log',(req, res) =>{
+app.post('/food-log', (req, res) => {
     /**
      * logs food of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
-     
+
 })
 
-app.put('/food-log/:id',(req, res) =>{
+app.put('/food-log/:id', (req, res) => {
     /**
      * logs food of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
-     
+
 })
 
-app.delete('/food-log/:id',(req, res) =>{
+app.delete('/food-log/:id', (req, res) => {
     /**
      * logs food of the currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
-     
+
 })
 
 // ! Food Log endpoints end here 
@@ -143,15 +143,15 @@ app.delete('/food-log/:id',(req, res) =>{
 app.get('/goals', (req, res) => {
     /**
      * gets all goals logged In user 
-    */
-   // -> Taha 
+     */
+    // -> Taha 
 })
 
 app.post('/goal', (req, res) => {
     /**
      * create a goal of currently logged In user 
-    */
-   // -> Atif 
+     */
+    // -> Atif 
     let body = req.body
 
 })
@@ -171,77 +171,167 @@ app.delete('/goal/:id', (req, res) => {
 })
 
 // Daily Summary
-app.get('daily-summary',(req, res) =>{
+app.get('daily-summary', (req, res) => {
     /**
      * logs food of the currently logged In user 
-    */
-   // -> Mubashira
+     */
+    // -> Mubashira
     let body = req.body
-     
+
 })
 
 
 // TODO: 
 
 //Listen Port
-app.listen(8000 , ()=>{
+app.listen(8000, () => {
     console.log(`Server is listening at port ${port}`)
 })
 
 
 // Defining Static info
-var projects = [//All Projects objects
+var projects = [ //All Projects objects
 
     {
-        id:1,
-        name:'Project 1',
+        id: 1,
+        name: 'Project 1',
     },
     {
-        id:2,
-        name:'Project 2',
+        id: 2,
+        name: 'Project 2',
     },
     {
-        id:3,
-        name:'Project 3',
+        id: 3,
+        name: 'Project 3',
     },
     {
-        id:4,
-        name:'Project 4',
+        id: 4,
+        name: 'Project 4',
     },
     {
-        id:5,
-        name:'Project 5',
+        id: 5,
+        name: 'Project 5',
     },
     {
-        id:6,
-        name:'Project 6',
+        id: 6,
+        name: 'Project 6',
     },
     {
-        id:7,
-        name:'Project 7',
+        id: 7,
+        name: 'Project 7',
     }
 ]
 
 
 database = {
-    users = [
-        {id:1, 'name':'Atif','age':20},
-        {id:2, 'name':'Taha','age':21}
+    users: [{
+            id: 1,
+            name: "shahira ",
+            emailadd: "mubashramajid123@gmail.com",
+            height: "5",
+            weight: "52",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+
+        }, {
+            id: "2",
+            name: "Atif",
+            emailadd: "atif123@gmail.com",
+            height: "5",
+            weight: "52",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        }, {
+            id: "3",
+            name: "hunain",
+            emailadd: "hunain123@gmail.com",
+            height: "5",
+            weight: "52",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        }
+
+
+
+        , {
+            id: "4",
+            name: "taha",
+            emailadd: "taha123@gmail.com",
+            height: "5",
+            weight: "54",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        }
+
+
+        , {
+            id: "5",
+            name: "ibrahim",
+            emailadd: "ibhahim123@gmail.com",
+            height: "5",
+            weight: "42",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        }
+
+        , {
+            id: "6",
+            name: "arbab",
+            emailadd: "std_20696@iobm.edu.pk",
+            height: "5",
+            weight: "62",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        }
+
+        , {
+            id: "7",
+            name: "hina",
+            emailadd: "hina123@gmail.com",
+            height: "5",
+            weight: "52",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        },
+        {
+            id: "8",
+            name: "hira",
+            emailadd: "hira123@gmail.com",
+            height: "5",
+            weight: "52",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        },
+
+        {
+            id: "9",
+            name: "sidhra",
+            emailadd: "sidhra123@gmail.com",
+            height: "5",
+            weight: "52",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        },
+        {
+            id: "10",
+            name: "jawairia",
+            emailadd: "jawairia123@gmail.com",
+            height: "6",
+            weight: "62",
+            gender: "female",
+            dateofbirth: " 5/9/1958"
+        }
     ],
-    food_log = [
-        
-    ],
-    weight_log = [
+    food_log: [
 
     ],
-    exercise_log =[
+    weight_log: [
 
     ],
-    goals = [
+    exercise_log: [
+
+    ],
+    goals: [
 
     ],
 }
-
-
-
-
