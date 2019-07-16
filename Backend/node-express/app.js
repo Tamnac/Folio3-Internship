@@ -65,6 +65,9 @@ app.post('/weight-log', (req, res) => {
      */
     // -> Atif 
     let body = req.body
+    let date = Date().now()
+    
+
 
 })
 
@@ -110,22 +113,54 @@ app.delete('/exercise-log/:id', (req, res) => {
 // ! Exercise Log endpoints end here 
 
 // Food Log endpoints start here 
-app.post('/food-log', (req, res) => {
-    /**
-     * logs food of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
+app.get('/food-log/:date', (req, res) =>{
+    let date = new Date(Date.parse(req.params.date))
+    console.log(date)
+    console.log(database.food_log)
+    // filter logs based on date 
+    let food_loggs = database.food_log.filter((obj)=> obj.date == date)
+    res.send(food_loggs)
 })
 
-app.put('/food-log/:id', (req, res) => {
+
+app.post('/food-log', upload.array(), (req, res) => {
     /**
      * logs food of the currently logged In user 
      */
-    // -> Atif 
-    let body = req.body
+    let body = req.bod
 
+    //TODO: validations here
+
+    let log = {
+        id: database.food_log.length,
+        mealType: req.body.mealType,
+        date: req.body.date,
+        qty: req.body.qty,
+        foodId: req.body.foodId
+    }
+
+    database.food_log.push(log)
+    req.statusCode = 200
+    res.send(log)
+})
+
+app.put('/food-log', upload.array() , (req, res) => {
+    /**
+     * logs food of the currently logged In user 
+     */
+
+    
+    let log_index = database.food_log.findIndex((obj) => req.body.id == obj.id)
+
+    if (log_index != -1){
+        let food_log = {...database.food_log[0], ...req.body}
+        res.send(food_log)
+    }
+    else{
+        res.statusCode = 404
+        res.send({error:'Object Not Found'})
+    }
+    
 })
 
 app.delete('/food-log/:id', (req, res) => {
@@ -188,39 +223,6 @@ app.listen(8000, () => {
     console.log(`Server is listening at port ${port}`)
 })
 
-
-// Defining Static info
-var projects = [ //All Projects objects
-
-    {
-        id: 1,
-        name: 'Project 1',
-    },
-    {
-        id: 2,
-        name: 'Project 2',
-    },
-    {
-        id: 3,
-        name: 'Project 3',
-    },
-    {
-        id: 4,
-        name: 'Project 4',
-    },
-    {
-        id: 5,
-        name: 'Project 5',
-    },
-    {
-        id: 6,
-        name: 'Project 6',
-    },
-    {
-        id: 7,
-        name: 'Project 7',
-    }
-]
 
 
 database = {
@@ -323,7 +325,13 @@ database = {
         }
     ],
     food_log: [
-
+        {
+            id: 2,
+            mealType: 'Dinner',
+            foodId: 123,
+            date: new Date(Date.now()),
+            qty: 3
+        }
     ],
     weight_log: [
 
