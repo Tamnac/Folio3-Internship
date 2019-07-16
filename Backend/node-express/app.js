@@ -33,7 +33,7 @@ app.get('/user/:id', (req, res) => {
      * gets a user based on id 
      */
     const id = req.params.id
-    var user = users.find((obj) => obj.id == id)
+    var user = database.users.filter((obj) => obj.id == id)
     res.send(user)
 
 })
@@ -171,14 +171,21 @@ app.delete('/goal/:id', (req, res) => {
 })
 
 // Daily Summary
-app.get('daily-summary', (req, res) => {
+app.get('/summary', (req, res) => {
     /**
      * logs food of the currently logged In user 
      */
     // -> Mubashira
-    let body = req.body
+    summary = {
+        caloriesconsume: 215,
+        caloriesburnd: 132,
+        netcalories: 347,
+        over: 0
+    }
 
+    res.send(summary);
 })
+
 
 
 // TODO: 
@@ -223,9 +230,9 @@ var projects = [ //All Projects objects
 ]
 
 
-database = {
+var database = {
     users: [{
-            id: 1,
+            id: "1",
             name: "shahira ",
             emailadd: "mubashramajid123@gmail.com",
             height: "5",
