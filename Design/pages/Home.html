@@ -550,6 +550,16 @@
                 lu_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
             }
         }
+        for (log of data) {
+            if (log.mealType === 'Breakfast') {
+                bf_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
+            }
+        }
+        for (log of data) {
+            if (log.mealType === 'Dinner') {
+                di_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
+            }
+        }
     })
 </script>
 
