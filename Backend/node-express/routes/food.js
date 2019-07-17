@@ -5,18 +5,23 @@ var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
 var upload = multer() // for parsing multipart/form-data
 
+let authRequired = require("../middlewares/app_level").authRequired
 let database = require('../database')
 
 // creating a router
 let router = express.Router()
 
+// loading middleware
+router.use(authRequired)
+
 // Food Log endpoints start here 
 router.get('/:date', (req, res) => {
     let date = new Date(Date.parse(req.params.date))
     date = date.toISOString()
-    //TODO database logic 
-    database.all("select * from Food where date=$date",{$date:date},(err, rows)=>{
+     
+    database.all("select * from FoodLog where user_id=$userId and date=$date",{$date:'2019-07-17T08:22:27.944Z', $userId:req.user.id},(err, rows)=>{
         if (err){
+            console.log(err)
             res.send([])
             return
         }
@@ -27,8 +32,7 @@ router.get('/:date', (req, res) => {
     })
 })
 
-
-router.post('/food-log', upload.array(), (req, res) => {
+router.post('/', upload.array(), (req, res) => {
     /**
      * logs food of the currently logged In user 
      */

@@ -171,27 +171,27 @@
             </div>
         </div>
         <hr class="pb-5">
-        <form>
+        <form action="http://localhost:8000/exercise-log" method="POST">
             <div class="form-row">
                 <div class="form-group col-lg-6">
                     <label>Full Name</label>
-                    <input class="form-control" id="input_name" placeholder="Firstname Lastname">
+                    <input class="form-control" name="fullname" id="input_name" placeholder="Firstname Lastname">
                 </div>
                 <div class="form-group col-lg-6">
                     <label>Email</label>
-                    <input type="email" class="form-control" id="input_email" placeholder="example@example.com">
+                    <input type="email"  name="email" class="form-control" id="input_email" placeholder="example@example.com">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-lg-6">
                     <label>Subject</label>
-                    <input class="form-control" id="input_subject" placeholder="subject">
+                    <input class="form-control" name="subject" id="input_subject" placeholder="subject">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-lg">
                     <label>Message</label>
-                    <textarea class="form-control" id="input_message" rows=6></textarea>
+                    <textarea class="form-control" name="message" id="input_message" rows=6></textarea>
                 </div>
             </div>
             <button class="btn btn-danger">Send</button>

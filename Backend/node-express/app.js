@@ -9,7 +9,7 @@ const authRouter = require('./routes/auth')
 const userRouter = require("./routes/user")
 const summaryRouter = require("./routes/summary")
 const foodRouter = require("./routes/food")
-
+const exerciseRouter = require("./routes/exercise")
 
 // the default port 
 const port = 8000
@@ -39,6 +39,9 @@ app.use('/summary', summaryRouter)
 
 // * Food Routes
 app.use('/food-log', foodRouter)
+
+// * Exercise Routes
+app.use('/exercise-log', exerciseRouter)
 
 
 
@@ -75,75 +78,6 @@ app.put('/wight-log/:id', (req, res) => {
 
 })
 
-// ! Weight's endpoints end here 
-
-// * Exercise Log endpoints start here 
-app.post('/exercise-log', (req, res) => {
-    /**
-     * logs exercise of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
-})
-
-app.put('/exercise-log/:id', (req, res) => {
-    /**
-     * updates today's exercise of the currently logged In user 
-     */
-    let body = req.body
-        // -> Atif 
-
-})
-
-app.delete('/exercise-log/:id', (req, res) => {
-    /**
-     * delete today's exercise of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
-})
-
-// ! Exercise Log endpoints end here 
-
-
-
-
-
-// * Goals endpoints start here 
-app.get('/goals/:goal_Id', (req, res) => {
-    /**
-     * gets all goals logged In user 
-     */
-    // -> Taha 
-    const goal_id = req.params.goal_Id
-    var goal = database.goals.find((obj) => obj.goalId == goal_id)
-    res.send(goal)
-})
-
-app.post('/goal', (req, res) => {
-    /**
-     * create a goal of currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
-})
-
-app.put('/goal/:id', (req, res) => {
-    /**
-     * Updates a goal based on id
-     */
-    // -> Atif 
-})
-
-app.delete('/goal/:id', (req, res) => {
-    /**
-     * deletes a goal based on id
-     */
-    // -> Atif 
-})
 
 
 
