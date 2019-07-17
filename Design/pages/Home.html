@@ -521,9 +521,10 @@
     $(function() {
         // get data from server url: http://localhost:8000/food-log/2019-07-16
 
-        $.get("http://localhost:8000/summary", (data) => {
-            let cal_consumed = $('#cal-consumed')
-            cal_consumed.html(data.caloriesConsume)
+        $.get("http://localhost:8000/exercise-log",(data)=>{
+            console.log(data)
+            
+
         })
     })
 
