@@ -8,6 +8,7 @@ const appLevelMiddelware = require("./middlewares/app_level")
 const authRouter = require('./routes/auth')
 const userRouter = require("./routes/user")
 const summaryRouter = require("./routes/summary")
+const foodRouter = require("./routes/food")
 
 
 // the default port 
@@ -16,6 +17,12 @@ const port = 8000
 const app = express()
 
 // * loading middleware 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 app.use(appLevelMiddelware.requestLogger)
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
@@ -29,6 +36,9 @@ app.use('/user', userRouter)
 
 // * Summary Routes
 app.use('/summary', summaryRouter)
+
+// * Food Routes
+app.use('/food-log', foodRouter)
 
 
 
@@ -97,66 +107,9 @@ app.delete('/exercise-log/:id', (req, res) => {
 
 // ! Exercise Log endpoints end here 
 
-// Food Log endpoints start here 
-app.get('/food-log/:date', (req, res) => {
-    let date = new Date(Date.parse(req.params.date))
-    console.log(date)
-    console.log(database.food_log)
-        // filter logs based on date 
-    let food_loggs = database.food_log.filter((obj) => obj.date == date)
-    res.send(food_loggs)
-})
 
 
-app.post('/food-log', upload.array(), (req, res) => {
-    /**
-     * logs food of the currently logged In user 
-     */
-    let body = req.bod
 
-    //TODO: validations here
-
-    let log = {
-        id: database.food_log.length,
-        mealType: req.body.mealType,
-        date: req.body.date,
-        qty: req.body.qty,
-        foodId: req.body.foodId
-    }
-
-    database.food_log.push(log)
-    req.statusCode = 200
-    res.send(log)
-})
-
-app.put('/food-log', upload.array(), (req, res) => {
-    /**
-     * logs food of the currently logged In user 
-     */
-
-
-    let log_index = database.food_log.findIndex((obj) => req.body.id == obj.id)
-
-    if (log_index != -1) {
-        let food_log = {...database.food_log[0], ...req.body }
-        res.send(food_log)
-    } else {
-        res.statusCode = 404
-        res.send({ error: 'Object Not Found' })
-    }
-
-})
-
-app.delete('/food-log/:id', (req, res) => {
-    /**
-     * logs food of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
-})
-
-// ! Food Log endpoints end here 
 
 // * Goals endpoints start here 
 app.get('/goals/:goal_Id', (req, res) => {
@@ -199,7 +152,7 @@ app.delete('/goal/:id', (req, res) => {
 // TODO: 
 
 //Listen Port
-app.listen(8000, () => {
+app.listen(port, () => {
     console.log(`Server is listening at port ${port}`)
 })
 

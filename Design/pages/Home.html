@@ -523,6 +523,19 @@
 <script>
     // get data from url :'localhost:8000/summary'
 
+    $(function(){
+        // get data from server url: http://localhost:8000/food-log/2019-07-16
+
+        $.get("http://localhost:8000/summary",(data)=>{
+            console.log(data)
+        })
+
+
+
+
+
+    })
+
 
     console.log("I am called")
     $.get("http://localhost:8000/summary", function(data, status) {
