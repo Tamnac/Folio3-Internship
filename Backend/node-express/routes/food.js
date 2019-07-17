@@ -18,25 +18,20 @@ router.use(authRequired)
 router.get('/:date', (req, res) => {
     let date = new Date(Date.parse(req.params.date))
     date = date.toISOString()
-     
+    console.log(req.user.id)
     database.all("select * from FoodLog where user_id=$userId and date=$date",{$date:'2019-07-17T08:22:27.944Z', $userId:req.user.id},(err, rows)=>{
         if (err){
             console.log(err)
             res.send([])
             return
         }
-        // database.all("select * from Food where date=$date",{$date:date},(err, rows)=>{
-        //     if (err){
-        //         res.send([])
-        //         return
-        //     }
-        //     else{
-        //         res.send(rows)
-        //         return
-        //     }
-        // })
+        else{
+            res.send(rows)
+            return
+        }
+        })
     })
-})
+
 
 router.post('/', upload.array(), (req, res) => {
     /**
@@ -71,7 +66,7 @@ router.put('/food-log', upload.array(), (req, res) => {
         let food_log = {...database.food_log[0], ...req.body }
         res.send(food_log)
     } else {
-        res.statusCode = 404
+        res.status(404)
         res.send({ error: 'Object Not Found' })
     }
 

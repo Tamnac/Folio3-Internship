@@ -11,7 +11,7 @@ let database = require('../database')
 let router = express.Router()
 
 // Daily Summary
-router.get('/', (req, res) => {
+router.get('/:date', (req, res) => {
     /**
      * logs food of the currently logged In user 
      */

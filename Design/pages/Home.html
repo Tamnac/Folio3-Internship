@@ -520,25 +520,36 @@
 </body>
 
 <script>
+    let today = new Date(Date.now())
+    today = today.toISOString()
+
     $(function () {
-        // get data from server url: http://localhost:8000/food-log/2019-07-16
+        $.get(`http://localhost:8000/summary/${today}`, (data) => {
+            let cal_consumed = $('#cal-consumed')
+            cal_consumed.html(data.caloriesConsumed)
 
-        $.get("http://localhost:8000/exercise-log", (data) => {
+            let cal_burned = $('#cal-burned')
+            cal_burned.html(data.caloriesBurned)
+
+            let net_cal = $('#net-cal')
+            net_cal.html( data.caloriesConsumed - data.caloriesBurned)
+
+            
+
+
+            
+        })
+
+        $.get(`http://localhost:8000/exercise-log/${today}`, (data) => {
             let excersice_log = $('#exercise-log-body')
-            console.log(data)
-
             for (log of data) {
-                excersice_log.append(`<tr><td>${log.Exercise}</td><td>${log.Time}</td><td class="text-center">${log.Calories_Burned}</td><td class="text-center"><p class="fa fa-trash-o pr-2"></p></td>
+                excersice_log.append(`<tr><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2"></p></td>
                 </tr>`)
             }
-            console.log(data)
-
-
         })
     })
 
-
-    $.get("http://localhost:8000/food-log/121", (data) => {
+    $.get(`http://localhost:8000/food-log/${today}`, (data) => {
         let bf_log = $('#breakfast-log-row')
         let lu_log = $('#lunch-log-row')
         let di_log = $('#dinner-log-row')
