@@ -18,7 +18,7 @@
     <script src="design.js"></script>
 
     <title>Home</title>
-  
+
 
 </head>
 
@@ -247,25 +247,25 @@
 
                                 </tr>
                                 <tr>
-                                        <td>sit-ups</td>
-                                        <td>15</td>
-                                        <td class="text-center"> 255</td>
-                                        <td class="text-center">
-                                            <p class="fa fa-trash-o pr-2"></p>
-                                        </td>
-    
-    
-                                    </tr>
+                                    <td>sit-ups</td>
+                                    <td>15</td>
+                                    <td class="text-center"> 255</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2"></p>
+                                    </td>
+
+
+                                </tr>
                                 <tr>
-                                        <td>squats</td>
-                                        <td>15</td>
-                                        <td class="text-center"> 255</td>
-                                        <td class="text-center">
-                                            <p class="fa fa-trash-o pr-2"></p>
-                                        </td>
-    
-    
-                                    </tr>
+                                    <td>squats</td>
+                                    <td>15</td>
+                                    <td class="text-center"> 255</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2"></p>
+                                    </td>
+
+
+                                </tr>
 
                             </tbody>
                         </table>
@@ -538,16 +538,20 @@
 
 <script>
 
-    let foodToBeAdded = [{foodId:1, cal:1200, mealType:'lunch',qty:1}]
-    $('#id').click((e)=>{
-        $.post('localhost:8000/food-log', foodToBeAdded, (date)=>{
-            
+    let foodToBeAdded = [{ foodId: 1, cal: 1200, mealType: 'lunch', qty: 1 }]
+    $('#id').click((e) => {
+        $.post('localhost:8000/food-log', foodToBeAdded, (date) => {
+
         })
     })
 
-    $(function(){
+    $(function () {
         // get data from server url: localhost:8000/food-log/2019-07-16
-        
+
+        $.get("localhost:8000/food-log/2019-07-16", function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
 
 
 
@@ -558,4 +562,5 @@
 
 
 </script>
+
 </html>
