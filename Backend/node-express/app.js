@@ -1,27 +1,33 @@
 const express = require('express') // imported express 
-
-
 //copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
 var upload = multer() // for parsing multipart/form-data
+// custom modules imports
+const appLevelMiddelware = require("./middlewares/app_level")
+const authRouter = require('./routes/auth')
 
-
-// port
+// the default port 
 const port = 8000
 
-//creating an express app 
 const app = express()
 
-//applying middleware
+// * loading middleware 
+app.use(appLevelMiddelware.requestLogger)
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+
+//* Auth Routes 
+app.use('/auth', authRouter)
+
+
+
 
 
 
 // default route
 app.get('/', (req, res) => { //handels the request
-
     res.send({
         name: 'Atif Mehmood',
         email: 'am02464@st.habib.edu.pk'
@@ -261,11 +267,7 @@ var database = {
             weight: "52",
             gender: "female",
             dateofbirth: " 5/9/1958"
-        } >>>
-        >>> > 710 c2d8a976a815e34bd330fb12b7f237ef81993
-
-
-
+        } 
         , {
             id: "4",
             name: "taha",
@@ -370,21 +372,28 @@ var database = {
 
 
 
-//Database test
-var sqlite3 = require('sqlite3').verbose();
-
-var db = new sqlite3.Database('database.sqlite3')
-
-console.log(db)
 
 
 
-x = db.run('CREATE TABLE User (fname varchar(255), lname varchar(255), email varchar(255))',(err) =>{
-    console.log(err)
-})
+const authenticateUser =  (email, password) =>{
+    let user = null
+    db.serialize(()=>{
+        db.get("SELECT * FROM User where email=$email",{$email:email}, (err , row) =>{
+            if (row){
+                
+                user = row
+              
+            }
+            
+            
+            
+        })
+    })
+    
+    return user
+}
+
+//console.log(authenticateUser('am02464@st.habib.edu.pk'))
 
 
 
-
-
-console.log(x)
