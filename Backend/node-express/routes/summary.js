@@ -19,8 +19,8 @@ router.get('/', (req, res) => {
     // Todo : database logic
 
     let summary = {
-        caloriesConsume: 215,
-        caloriesBurnd: 132,
+        caloriesConsumed: 215,
+        caloriesBurned: 132,
         netCalories: 347,
         over: 0
     }
