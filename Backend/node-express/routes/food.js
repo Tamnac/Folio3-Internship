@@ -1,6 +1,6 @@
 const express = require('express') // imported express
 const validator = require('validator')
-//copied from docs
+    //copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
 var upload = multer() // for parsing multipart/form-data
@@ -14,17 +14,42 @@ let router = express.Router()
 router.get('/:date', (req, res) => {
     let date = new Date(Date.parse(req.params.date))
     date = date.toISOString()
-    //TODO database logic 
-    database.all("select * from Food where date=$date",{$date:date},(err, rows)=>{
-        if (err){
-            res.send([])
-            return
+        //TODO database logic 
+        // database.all("select * from Food where date=$date",{$date:date},(err, rows)=>{
+        //     if (err){
+        //         res.send([])
+        //         return
+        //     }
+        //     else{
+        //         res.send(rows)
+        //         return
+        //     }
+        // })
+    res.send([{
+            id: 1,
+            mealType: 'Dinner',
+            foodId: 123,
+            calories: 200,
+            date: new Date(Date.now()),
+            qty: 3
+        },
+        {
+            id: 2,
+            mealType: 'Lunch',
+            foodId: 123,
+            calories: 200,
+            date: new Date(Date.now()),
+            qty: 3
+        },
+        {
+            id: 3,
+            mealType: 'Dinner',
+            foodId: 123,
+            calories: 200,
+            date: new Date(Date.now()),
+            qty: 3
         }
-        else{
-            res.send(rows)
-            return
-        }
-    })
+    ])
 })
 
 
