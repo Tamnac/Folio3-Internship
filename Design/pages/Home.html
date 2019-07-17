@@ -24,7 +24,7 @@
 
 
 <body>
-    <button> button</button>
+
     <!--Navbar start-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -109,23 +109,23 @@
                 <div class="col-md-6 col-sm-12 pt-2">
                     <div class="card card-body">
                         <h3 class="card-title text-center">Daily Summary</h3>
-                        <table class="table table-sm table-responsive-xs">
+                        <table class="table table-sm table-responsive-xs" id="daily-summary">
                             <tbody>
                                 <tr>
                                     <td>Calories Consumed</td>
-                                    <td> 930 </td>
+                                    <td id="cal-consumed"> 930 </td>
                                 </tr>
                                 <tr>
                                     <td>Calories Burned</td>
-                                    <td> 225 </td>
+                                    <td id="cal-burned"> 225 </td>
                                 </tr>
                                 <tr>
                                     <td>Net Calories</td>
-                                    <td>705</td>
+                                    <td id="net-cal"> 705</td>
                                 </tr>
                                 <tr>
                                     <td>Over</td>
-                                    <td>00 </td>
+                                    <td id="cal-over">00 </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -151,7 +151,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <thead class="log-thead">
+                                <thead class="log-thead" id="breakfast-log-row">
                                     <tr>
                                         <th colspan="4" class="">Breakfast</th>
                                     </tr>
@@ -166,7 +166,7 @@
                                 </tr>
 
 
-                                <thead class="log-thead">
+                                <thead class="log-thead" id="lunch-log-row">
                                     <tr>
                                         <th colspan="4" class="">Lunch</th>
                                     </tr>
@@ -180,7 +180,7 @@
                                     </td>
                                 </tr>
 
-                                <thead class="log-thead">
+                                <thead class="log-thead" id="dinner-log-row">
                                     <tr>
                                         <th colspan="4" class="">Dinner</th>
                                     </tr>
@@ -523,11 +523,25 @@
 <script>
     // get data from url :'localhost:8000/summary'
 
-    $(function(){
+    $(function() {
         // get data from server url: http://localhost:8000/food-log/2019-07-16
 
-        $.get("http://localhost:8000/summary",(data)=>{
-            console.log(data)
+        $.get("http://localhost:8000/summary", (data) => {
+            let cal_consumed = $('#cal-consumed')
+            cal_consumed.html(data.caloriesConsume)
+        })
+
+
+        $.get("http://localhost:8000/food-log/121", (data) => {
+            let bf_log = $('#breakfast-log-row')
+            let lu_log = $('#lunch-log-row')
+            let di_log = $('#dinner-log-row')
+
+            for (log of data) {
+                if (log.mealType === 'Lunch') {
+                    lu_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
+                }
+            }
         })
 
 
@@ -535,13 +549,6 @@
 
 
     })
-
-
-    console.log("I am called")
-    $.get("http://localhost:8000/summary", function(data, status) {
-        console.log("callback called")
-        alert("Data: " + data + "\nStatus: " + status);
-    });
 </script>
 
 
