@@ -24,6 +24,7 @@
 
 
 <body>
+    <button> button</button>
     <!--Navbar start-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -518,25 +519,17 @@
     <script src="../source/loggers.js"></script>
 </body>
 
+
 <script>
-    // let foodToBeAdded = [{foodId:1, cal:1200, mealType:'lunch',qty:1}]
-    // $('#id').click((e)=>{
-    //     $.post('localhost:8000/food-log', foodToBeAdded, (date)=>{
-
-    //     })
-    // })
+    // get data from url :'localhost:8000/summary'
 
 
-    $(function() {
-
-        // get data from url :'localhost:8000/summary'
-
-
-
-
-
-
-    })
+    console.log("I am called")
+    $.get("http://localhost:8000/summary", function(data, status) {
+        console.log("callback called")
+        alert("Data: " + data + "\nStatus: " + status);
+    });
 </script>
+
 
 </html>
