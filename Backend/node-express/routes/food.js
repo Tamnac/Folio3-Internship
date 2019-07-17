@@ -13,32 +13,18 @@ let router = express.Router()
 // Food Log endpoints start here 
 router.get('/:date', (req, res) => {
     let date = new Date(Date.parse(req.params.date))
+    date = date.toISOString()
     //TODO database logic 
-    // filter logs based on date 
-    //let food_loggs = database.food_log.filter((obj) => obj.date == date)
-    res.send([
-        {
-            id: 2,
-            mealType: 'Dinner',
-            foodId: 123,
-            date: new Date(Date.now()),
-            qty: 3
-        },
-        {
-            id: 1,
-            mealType: 'Lunch',
-            foodId: 123,
-            date: new Date(Date.now()),
-            qty: 3
-        },
-        {
-            id: 3,
-            mealType: 'Breakfast',
-            foodId: 123,
-            date: new Date(Date.now()),
-            qty: 3
+    database.all("select * from Food where date=$date",{$date:date},(err, rows)=>{
+        if (err){
+            res.send([])
+            return
         }
-    ])
+        else{
+            res.send(rows)
+            return
+        }
+    })
 })
 
 

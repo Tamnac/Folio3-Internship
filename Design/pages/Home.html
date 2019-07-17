@@ -550,7 +550,40 @@
 
         $.get("localhost:8000/food-log/2019-07-16", function (data, status) {
             alert("Data: " + data + "\nStatus: " + status);
+            $("button").click(function () {
+                $("<div class="card card-body">
+                        <a href="food.html">
+                            <h3 class="card-title text-center text-dark">Today's Intake</h3>
+                        </a>
+                        <hr>
+                        <table class="table table-sm table-responsive-sm">
+                            <thead class="labels text-white">
+                                <tr>
+                                    <th>Food</th>
+                                    <th>Quantity</th>
+                                    <th>Calories</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <thead class="log-thead">
+                                    <tr>
+                                        <th colspan="4" class="">Breakfast</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>Food 1 </td>
+                                    <td>6</td>
+                                    <td>120</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2 text-center"></p>
+                                    </td>
+                                </tr>
+").append("<b>Appended text</b>");
+            });
+
         });
+    });
     });
 
 
