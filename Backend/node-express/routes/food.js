@@ -27,7 +27,7 @@ router.get('/:date', (req, res) => {
         // })
     res.send([{
             id: 1,
-            mealType: 'Dinner',
+            mealType: 'Breakfast',
             foodId: 123,
             calories: 200,
             date: new Date(Date.now()),
