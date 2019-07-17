@@ -546,9 +546,11 @@
     })
 
     $(function(){
-        // get data from server url: localhost:8000/food-log/2019-07-16
-        
+        // get data from server url: http://localhost:8000/food-log/2019-07-16
 
+        $.get("http://localhost:8000/summary",(data)=>{
+            console.log(data)
+        })
 
 
 
