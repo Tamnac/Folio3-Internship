@@ -18,21 +18,21 @@
     <script src="design.js"></script>
 
     <title>Home</title>
-  
+
 
 </head>
 
 
 
 <body>
-    <!--Navbar start-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+           <!--Navbar start-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
             <div class="collapse navbar-collapse" id="navbarText">
 
@@ -73,8 +73,7 @@
 
                         <div class="nav-item dropdown">
 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <b>Atif Mehmood</b>
 
@@ -110,23 +109,23 @@
                 <div class="col-md-6 col-sm-12 pt-2">
                     <div class="card card-body">
                         <h3 class="card-title text-center">Daily Summary</h3>
-                        <table class="table table-sm table-responsive-xs">
+                        <table class="table table-sm table-responsive-xs" id="daily-summary">
                             <tbody>
                                 <tr>
                                     <td>Calories Consumed</td>
-                                    <td> 930 </td>
+                                    <td id="cal-consumed"> 930 </td>
                                 </tr>
                                 <tr>
                                     <td>Calories Burned</td>
-                                    <td> 225 </td>
+                                    <td id="cal-burned"> 225 </td>
                                 </tr>
                                 <tr>
                                     <td>Net Calories</td>
-                                    <td>705</td>
+                                    <td id="net-cal"> 705</td>
                                 </tr>
                                 <tr>
                                     <td>Over</td>
-                                    <td>00 </td>
+                                    <td id="cal-over">00 </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -152,7 +151,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <thead class="log-thead">
+                                <thead class="log-thead" id="breakfast-log-row">
                                     <tr>
                                         <th colspan="4" class="">Breakfast</th>
                                     </tr>
@@ -167,7 +166,7 @@
                                 </tr>
 
 
-                                <thead class="log-thead">
+                                <thead class="log-thead" id="lunch-log-row">
                                     <tr>
                                         <th colspan="4" class="">Lunch</th>
                                     </tr>
@@ -181,24 +180,23 @@
                                     </td>
                                 </tr>
 
-                                <thead class="log-thead">
+                                <thead class="log-thead" id="dinner-log-row">
                                     <tr>
                                         <th colspan="4" class="">Dinner</th>
                                     </tr>
                                 </thead>
-
-                                <tr>
-                                    <td>Food 3</td>
-                                    <td>1.5</td>
-                                    <td>475</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2 text-center"></p>
-                                    </td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>Food 3</td>
+                                        <td>1.5</td>
+                                        <td>475</td>
+                                        <td class="text-center">
+                                            <p class="fa fa-trash-o pr-2 text-center"></p>
+                                        </td>
+                                    </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal"
-                            data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
+                        <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal" data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
                     </div>
                 </div>
                 <div class="col-md-6 pt-2">
@@ -217,7 +215,7 @@
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody  id='exercise-log-body'>
                                 <tr scope="row">
                                     <td>push-ups</td>
                                     <td>15</td>
@@ -247,31 +245,30 @@
 
                                 </tr>
                                 <tr>
-                                        <td>sit-ups</td>
-                                        <td>15</td>
-                                        <td class="text-center"> 255</td>
-                                        <td class="text-center">
-                                            <p class="fa fa-trash-o pr-2"></p>
-                                        </td>
-    
-    
-                                    </tr>
+                                    <td>sit-ups</td>
+                                    <td>15</td>
+                                    <td class="text-center"> 255</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2"></p>
+                                    </td>
+
+
+                                </tr>
                                 <tr>
-                                        <td>squats</td>
-                                        <td>15</td>
-                                        <td class="text-center"> 255</td>
-                                        <td class="text-center">
-                                            <p class="fa fa-trash-o pr-2"></p>
-                                        </td>
-    
-    
-                                    </tr>
+                                    <td>squats</td>
+                                    <td>15</td>
+                                    <td class="text-center"> 255</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2"></p>
+                                    </td>
+
+
+                                </tr>
 
                             </tbody>
                         </table>
                         <div class="d-flex flex-row-reverse">
-                            <button class="btn btnn-primary btn-sm btn-block text-white" value="LOG FOOD"
-                                data-toggle="modal" data-target="#log-exercise">Log Exercise</button>
+                            <button class="btn btnn-primary btn-sm btn-block text-white" value="LOG FOOD" data-toggle="modal" data-target="#log-exercise">Log Exercise</button>
 
                         </div>
                     </div>
@@ -309,7 +306,7 @@
 
                         <a href="./Landing.html" class="text-white ml-3">
 
-                            Logout</a>
+                                Logout</a>
 
                     </div>
 
@@ -345,8 +342,7 @@
     <!--Footer end-->
 
     <!--Log Exercise Modal start-->
-    <div class="modal fade" id="log-exercise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="log-exercise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content container-fluid">
                 <!--Header-->
@@ -389,8 +385,7 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-1">
-                                            <input class="form-control" type="number" placeholder="Duration"
-                                                aria-label="Time">
+                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
                                         </div>
                                     </form>
                                 </td>
@@ -402,8 +397,7 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration"
-                                                aria-label="Time">
+                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
                                         </div>
                                     </form>
                                 </td>
@@ -415,8 +409,7 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration"
-                                                aria-label="fa-times">
+                                            <input class="form-control" type="number" placeholder="Duration" aria-label="fa-times">
                                         </div>
                                     </form>
                                 </td>
@@ -428,8 +421,7 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration"
-                                                aria-label="Time">
+                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
                                         </div>
                                     </form>
                                 </td>
@@ -457,8 +449,7 @@
     <!--Log Exercise Modal end-->
 
     <!-- Modal: Add Food -->
-    <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="addFoodModal"
-        aria-hidden="true">
+    <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="addFoodModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <!--Header-->
@@ -488,11 +479,8 @@
 
                     </div>
                     <div class="dropdown search">
-                        <input type="search" id="searchBar" placeholder="search food"
-                            class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        <div class="dropdown-menu" id="search-dropdown-menu" aria-labelledby="searchBar"
-                            style="max-height: 400px;overflow-y: scroll;width:100%">
+                        <input type="search" id="searchBar" placeholder="search food" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-menu" id="search-dropdown-menu" aria-labelledby="searchBar" style="max-height: 400px;overflow-y: scroll;width:100%">
 
                         </div>
                     </div>
@@ -525,39 +513,52 @@
 
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="../source/loggers.js"></script>
 </body>
 
 <script>
-
-    let foodToBeAdded = [{foodId:1, cal:1200, mealType:'lunch',qty:1}]
-    $('#id').click((e)=>{
-        $.post('localhost:8000/food-log', foodToBeAdded, (date)=>{
-            
-        })
-    })
-
-    $(function(){
+    $(function () {
         // get data from server url: http://localhost:8000/food-log/2019-07-16
 
-        $.get("http://localhost:8000/summary",(data)=>{
+        $.get("http://localhost:8000/exercise-log", (data) => {
+            let excersice_log = $('#exercise-log-body')
             console.log(data)
+
+            for (log of data) {
+                excersice_log.append(`<tr><td>${log.Exercise}</td><td>${log.Time}</td><td class="text-center">${log.Calories_Burned}</td><td class="text-center"><p class="fa fa-trash-o pr-2"></p></td>
+                </tr>`)
+            }
+            console.log(data)
+
+
         })
-
-
-
-
-
     })
 
 
+    $.get("http://localhost:8000/food-log/121", (data) => {
+        let bf_log = $('#breakfast-log-row')
+        let lu_log = $('#lunch-log-row')
+        let di_log = $('#dinner-log-row')
+
+        for (log of data) {
+            if (log.mealType === 'Lunch') {
+                lu_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
+            }
+        }
+        for (log of data) {
+            if (log.mealType === 'Breakfast') {
+                bf_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
+            }
+        }
+        for (log of data) {
+            if (log.mealType === 'Dinner') {
+                di_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
+            }
+        }
+    })
 </script>
+
 </html>

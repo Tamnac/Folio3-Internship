@@ -1,6 +1,6 @@
 const express = require('express') // imported express
 const validator = require('validator')
-//copied from docs
+    //copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
 var upload = multer() // for parsing multipart/form-data
@@ -25,10 +25,16 @@ router.get('/:date', (req, res) => {
             res.send([])
             return
         }
-        else{
-            res.send(rows)
-            return
-        }
+        // database.all("select * from Food where date=$date",{$date:date},(err, rows)=>{
+        //     if (err){
+        //         res.send([])
+        //         return
+        //     }
+        //     else{
+        //         res.send(rows)
+        //         return
+        //     }
+        // })
     })
 })
 
