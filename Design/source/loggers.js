@@ -1,4 +1,7 @@
+
+
 $(function() {
+
     // Added Foods
     var addedFoods
 
