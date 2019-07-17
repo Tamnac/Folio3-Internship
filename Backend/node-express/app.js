@@ -87,6 +87,21 @@ app.post('/exercise-log', (req, res) => {
 
 })
 
+app.get('/exercise-log', (req, res) => {
+    /**
+     * logs exercise of the currently logged In user 
+     */
+    // -> Atif 
+    res.send([
+        {Exercise:"Pushups",Time:'16min',calories_burned:'230'},
+        {Exercise:'Pullups',Time:'14min',calories_burned:'260' },
+        {Exercise:'running',Time:'19min',calories_burned:'260' },
+         {Exercise:'squats',Time:'30min',calories_burned:'314'}
+    ])
+
+})
+
+
 app.put('/exercise-log/:id', (req, res) => {
     /**
      * updates today's exercise of the currently logged In user 
