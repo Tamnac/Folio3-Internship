@@ -6,6 +6,9 @@ var upload = multer() // for parsing multipart/form-data
 // custom modules imports
 const appLevelMiddelware = require("./middlewares/app_level")
 const authRouter = require('./routes/auth')
+const userRouter = require("./routes/user")
+const summaryRouter = require("./routes/summary")
+
 
 // the default port 
 const port = 8000
@@ -18,11 +21,14 @@ app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 
-//* Auth Routes 
+// * Auth Routes 
 app.use('/auth', authRouter)
 
+// * User Routes
+app.use('/user', userRouter)
 
-
+// * Summary Routes
+app.use('/summary', summaryRouter)
 
 
 
@@ -34,35 +40,7 @@ app.get('/', (req, res) => { //handels the request
     })
 })
 
-// * user's endpoints start here
-app.get('/user/:id', (req, res) => {
-    /**
-     * gets a user based on id 
-     */
-    const id = req.params.id
-    var user = database.users.filter((obj) => obj.id == id)
-    res.send(user)
 
-})
-
-app.post('/user', (req, res) => {
-    /**
-     * registers a new user
-     */
-    // -> Taha 
-
-})
-
-app.put('/user', (req, res) => {
-    /**
-     * updates a user
-     */
-    // -> Taha 
-    console.log("put method for user")
-    console.log(req.body)
-})
-
-// ! User's endpoints end here 
 
 
 // * Weight Log endpoints start here
@@ -214,21 +192,7 @@ app.delete('/goal/:id', (req, res) => {
     // -> Atif 
 })
 
-// Daily Summary
-app.get('/summary', (req, res) => {
-    /**
-     * logs food of the currently logged In user 
-     */
-    // -> Mubashira
-    summary = {
-        caloriesconsume: 215,
-        caloriesburnd: 132,
-        netcalories: 347,
-        over: 0
-    }
 
-    res.send(summary);
-})
 
 
 
