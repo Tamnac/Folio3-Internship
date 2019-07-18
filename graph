@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>prograss grapgh!</title>
+
+
+
+</head>
+
+<body class="big-warning py-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div classs="card-body">
+                <h1>prograss graph<button class="btn btn=success" onlick="updatechart()">log weight </button>
+                    <button class="btn btn=success" onclick="addValue()">+1</button> </h1>
+            </div>
+            <div classs="card-body"></div>
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    </div>
+    <h1></h1>
+    <canvas id="myChart"></canvas>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script>
+        $.get('http://localhost:8000/graph', function(graphdata) {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    datasets: [{
+                        label: 'your prograss',
+                        backgroundColor: 'rgb(00, 99, 132)',
+                        borderColor: 'rgb(00, 99, 132)',
+                        data: graphdata
+                    }]
+                },
+
+                // Configuration options go heres
+                options: {}
+
+            });
+
+        })
+
+
+        function updatechart() {
+            // chart.data.datasets.data = [0, 10, 5, 8, 20, 30, 45];
+            chart.data.labels = ["August", "sepyember", "november", "december"];
+            chart.update();
+        };
+
+        function addValue() {
+            chart.data.datasets[0].data.unshift(999);
+            chart.data.datasets[0].data.push(999);
+            chart.data.labels.push("August");
+            chart.update();
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
