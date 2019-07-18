@@ -151,12 +151,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <thead class="log-thead" id="breakfast-log-row">
+                                <thead class="log-thead" id="breakfast-log-head">
                                     <tr>
                                         <th colspan="4" class="">Breakfast</th>
                                     </tr>
                                 </thead>
-                                <tr>
+                                <tr class="breakfast-log-row">
                                     <td>Food 1 </td>
                                     <td>6</td>
                                     <td>120</td>
@@ -166,27 +166,29 @@
                                 </tr>
 
 
-                                <thead class="log-thead" id="lunch-log-row">
+                                <thead class="log-thead" id="lunch-log-head">
                                     <tr>
                                         <th colspan="4" class="">Lunch</th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>Food 2</td>
-                                    <td>7.5</td>
-                                    <td>335</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2 text-center"></p>
-                                    </td>
-                                </tr>
+                          
+                                    <tr class="lunch-log-row">
+                                        <td>Food 2</td>
+                                        <td>7.5</td>
+                                        <td>335</td>
+                                        <td class="text-center">
+                                            <p class="fa fa-trash-o pr-2 text-center"></p>
+                                        </td>
+                                    </tr>
+                              
 
-                                <thead class="log-thead" id="dinner-log-row">
-                                    <tr>
+                                <thead class="log-thead" id="dinner-log-head">
+                                    <tr >
                                         <th colspan="4" class="">Dinner</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                             
+                                    <tr class="dinner-log-row">
                                         <td>Food 3</td>
                                         <td>1.5</td>
                                         <td>475</td>
@@ -194,7 +196,7 @@
                                             <p class="fa fa-trash-o pr-2 text-center"></p>
                                         </td>
                                     </tr>
-                            </tbody>
+                         
                         </table>
                         <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal" data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
                     </div>
@@ -524,6 +526,40 @@
     today = today.toISOString()
 
     $(function () {
+        fetchTodayIntake(today)
+        fetchTodaySummary(today)
+        fetchTodayExercise(today)
+    })
+
+    const fetchTodayIntake= (today) =>{
+        $.get(`http://localhost:8000/food-log/${today}`, (data) => {
+            let bf_log = $('#breakfast-log-head')
+            let lu_log = $('#lunch-log-head')
+            let di_log = $('#dinner-log-head')
+
+            //clear old data
+            $(".breakfast-log-row").remove()
+            $(".lunch-log-row").remove()
+            $(".dinner-log-row").remove()
+
+            
+            for (log of data) {
+                if (log.mealType === 'Lunch') {
+                    lu_log.after(`<tr id="lunch-log-${log.foodId}" class='lunch-log-row'><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center" onclick="removeSelf($('#lunch-log-${log.foodId}'),() => fetchTodayIntake(today))" ></p></td></tr>`)
+                    
+                }
+                else if (log.mealType === 'Breakfast') {
+                    bf_log.after(`<tr id='breakfast-log-${log.foodId}' class='breakfast-log-row'><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center" onclick="removeSelf($('#breakfast-log-${log.foodId}'),() => fetchTodayIntake(today))"></p></td></tr>`)
+                }
+                else if (log.mealType === 'Dinner') {
+                    di_log.after(`<tr id="dinner-log-${log.foodId}"  class='dinner-log-row'><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center" onclick="removeSelf($('#dinner-log-${log.foodId}'),() => fetchTodayIntake(today))"></p></td></tr>`)
+                }
+            }
+        })
+    
+    }
+
+    const fetchTodaySummary= (today) =>{
         $.get(`http://localhost:8000/summary/${today}`, (data) => {
             let cal_consumed = $('#cal-consumed')
             cal_consumed.html(data.caloriesConsumed)
@@ -532,44 +568,25 @@
             cal_burned.html(data.caloriesBurned)
 
             let net_cal = $('#net-cal')
-            net_cal.html( data.caloriesConsumed - data.caloriesBurned)
-
-            
-
-
-            
+            net_cal.html( data.caloriesConsumed - data.caloriesBurned)            
         })
+    }
 
+    const fetchTodayExercise= (today) =>{
         $.get(`http://localhost:8000/exercise-log/${today}`, (data) => {
+            $(".exercise-log-row").remove()
             let excersice_log = $('#exercise-log-body')
             for (log of data) {
-                excersice_log.append(`<tr><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2"></p></td>
+                excersice_log.append(`<tr id="exercise-log-${log.exerciseId}" class="exercise-log-row"><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2" onclick="removeSelf($('#exercise-log-${log.exerciseId}'),() => fetchTodayExercise(today))" ></p></td>
                 </tr>`)
             }
         })
-    })
-
-    $.get(`http://localhost:8000/food-log/${today}`, (data) => {
-        let bf_log = $('#breakfast-log-row')
-        let lu_log = $('#lunch-log-row')
-        let di_log = $('#dinner-log-row')
-
-        for (log of data) {
-            if (log.mealType === 'Lunch') {
-                lu_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
-            }
-        }
-        for (log of data) {
-            if (log.mealType === 'Breakfast') {
-                bf_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
-            }
-        }
-        for (log of data) {
-            if (log.mealType === 'Dinner') {
-                di_log.after(`<tr><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center"></p></td></tr>`)
-            }
-        }
-    })
+    }
+    
+    const removeSelf = (jqueryElement,callback) =>{
+        jqueryElement.remove()
+        callback()
+    } 
 </script>
 
 </html>
