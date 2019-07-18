@@ -1,12 +1,13 @@
 const express = require('express') // imported express
 const validator = require('validator')
-    //copied from docs
+//copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
 var upload = multer() // for parsing multipart/form-data
 
 let authRequired = require("../middlewares/app_level").authRequired
 let database = require('../database')
+let utils = require("../utils")
 
 // creating a router
 let router = express.Router()
@@ -16,42 +17,55 @@ router.use(authRequired)
 
 // Food Log endpoints start here 
 router.get('/:date', (req, res) => {
-    let date = new Date(Date.parse(req.params.date))
-    date = date.toISOString()
-    console.log(req.user.id)
-    database.all("select * from FoodLog where user_id=$userId and date=$date",{$date:'2019-07-17T08:22:27.944Z', $userId:req.user.id},(err, rows)=>{
-        if (err){
+    let date = req.params.date
+
+    database.all(`select * from FoodLog where user_id=${req.user.id} and date=${date}`, (err, rows) => {
+        if (err) {
             console.log(err)
             res.send([])
             return
         }
-        else{
+        else {
             res.send(rows)
             return
         }
-        })
     })
+})
 
 
 router.post('/', upload.array(), (req, res) => {
     /**
      * logs food of the currently logged In user 
      */
-    let body = req.bod
+    let body = req.body
+    let date = new Date(Date.now())
+    date = utils.getFormatedDate(date)
+    console.log(body)
+    // get all list
+    
+    database.serialize(() => {
+        for (food of req.body.foodList){
+            let data = {
+                $userId: req.user.id,
+                $foodId: food.foodId,
+                $foodName: food.foodName,
+                $qty: food.qty,
+                $calories:food.calories,
+                $date: date,
+                $mealType: req.body.mealType
+            }
+            console.log(data)
+            database.run(`INSERT into FoodLog (user_id, foodId, foodName,qty, calories, date, mealType) VALUES ($userId,$foodId,$foodName,$qty,$calories,$date,$mealType)`,
+            data,
+            (err) => {
+                console.log(err)
+            })
+        }
+        
+    })
 
-    //TODO: validations here
-
-    let log = {
-        id: database.food_log.length,
-        mealType: req.body.mealType,
-        date: req.body.date,
-        qty: req.body.qty,
-        foodId: req.body.foodId
-    }
-
-    database.food_log.push(log)
     req.statusCode = 200
-    res.send(log)
+    res.send("On test mode")
 })
 
 router.put('/food-log', upload.array(), (req, res) => {
@@ -60,24 +74,21 @@ router.put('/food-log', upload.array(), (req, res) => {
      */
 
 
-    let log_index = database.food_log.findIndex((obj) => req.body.id == obj.id)
-
-    if (log_index != -1) {
-        let food_log = {...database.food_log[0], ...req.body }
-        res.send(food_log)
-    } else {
-        res.status(404)
-        res.send({ error: 'Object Not Found' })
-    }
+    console.log("put request")
 
 })
 
-router.delete('/food-log/:id', (req, res) => {
+router.delete('/:foodId',upload.array(), (req, res) => {
     /**
      * logs food of the currently logged In user 
      */
     // -> Atif 
     let body = req.body
+    console.log("we have to deleted",req.params.foodId)
+    database.run(`DELETE from FoodLog WHERE foodId='${req.params.foodId}'`,(err)=>{
+        console.log(err)
+    })
+    res.send("deleted")
 
 })
 

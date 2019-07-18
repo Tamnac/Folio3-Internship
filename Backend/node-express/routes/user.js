@@ -22,6 +22,12 @@ router.get('/', (req, res) => {
     /**
      * gets a user based on id 
      */
+    let userProfile ={
+        name:" Atif ",
+        height:5,
+        profilePicture:'url'
+
+    }
     res.send(req.user)
 
 })

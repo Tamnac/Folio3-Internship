@@ -97,7 +97,7 @@
     </nav>
     <!--Navbar end-->
 
-    
+
     <section class="container">
         <div class='row pt-4 text-center'>
             <div class="col-lg-12">
@@ -106,7 +106,7 @@
         </div>
         <div class="row pt-3 justify-content-md-center">
             <div class="col-md-4 mb-2">
-                <input type="date" class="form-control">
+                <input id="date-picker" type="date" class="form-control">
             </div>
             <div class="col-lg-12">
                 <table class="table  table-responsive-sm">
@@ -119,12 +119,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <thead class="log-thead">
+                        <thead class="log-thead" id="breakfast-log-head">
                             <tr>
                                 <th colspan="4" class="">Breakfast</th>
                             </tr>
                         </thead>
-                        <tr>
+                        <tr class="breakfast-log-row">
                             <td>Food 1 </td>
                             <td>6</td>
                             <td>120</td>
@@ -132,64 +132,48 @@
                                 <p class="fa fa-trash-o pr-2 text-center"></p>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Food 2</td>
-                            <td>4</td>
-                            <td>160</td>
-                            <td class="text-center">
-                                <p class="fa fa-trash-o pr-2 text-center"></p>
-                            </td>
-                        </tr>
-                        
-                        <thead class="log-thead">
+
+
+                        <thead class="log-thead" id="lunch-log-head">
                             <tr>
                                 <th colspan="4" class="">Lunch</th>
                             </tr>
                         </thead>
-                        <tr>
-                            <td>Food 3</td>
+
+                        <tr class="lunch-log-row">
+                            <td>Food 2</td>
                             <td>7.5</td>
                             <td>335</td>
                             <td class="text-center">
                                 <p class="fa fa-trash-o pr-2 text-center"></p>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Food 4</td>
-                            <td>1.5</td>
-                            <td>475</td>
-                            <td class="text-center">
-                                <p class="fa fa-trash-o pr-2 text-center"></p>
-                            </td>
-                        </tr>
-                        <thead class="log-thead">
+
+
+                        <thead class="log-thead" id="dinner-log-head">
                             <tr>
                                 <th colspan="4" class="">Dinner</th>
                             </tr>
                         </thead>
-                        <tr>
+
+                        <tr class="dinner-log-row">
                             <td>Food 3</td>
-                            <td>7.5</td>
-                            <td>335</td>
-                            <td class="text-center">
-                                <p class="fa fa-trash-o pr-2 text-center"></p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Food 4</td>
                             <td>1.5</td>
                             <td>475</td>
                             <td class="text-center">
                                 <p class="fa fa-trash-o pr-2 text-center"></p>
                             </td>
                         </tr>
-                    </tbody>
+
                 </table>
+                <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal"
+                    data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
+
                 <div class="d-flex flex-row-reverse">
-                        <button type="button" class="btn  btnn-primary text-white mb-2" data-toggle="modal"
+                    <button type="button" class="btn  btnn-primary text-white mb-2" data-toggle="modal"
                         data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
                 </div>
-                
+
 
             </div>
         </div>
@@ -309,8 +293,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="../source/loggers.js"></script>
+    <script src="../source/loggers.js"></script>
+    <script src="../source/utils.js"></script>
 
 </body>
+<script>
+    $(function () {
+        // get today 
+        let datePicker = $("#date-picker")
+        let today = new Date(Date.now())
+        // formate date
+        today = getFormatedDate(today)
+        datePicker.val(today)
+
+        // get todays Exercise 
+        fetchIntake(today)
+
+        // register change event
+        datePicker.change(() => {
+            let today = new Date(datePicker.val())
+            today = getFormatedDate(today)
+            fetchIntake(today)
+        })
+    })
+</script>
 
 </html>

@@ -218,54 +218,7 @@
                                 </tr>
                             </thead>
                             <tbody  id='exercise-log-body'>
-                                <tr scope="row">
-                                    <td>push-ups</td>
-                                    <td>15</td>
-                                    <td class="text-center"> 255</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2 text-center"></p>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>running</td>
-                                    <td>15</td>
-                                    <td class="text-center"> 255</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2"></p>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>crunches</td>
-                                    <td>15</td>
-                                    <td class="text-center"> 255</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2"></p>
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>sit-ups</td>
-                                    <td>15</td>
-                                    <td class="text-center"> 255</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2"></p>
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>squats</td>
-                                    <td>15</td>
-                                    <td class="text-center"> 255</td>
-                                    <td class="text-center">
-                                        <p class="fa fa-trash-o pr-2"></p>
-                                    </td>
-
-
-                                </tr>
+                                
 
                             </tbody>
                         </table>
@@ -467,15 +420,15 @@
 
                     <div class=" pt-2" role="group">
                         <label class="m-1">
-                            <input type="radio" name="mealType" value="breakfast" checked>
+                            <input type="radio" name="mealType" value="Breakfast" checked>
                             Breakfast
                         </label>
                         <label class="m-1">
-                            <input type="radio" name="mealType" value="lunch">
+                            <input type="radio" name="mealType" value="Lunch">
                             Lunch
                         </label>
                         <label class="m1">
-                            <input type="radio" name="mealType" value="dinner">
+                            <input type="radio" name="mealType" value="Dinner">
                             Dinner
                         </label>
 
@@ -490,7 +443,7 @@
 
                 <div class="modal-body">
 
-                    <table id="food-search-table" class="table-sm table  table-hover text-center table-responsive-sm">
+                    <table  class="table-sm table  table-hover text-center table-responsive-sm">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>#</th>
@@ -500,7 +453,7 @@
                                 <th>Remove</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="food-search-table">
 
                         </tbody>
                     </table>
@@ -508,8 +461,8 @@
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button class="btn btnn-primary btn-sm ">Add</button>
+                    <button type="button"  class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    <button id="add-food-btn" class="btn btnn-primary btn-sm ">Add</button>
                 </div>
             </div>
 
@@ -518,75 +471,22 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../source/utils.js"></script>
     <script src="../source/loggers.js"></script>
+    
 </body>
 
 <script>
     let today = new Date(Date.now())
-    today = today.toISOString()
+    today = today = getFormatedDate(today)
+    
 
-    $(function () {
-        fetchTodayIntake(today)
-        fetchTodaySummary(today)
-        fetchTodayExercise(today)
+    $(function (){
+        fetchIntake(today)
+        fetchSummary(today)
+        fetchExercise(today)
     })
 
-    const fetchTodayIntake= (today) =>{
-        $.get(`http://localhost:8000/food-log/${today}`, (data) => {
-            let bf_log = $('#breakfast-log-head')
-            let lu_log = $('#lunch-log-head')
-            let di_log = $('#dinner-log-head')
-
-            //clear old data
-            $(".breakfast-log-row").remove()
-            $(".lunch-log-row").remove()
-            $(".dinner-log-row").remove()
-
-            
-            for (log of data) {
-                if (log.mealType === 'Lunch') {
-                    lu_log.after(`<tr id="lunch-log-${log.foodId}" class='lunch-log-row'><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center" onclick="removeSelf($('#lunch-log-${log.foodId}'),() => fetchTodayIntake(today))" ></p></td></tr>`)
-                    
-                }
-                else if (log.mealType === 'Breakfast') {
-                    bf_log.after(`<tr id='breakfast-log-${log.foodId}' class='breakfast-log-row'><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center" onclick="removeSelf($('#breakfast-log-${log.foodId}'),() => fetchTodayIntake(today))"></p></td></tr>`)
-                }
-                else if (log.mealType === 'Dinner') {
-                    di_log.after(`<tr id="dinner-log-${log.foodId}"  class='dinner-log-row'><td>${log.foodId}</td><td>${log.qty}</td><td>${log.calories}</td><td class="text-center"><p class="fa fa-trash-o pr-2 text-center" onclick="removeSelf($('#dinner-log-${log.foodId}'),() => fetchTodayIntake(today))"></p></td></tr>`)
-                }
-            }
-        })
-    
-    }
-
-    const fetchTodaySummary= (today) =>{
-        $.get(`http://localhost:8000/summary/${today}`, (data) => {
-            let cal_consumed = $('#cal-consumed')
-            cal_consumed.html(data.caloriesConsumed)
-
-            let cal_burned = $('#cal-burned')
-            cal_burned.html(data.caloriesBurned)
-
-            let net_cal = $('#net-cal')
-            net_cal.html( data.caloriesConsumed - data.caloriesBurned)            
-        })
-    }
-
-    const fetchTodayExercise= (today) =>{
-        $.get(`http://localhost:8000/exercise-log/${today}`, (data) => {
-            $(".exercise-log-row").remove()
-            let excersice_log = $('#exercise-log-body')
-            for (log of data) {
-                excersice_log.append(`<tr id="exercise-log-${log.exerciseId}" class="exercise-log-row"><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2" onclick="removeSelf($('#exercise-log-${log.exerciseId}'),() => fetchTodayExercise(today))" ></p></td>
-                </tr>`)
-            }
-        })
-    }
-    
-    const removeSelf = (jqueryElement,callback) =>{
-        jqueryElement.remove()
-        callback()
-    } 
-</script>
+    </script>
 
 </html>

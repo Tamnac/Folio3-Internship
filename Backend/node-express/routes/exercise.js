@@ -22,9 +22,9 @@ router.get('/:date',(req, res) => {
     /**
      * logs exercise of the currently logged In user 
      */ 
+    let date = req.params.date
     database.all(
-        "select * from ExerciseLog where user_id=$userId and date=$date",
-        {$date:'12-20-2019', $userId:req.user.id},
+        `select * from ExerciseLog where user_id=${req.user.id} and date=${date}`,
         (err, rows)=>{
             if (err){
                 console.log(err)

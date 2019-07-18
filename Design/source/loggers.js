@@ -2,23 +2,28 @@
 
 $(function() {
 
-    // Added Foods
-    var addedFoods
 
     // Foods which will be added into Food log
-    var foodsToBeAdded = []
+    foodsToBeAdded = []
 
     // Food Search Bar 
     var foodSearchBar = $("#searchBar")
-
+    // Add Food Btn
+    var addFoodButton = $("#add-food-btn")
+    console.log(addFoodButton)
     // Food Search Table
     var foodSearchTable = $("#food-search-table")
+
+    removeFromFoodTobeAdded = (id)=>{
+        foodsToBeAdded = foodsToBeAdded.filter((item)=> item.foodId!=id)
+        $("#total-calories").html("Total Calories: " + totalCalCounter(foodsToBeAdded))
+    }
 
     //!* if length is < 3 don't search
     function totalCalCounter(foodObj) {
         sum = 0
         for (var i = 0; i < foodObj.length; i++)
-            sum += foodObj[i].itemCalories
+            sum += foodObj[i].calories
         return sum
 
     }
@@ -30,38 +35,32 @@ $(function() {
         dropdownObj.html("")
     }
 
-
-
-
     // food Search Dropdown
     var searchDrpMenu = $("#search-dropdown-menu")
     console.log(searchDrpMenu)
 
 
-    addFoodDrpChildren = function(dropdownObj, table, itemLabel, itemId, itemCalories) {
+    addFoodDrpChildren = function(dropdownObj, table, foodLabel, foodId, foodCalories) {
         /**
          * Adds Search Hints to Food Dropdown
          */
 
         var div = document.createElement("p")
-        div.innerHTML = '<a class="text-dark p-2">' + itemCalories + ' Cal - ' + itemLabel + '</a>'
+        div.innerHTML = `<a class="text-dark p-2 "> ${foodCalories} Cal - ${foodLabel}</a>`
         div = $(div).click(function(e) {
             foodsToBeAdded.push({
-                itemId,
-                itemCalories,
-                itemLabel,
+                foodId,
+                calories:foodCalories,
+                foodName: foodLabel,
                 qty: 1,
-                mealType: $("input[name='mealType']:checked").val() //Has to be removed 
+
             })
-
-            var tr = document.createElement("tr")
-            tr.innerHTML =
-                '<tr><th scope="row">' +
-                foodsToBeAdded.length +
-                '</th><td>' + itemLabel +
-                '</td><td><input class="form-control" type="number" placeholder="qty" value=1 aria-label="Qunatity"></td><td>' +
-                itemCalories + '</td><td><a><i class="fas fa-times"></i></a></td></tr>'
-
+            
+            var tr = $(
+                `<tr  id='item-to-be-added-${foodId.substr(5,)}'> <th scope="row">${foodsToBeAdded.length}
+                </th><td>${foodLabel} 
+                </td><td><input class="form-control" type="number" placeholder="qty" value=1 aria-label="Qunatity"></td><td>
+                ${foodCalories} </td><td><a><i class="fas fa-times" onclick="removeSelf($('#item-to-be-added-${foodId.substr(5,)}'),() => removeFromFoodTobeAdded('${foodId}'))"></i></a></td></tr>`)
             table.append(tr)
             foodSearchBar.dropdown('hide')
             foodSearchBar.val('')
@@ -75,7 +74,7 @@ $(function() {
 
 
     // Food Search bar On key Up
-    foodSearchBar.keyup(function(event) {
+    foodSearchBar.change(function(event) {
         clearDrpChildren(searchDrpMenu)
         foodSearchBar.dropdown('show')
             //addItemInSearchTable(foodSearchTable)
@@ -90,5 +89,27 @@ $(function() {
                 console.log(foodsToBeAdded)
             }
         })
+    })
+
+    addFoodButton.click(() =>{
+        console.log(foodsToBeAdded)
+        if (foodsToBeAdded.length!=0){
+            //sending post request
+
+            postFoodLog(foodsToBeAdded, $("input[name='mealType']:checked").val(),()=>{
+                let today = getFormatedDate(new Date(Date.now()))
+                fetchIntake(today)
+                fetchSummary(today)
+            })
+            $('#addFoodModal').modal('hide')
+            // cleared the food list 
+            foodsToBeAdded =[]
+            // cleared dropdown
+            clearDrpChildren(foodSearchTable)
+            $("#total-calories").html("Total Calories: ")
+            
+
+        }
+        
     })
 })
