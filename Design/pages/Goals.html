@@ -111,23 +111,23 @@
                     <table class="table">
                         <tr>
                             <td>Goal weight</td>
-                            <td class="text-right">96 lbs</td>
+                            <td class="text-right" id='goal-wgh'>96 lbs</td>
                         </tr>
                         <tr>
                             <td>Starting Weight</td>
-                            <td class="text-right">119 lbs</td>
+                            <td class="text-right" id='starting-wgh'>119 lbs</td>
                         </tr>
                         <tr>
                             <td>Goal Date</td>
-                            <td class="text-right">Dec 13, 2020</td>
+                            <td class="text-right" id='goal-date'>Dec 13, 2020</td>
                         </tr>
                         <tr>
                             <td>Calories/day</td>
-                            <td class="text-right">1100 Calories</td>
+                            <td class="text-right" id='cal-day'>1100 Calories</td>
                         </tr>
                         <tr>
                             <td>Weight/day</td>
-                            <td class="text-right">0.5 lbs</td>
+                            <td class="text-right"id='wgh-day'>0.5 lbs</td>
                         </tr>
                     </table>
                     <div class="d-flex">
@@ -426,16 +426,36 @@
 
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="../source/loggers.js"></script>
 
 </body>
 
+<script>
+       $.get(`http://localhost:8000/goals/${122}`, (data) => {
+           let goalWeight=$('#goal-wgh')
+           goalWeight.html(data.goalWeight)
+
+           let startingWeight=$('#starting-wgh')
+           startingWeight.html(data.startingWeight)
+
+           let goalDate=$('#goal-date')
+           goalDate.html(data.goalDate)
+
+           let caloriesDay=$('#cal-day')
+           caloriesDay.html(data.caloriesDay)
+           
+           let weightDay=$('#wgh-day')
+           weightDay.html(data.weightDay)
+       })
+
+
+</script>
 </html>
