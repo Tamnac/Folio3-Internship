@@ -1,6 +1,6 @@
 const express = require('express') // imported express
 const validator = require('validator')
-    //copied from docs
+//copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
 var upload = multer() // for parsing multipart/form-data
@@ -16,7 +16,7 @@ router.use(authRequired)
 
 
 // * Weight Log endpoints start here
-router.post('/weight-log', upload.array(), (req, res) => {
+router.post('/', upload.array(), (req, res) => {
     /**
      * logs wight of the currently logged In user 
      */
@@ -25,11 +25,32 @@ router.post('/weight-log', upload.array(), (req, res) => {
     //  let body = req.body
     // let date = Date().now()
     console.log(req.body)
-    db.run('insert into WeightLog(user_id, date, weight) values(?,?,?)', [req.user.id, '2019-07-08', req.body.weight],
-        function(err) {
-            res.send('done');
+    database.get(`select id from WeightLog where user_id=? and date=?`, [req.user.id, '2019-07-08'], (err, row) => {
+        console.log(row, err)
+        if (err) {
+            console.log(err, row)
+        }
+        else if (row) {
+            database.run(`Update WeightLog set date=?, weight=? where id=?`, ['2019-07-08', req.body.weight, row.id],
+                function (err) {
+                    if (err) {
+                        console.log(err)
+                    }
+                    else{
+                        res.send('done');
+                    }
+                    
 
-        });
+                });
+        }
+        else {
+            database.run('insert into WeightLog(user_id, date, weight) values(?,?,?)', [req.user.id, '2019-07-08', req.body.weight], () => {
+                res.send('done');
+            })
+        }
+
+    })
+    
 })
 
 

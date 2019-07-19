@@ -36,7 +36,10 @@ fetchSummary= (date) =>{
         cal_burned.html(data.caloriesBurned)
 
         let net_cal = $('#net-cal')
-        net_cal.html( data.caloriesConsumed - data.caloriesBurned)            
+        net_cal.html( data.caloriesConsumed - data.caloriesBurned)    
+        
+        let today_weight = $('#today-weight')
+        today_weight.html( data.todayWeight)   
     })
 }
 
@@ -74,6 +77,7 @@ getFormatedDate = (date)=>{
 
 
 
+
 postFoodLog = (foodList,mealType, callback) => {
     console.log("Post request",foodList)
     $.post("http://localhost:8000/food-log/",{mealType,foodList:foodList}, (data) =>{
@@ -83,7 +87,6 @@ postFoodLog = (foodList,mealType, callback) => {
 
 
 deleteFoodLog = (date, foodId) =>{
-    console.log(foodId)
     $.ajax({
         url: `http://localhost:8000/food-log/${foodId}`,
         type: 'DELETE',
@@ -91,7 +94,16 @@ deleteFoodLog = (date, foodId) =>{
             console.log(result)
             fetchIntake(date)
             fetchSummary(date)
+            fetchExercise(date)
         }
     });
     
+}
+
+
+postWeightLog = (weight, date, callback) => {
+    $.post("http://localhost:8000/weight-log",{weight}, (data) =>{
+        callback()
+        fetchSummary(date)
+    })
 }

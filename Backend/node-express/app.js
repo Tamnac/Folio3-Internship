@@ -10,6 +10,7 @@ const userRouter = require("./routes/user")
 const summaryRouter = require("./routes/summary")
 const foodRouter = require("./routes/food")
 const exerciseRouter = require("./routes/exercise")
+const weightRouter = require("./routes/weight")
 
 // the default port 
 const port = 8000
@@ -44,39 +45,9 @@ app.use('/food-log', foodRouter)
 // * Exercise Routes
 app.use('/exercise-log', exerciseRouter)
 
+// * weight Routes
+app.use('/weight-log', weightRouter)
 
-
-// default route
-app.get('/', (req, res) => { //handels the request
-    res.send({
-        name: 'Atif Mehmood',
-        email: 'am02464@st.habib.edu.pk'
-    })
-})
-
-
-
-
-// * Weight Log endpoints start here
-app.post('/weight-log', (req, res) => {
-    /**
-     * logs wight of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-    let date = Date().now()
-})
-
-app.put('/wight-log/:id', (req, res) => {
-    /**
-     * updates wight of the currently logged In user 
-     */
-    // -> Atif 
-    let body = req.body
-
-})
-
-// TODO: 
 
 //Listen Port
 app.listen(port, () => {

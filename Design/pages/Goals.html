@@ -155,7 +155,7 @@
                 <hr>
             </div>
         </div>
-        <div class="row p-3">
+        <div id="all-goals-div" class="row p-3">
             <div class="col-lg-6">
                 <a href="./Goal details.html">
                     <div class="card card-body">
@@ -188,102 +188,9 @@
                     </div>
                 </a>
             </div>
-            <div class="col-lg-6">
-                <a href="./Goal details.html">
-                    <div class="card card-body">
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>23/2/19</td>
-                                    <td>11/3/19</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight</td>
-                                    <td>113 lbs</td>
-                                    <td>97 lbs</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0"
-                                aria-valuemax="100" aria-valuenow="96">96%</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+           
         </div>
-        <div class="row p-3">
-            <div class="col-lg-6">
-                <a href="./Goal details.html">
-                    <div class="card card-body">
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>23/2/19</td>
-                                    <td>11/3/19</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight</td>
-                                    <td>113 lbs</td>
-                                    <td>97 lbs</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0"
-                                aria-valuemax="100" aria-valuenow="96">96%</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6">
-                <a href="./Goal details.html">
-                    <div class="card card-body">
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Date</td>
-                                    <td>23/2/19</td>
-                                    <td>11/3/19</td>
-                                </tr>
-                                <tr>
-                                    <td>Weight</td>
-                                    <td>113 lbs</td>
-                                    <td>97 lbs</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0"
-                                aria-valuemax="100" aria-valuenow="96">96%</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        
     </section>
 
     <footer class="text-white">
@@ -455,7 +362,15 @@
            let weightDay=$('#wgh-day')
            weightDay.html(data.weightDay)
        })
+       
+       $(()=>{
+        $.get("http://localhost:8000/goals",(data)=>{
+            for (goal of goals){
+                $('#all-goals-div').append(singleGoalCard)
+            }
+        })    
+       
 
-
+       })
 </script>
 </html>

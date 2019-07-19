@@ -17,17 +17,37 @@ router.use(authRequired)
 
 
 // * Goals endpoints start here 
-router.get('/goals/:goal_Id', (req, res) => {
+router.get('/:goal_Id', (req, res) => {
     /**
      * gets all goals logged In user 
      */
     // -> Taha 
-    const goal_id = req.params.goal_Id
-    var goal = database.goals.find((obj) => obj.goalId == goal_id)
-    res.send(goal)
+    database.get("select * from Goal where id=?",[req.params.id],(err, row)=>{
+        if (err){
+            console.log(err)
+        }
+        else if(row){
+            res.send(row)
+        }
+    })
 })
 
-router.post('/goal', (req, res) => {
+router.get('/', (req, res) => {
+    /**
+     * gets all goals logged In user 
+     */
+    // -> Taha 
+    database.get("select * from Goal where user_id=?",[req.user.id],(err, row)=>{
+        if (err){
+            console.log(err)
+        }
+        else if(row){
+            res.send(row)
+        }
+    })
+})
+
+router.post('/', (req, res) => {
     /**
      * create a goal of currently logged In user 
      */
@@ -44,7 +64,7 @@ router.put('/goal/:id', (req, res) => {
 })
 
 app.delete('/goal/:id', (req, res) => {
-    /**
+    /**}
      * deletes a goal based on id
      */
     // -> Atif 
