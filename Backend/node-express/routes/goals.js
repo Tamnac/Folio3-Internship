@@ -37,14 +37,34 @@ router.get('/', (req, res) => {
      * gets all goals logged In user 
      */
     // -> Taha 
-    database.get("select * from Goal where user_id=?",[req.user.id],(err, row)=>{
-        if (err){
-            console.log(err)
-        }
-        else if(row){
-            res.send(row)
-        }
+    let data ={
+        curentGoal:null,
+        previousGoals:null
+    }
+    console.log(req.url)
+    database.serialize(()=>{
+        database.get("select * from Goal where user_id=? and isAchieved=false",[req.user.id],(err, row)=>{
+            if (err){
+                console.log(err)
+            }
+            else if(row){
+                console.log(row)
+                data.curentGoal = row
+            }
+        })
+
+        database.all("select * from Goal where user_id=? and isAchieved=true",[req.user.id],(err, rows)=>{
+            if (err){
+                console.log(err)
+            }
+            else if(rows){
+                console.log(rows)
+                data.previousGoals = rows
+                res.send(data)
+            }
+        })
     })
+    
 })
 
 router.post('/', (req, res) => {
@@ -63,7 +83,7 @@ router.put('/goal/:id', (req, res) => {
     // -> Atif 
 })
 
-app.delete('/goal/:id', (req, res) => {
+router.delete('/goal/:id', (req, res) => {
     /**}
      * deletes a goal based on id
      */

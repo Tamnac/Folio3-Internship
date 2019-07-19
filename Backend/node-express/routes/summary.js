@@ -31,7 +31,7 @@ router.get('/:date', (req, res) => {
                 console.log(err)
             }
             else if (row){
-                console.log(row)
+                console.log(row.caloriesConsumed)
                 summary.caloriesConsumed = row.caloriesConsumed
             }
         })
@@ -40,7 +40,7 @@ router.get('/:date', (req, res) => {
                 console.log(err)
             }
             else if (row){
-                console.log(row)
+                console.log(row.weight)
                 summary.todayWeight = row.weight
             }
         })
@@ -48,12 +48,13 @@ router.get('/:date', (req, res) => {
             if (err){
                 console.log(err)
             }
-            else if (row){
+            else if (row.caloriesBurned){
                 console.log(row)
                 summary.caloriesBurned = row.caloriesBurned
-                res.send(summary);
+                
             }
             summary.netCalories = summary.caloriesConsumed - summary.caloriesBurned
+            res.send(summary);
         })
 
 

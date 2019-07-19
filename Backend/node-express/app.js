@@ -11,7 +11,7 @@ const summaryRouter = require("./routes/summary")
 const foodRouter = require("./routes/food")
 const exerciseRouter = require("./routes/exercise")
 const weightRouter = require("./routes/weight")
-
+const goalsRouter = require("./routes/goals")
 // the default port 
 const port = 8000
 
@@ -47,6 +47,9 @@ app.use('/exercise-log', exerciseRouter)
 
 // * weight Routes
 app.use('/weight-log', weightRouter)
+
+// * goaks Routes
+app.use('/goals', goalsRouter)
 
 
 //Listen Port

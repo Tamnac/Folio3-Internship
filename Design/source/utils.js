@@ -47,10 +47,15 @@ fetchExercise= (date) =>{
     $.get(`http://localhost:8000/exercise-log/'${date}'`, (data) => {
         $(".exercise-log-row").remove()
         let excersice_log = $('#exercise-log-body')
-        for (log of data) {
-            excersice_log.append(`<tr id="exercise-log-${log.exerciseId}" class="exercise-log-row"><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2" onclick="removeSelf($('#exercise-log-${log.exerciseId}'),() => fetchExercise('${date}'))" ></p></td>
-            </tr>`)
+        if (data.lenght!=0){
+            for (log of data) {
+                excersice_log.append(`<tr id="exercise-log-${log.exerciseId}" class="exercise-log-row"><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2" onclick="removeSelf($('#exercise-log-${log.exerciseId}'),() => fetchExercise('${date}'))" ></p></td>
+                </tr>`)
+            }
+        }else{
+            excersice_log.append(`<div scope="row" class="exercise-log-row"><td>You Havent Logged Exercise Yet</div>`)
         }
+        
     })
 }
 
