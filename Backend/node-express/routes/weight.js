@@ -21,17 +21,14 @@ router.post('/', upload.array(), (req, res) => {
      * logs wight of the currently logged In user 
      */
     // -> Atif 
-
-    //  let body = req.body
-    // let date = Date().now()
-    console.log(req.body)
-    database.get(`select id from WeightLog where user_id=? and date=?`, [req.user.id, '2019-07-08'], (err, row) => {
+    let date = getFormatedDate(new Date())
+    database.get(`select id from WeightLog where user_id=? and date=?`, [req.user.id, date], (err, row) => {
         console.log(row, err)
         if (err) {
             console.log(err, row)
         }
         else if (row) {
-            database.run(`Update WeightLog set date=?, weight=? where id=?`, ['2019-07-08', req.body.weight, row.id],
+            database.run(`Update WeightLog set date=?, weight=? where id=?`, [date, req.body.weight, row.id],
                 function (err) {
                     if (err) {
                         console.log(err)
@@ -44,7 +41,7 @@ router.post('/', upload.array(), (req, res) => {
                 });
         }
         else {
-            database.run('insert into WeightLog(user_id, date, weight) values(?,?,?)', [req.user.id, '2019-07-08', req.body.weight], () => {
+            database.run('insert into WeightLog(user_id, date, weight) values(?,?,?)', [req.user.id, date, req.body.weight], () => {
                 res.send('done');
             })
         }
@@ -52,7 +49,5 @@ router.post('/', upload.array(), (req, res) => {
     })
     
 })
-
-
 
 module.exports = router

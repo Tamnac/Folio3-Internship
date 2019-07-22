@@ -117,7 +117,6 @@ $(function() {
         console.log(foodsToBeAdded)
         if (foodsToBeAdded.length!=0){
             //sending post request
-
             postFoodLog(foodsToBeAdded, $("input[name='mealType']:checked").val(),()=>{
                 let today = getFormatedDate(new Date(Date.now()))
                 fetchIntake(today)
@@ -129,8 +128,6 @@ $(function() {
             // cleared dropdown
             clearDrpChildren(foodSearchTable)
             $("#total-calories").html("Total Calories: ")
-            
-
         }
         
     })

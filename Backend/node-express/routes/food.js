@@ -92,8 +92,4 @@ router.delete('/:foodId',upload.array(), (req, res) => {
 
 })
 
-// ! Food Log endpoints end here 
-
-
-
 module.exports = router

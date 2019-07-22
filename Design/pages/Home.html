@@ -14,8 +14,64 @@
     <script src="https://kit.fontawesome.com/87ad30c39c.js"></script>
 
     <link rel="stylesheet" href="../source/design.css">
+    <!---Chart-->
+    <script async="" src="./Line Chart_files/analytics.js.download"></script>
+    <script src="./Line Chart_files/Chart.min.js.download"></script>
+    <script src="./Line Chart_files/utils.js.download"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    <style type="text/css">
+        /* Chart.js */
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: .99
+            }
 
-    <script src="design.js"></script>
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            animation: chartjs-render-animation 1ms
+        }
+
+        .chartjs-size-monitor,
+        .chartjs-size-monitor-expand,
+        .chartjs-size-monitor-shrink {
+            position: absolute;
+            direction: ltr;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+            visibility: hidden;
+            z-index: -1
+        }
+
+        .chartjs-size-monitor-expand>div {
+            position: absolute;
+            width: 1000000px;
+            height: 1000000px;
+            left: 0;
+            top: 0
+        }
+
+        .chartjs-size-monitor-shrink>div {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: 0;
+            top: 0
+        }
+    </style>
 
     <title>Home</title>
 
@@ -25,14 +81,14 @@
 
 
 <body>
-           <!--Navbar start-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <!--Navbar start-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1"><span id="logo-u"><b>U</b></span>fit.</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarText">
 
@@ -73,7 +129,8 @@
 
                         <div class="nav-item dropdown">
 
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                                 <b>Atif Mehmood</b>
 
@@ -117,29 +174,45 @@
                                 </tr>
                                 <tr>
                                     <td>Calories Burned</td>
-                                    <td id="cal-burned">  </td>
+                                    <td id="cal-burned"> </td>
                                 </tr>
                                 <tr>
                                     <td>Net Calories</td>
                                     <td id="net-cal"> </td>
                                 </tr>
                                 <tr>
-                                    <td>Over</td>
-                                    <td id="cal-over"> </td>
-                                </tr>
-                                <tr>
-                                    <td >Today's Weight</td>
+                                    <td>Today's Weight</td>
                                     <td id="today-weight"></td>
                                 </tr>
                             </tbody>
                         </table>
-                      
+                        
                         <div class="form pt-4">
                             <p id="weight-logger-err"></p>
-                            <input type="number" id="weight-logger-input" placeholder="weight in lbs" class="form-control mr-1 mt-1">
-                            <button id="weight-logger-btn" class="btn btnn-primary btn-block text-white mt-1">Log</button>
+                            <input type="number" id="weight-logger-input" placeholder="weight in lbs"
+                                class="form-control mr-1 mt-1">
+                            <button id="weight-logger-btn"
+                                class="btn btnn-primary btn-block text-white mt-1">Log</button>
                         </div>
-                       
+
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <div style="width:100%;">
+                        <div class="chartjs-size-monitor">
+                            <div class="chartjs-size-monitor-expand">
+                                <div class="">
+
+                                </div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink">
+                                <div class="">
+
+                                </div>
+                            </div>
+                        </div>
+                        <canvas id="canvas" style="display: block; width: 100%; height: 390px;" class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
             </div>
@@ -182,34 +255,35 @@
                                         <th colspan="4" class="">Lunch</th>
                                     </tr>
                                 </thead>
-                          
-                                    <tr class="lunch-log-row">
-                                        <td>Food 2</td>
-                                        <td>7.5</td>
-                                        <td>335</td>
-                                        <td class="text-center">
-                                            <p class="fa fa-trash-o pr-2 text-center"></p>
-                                        </td>
-                                    </tr>
-                              
+
+                                <tr class="lunch-log-row">
+                                    <td>Food 2</td>
+                                    <td>7.5</td>
+                                    <td>335</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2 text-center"></p>
+                                    </td>
+                                </tr>
+
 
                                 <thead class="log-thead" id="dinner-log-head">
-                                    <tr >
+                                    <tr>
                                         <th colspan="4" class="">Dinner</th>
                                     </tr>
                                 </thead>
-                             
-                                    <tr class="dinner-log-row">
-                                        <td>Food 3</td>
-                                        <td>1.5</td>
-                                        <td>475</td>
-                                        <td class="text-center">
-                                            <p class="fa fa-trash-o pr-2 text-center"></p>
-                                        </td>
-                                    </tr>
-                         
+
+                                <tr class="dinner-log-row">
+                                    <td>Food 3</td>
+                                    <td>1.5</td>
+                                    <td>475</td>
+                                    <td class="text-center">
+                                        <p class="fa fa-trash-o pr-2 text-center"></p>
+                                    </td>
+                                </tr>
+
                         </table>
-                        <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal" data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
+                        <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal"
+                            data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
                     </div>
                 </div>
                 <div class="col-md-6 pt-2">
@@ -228,13 +302,14 @@
                                     <th>Delete</th>
                                 </tr>
                             </thead>
-                            <tbody  id='exercise-log-body'>
-                                
+                            <tbody id='exercise-log-body'>
+
 
                             </tbody>
                         </table>
                         <div class="d-flex flex-row-reverse">
-                            <button class="btn btnn-primary btn-sm btn-block text-white" value="LOG FOOD" data-toggle="modal" data-target="#log-exercise">Log Exercise</button>
+                            <button class="btn btnn-primary btn-sm btn-block text-white" value="LOG FOOD"
+                                data-toggle="modal" data-target="#log-exercise">Log Exercise</button>
 
                         </div>
                     </div>
@@ -272,7 +347,7 @@
 
                         <a href="./Landing.html" class="text-white ml-3">
 
-                                Logout</a>
+                            Logout</a>
 
                     </div>
 
@@ -308,7 +383,8 @@
     <!--Footer end-->
 
     <!--Log Exercise Modal start-->
-    <div class="modal fade" id="log-exercise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="log-exercise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content container-fluid">
                 <!--Header-->
@@ -351,7 +427,8 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-1">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
+                                            <input class="form-control" type="number" placeholder="Duration"
+                                                aria-label="Time">
                                         </div>
                                     </form>
                                 </td>
@@ -363,7 +440,8 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
+                                            <input class="form-control" type="number" placeholder="Duration"
+                                                aria-label="Time">
                                         </div>
                                     </form>
                                 </td>
@@ -375,7 +453,8 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="fa-times">
+                                            <input class="form-control" type="number" placeholder="Duration"
+                                                aria-label="fa-times">
                                         </div>
                                     </form>
                                 </td>
@@ -387,7 +466,8 @@
                                 <td>
                                     <form>
                                         <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
+                                            <input class="form-control" type="number" placeholder="Duration"
+                                                aria-label="Time">
                                         </div>
                                     </form>
                                 </td>
@@ -415,7 +495,8 @@
     <!--Log Exercise Modal end-->
 
     <!-- Modal: Add Food -->
-    <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="addFoodModal" aria-hidden="true">
+    <div class="modal fade" id="addFoodModal" tabindex="-1" role="dialog" aria-labelledby="addFoodModal"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <!--Header-->
@@ -445,8 +526,11 @@
 
                     </div>
                     <div class="dropdown search">
-                        <input type="search" id="searchBar" placeholder="search food" class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="dropdown-menu" id="search-dropdown-menu" aria-labelledby="searchBar" style="max-height: 400px;overflow-y: scroll;width:100%">
+                        <input type="search" id="searchBar" placeholder="search food"
+                            class="form-control dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        <div class="dropdown-menu" id="search-dropdown-menu" aria-labelledby="searchBar"
+                            style="max-height: 400px;overflow-y: scroll;width:100%">
 
                         </div>
                     </div>
@@ -454,7 +538,7 @@
 
                 <div class="modal-body">
 
-                    <table  class="table-sm table  table-hover text-center table-responsive-sm">
+                    <table class="table-sm table  table-hover text-center table-responsive-sm">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>#</th>
@@ -472,32 +556,156 @@
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">
-                    <button type="button"  class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                     <button id="add-food-btn" class="btn btnn-primary btn-sm ">Add</button>
                 </div>
             </div>
 
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <script src="../source/utils.js"></script>
     <script src="../source/loggers.js"></script>
-    
+
 </body>
 
 <script>
     let today = new Date(Date.now())
     today = today = getFormatedDate(today)
-    
 
-    $(function (){
+
+    $(function () {
         fetchIntake(today)
         fetchSummary(today)
         fetchExercise(today)
     })
 
-    </script>
+</script>
+<script>
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var config = {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [ {
+                label: 'My Second dataset',
+                fill: false,
+                backgroundColor: "red",
+                borderColor: "red",
+                data: [
+                220.462,
+                210.462,
+                200.462,
+                205,
+                200.56,
+                200.462,
+                210
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Weight Progress'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Day'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Weight'
+                    }
+                }]
+            }
+        }
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myLine = new Chart(ctx, config);
+    };
+
+    document.getElementById('randomizeData').addEventListener('click', function() {
+        config.data.datasets.forEach(function(dataset) {
+            dataset.data = dataset.data.map(function() {
+                return randomScalingFactor();
+            });
+
+        });
+
+        window.myLine.update();
+    });
+
+    var colorNames = Object.keys(window.chartColors);
+    document.getElementById('addDataset').addEventListener('click', function() {
+        var colorName = colorNames[config.data.datasets.length % colorNames.length];
+        var newColor = window.chartColors[colorName];
+        var newDataset = {
+            label: 'Dataset ' + config.data.datasets.length,
+            backgroundColor: newColor,
+            borderColor: newColor,
+            data: [],
+            fill: false
+        };
+
+        for (var index = 0; index < config.data.labels.length; ++index) {
+            newDataset.data.push(randomScalingFactor());
+        }
+
+        config.data.datasets.push(newDataset);
+        window.myLine.update();
+    });
+
+    document.getElementById('addData').addEventListener('click', function() {
+        if (config.data.datasets.length > 0) {
+            var month = MONTHS[config.data.labels.length % MONTHS.length];
+            config.data.labels.push(month);
+
+            config.data.datasets.forEach(function(dataset) {
+                dataset.data.push(randomScalingFactor());
+            });
+
+            window.myLine.update();
+        }
+    });
+
+    document.getElementById('removeDataset').addEventListener('click', function() {
+        config.data.datasets.splice(0, 1);
+        window.myLine.update();
+    });
+
+    document.getElementById('removeData').addEventListener('click', function() {
+        config.data.labels.splice(-1, 1); // remove the label first
+
+        config.data.datasets.forEach(function(dataset) {
+            dataset.data.pop();
+        });
+
+        window.myLine.update();
+    });
+</script>
 
 </html>

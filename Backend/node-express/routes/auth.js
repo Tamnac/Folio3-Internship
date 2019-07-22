@@ -9,68 +9,99 @@ let database = require('../database')
 
 // creating a router
 let router = express.Router()
+//Registering template engine 
 
-router.post('/login', upload.array(),(req, res)=>{
+
+router.post('/login', upload.array(), (req, res) => {
     /** 
      * * Signin's end point
-     *  */
-    if (req.body.email && req.body.password){
-        database.get("SELECT * FROM User where email=$email",{$email:req.body.email}, (err , row) =>{
-            console.log(row)
-            if (row){
-                if (row.password_ === req.body.password)
-                    res.send(row)
-                    return
+     *  
+    */
+    let formData = {
+        message: "",
+        email: req.body.email ? req.body.email : "",
+        password: req.body.password ? req.body.password : ""
+    }
+    console.log(formData)
+    database.get("SELECT * FROM User where email=$email", { $email: formData.email }, (err, row) => {
+        console.log(row)
+        //* * got user 
+        if (row) {
+            if (row.password_ === formData.password) {
+                res.send({ "redirectUrl": "http://localhost:8000/dashboard" })
+                // todo: send cokies 
+                return
             }
-            //! error 
-            res.status(400).send({error:"Invalid Credentials"})
-        })
+        }
+        // ! got error
+        formData.message = "Invalid Credentials"
+        res.status(401).send(formData)
+        return
+    })
+})
+
+router.post('/signup', upload.array(), (req, res) => {
+    var formData = {
+        message: {
+            err: ""
+        },
+        email: {
+            value: req.body.email ? req.body.email : "",
+            err: ""
+        },
+        password1: {
+            value: req.body.password1 ? req.body.password1 : "",
+            err: ""
+        },
+        password2: {
+            value: req.body.password2 ? req.body.password2 : "",
+            err: ""
+        }
+    }
+
+    let isValidRequest = true
+
+    if (!validator.isEmail(formData.email.value)) {// If the email is correct or not
+        isValidRequest = false
+        formData.email.err = "Invalid Email Format"
+    }
+    if (req.body.password1 != "" && req.body.password1.length < 8) {// if password is at least 8 chars long
+        isValidRequest = false
+        formData.password1.err = "Password Must Contain Min 8 Charachters"
+
+    } else if (req.body.password2 !== req.body.password1) {// if both passwords match
+        isValidRequest = false
+        formData.password1.err = "Passwords Didn't Match"
+    }
+
+    if (isValidRequest) {// * request is valid
+        database.run('INSERT INTO User (email, password_) VALUES (?, ?)',
+            [req.body.email,
+            req.body.password1]
+            , (err) => {
+                if (err) {
+                    console.log(err)
+                    if (err.errno = 19) {
+                        formData.email.err = "User with this email address already exist"
+                    }
+                    else
+                        formData.message.err = "Cannot signup at the moment"
+
+                    res.status(400).send(formData)
+                    return
+                }
+                else {
+                    res.send({ "redirectUrl": "http://localhost:8000/profile" })
+                    return
+                }
+            })
     }
     else{
-        res.status(400).send({error:"Please Provide Credentials"})
+        res.status(400).send(formData)
     }
+
+
 })
-
-router.post('/signup', upload.array(),(req, res) => {
-    let errors = {}
-    let isValidRequest = true
-    if (!validator.isEmail(req.body.email)){// If the email is correct or not
-        isValidRequest = false
-        errors.email = "Invalid Email Format"
-    }
-    if (req.body.password1!=undefined && req.body.password1.length<8){// if password is at least 8 chars long
-        isValidRequest = false
-        errors.password = "Password Must Contain Min 8 Charachters"
-
-    } else if (req.body.password2 !== req.body.password1){// if both passwords match
-        isValidRequest = false
-        errors.password = "Passwords Didn't Match"
-    }
-
-    if (isValidRequest){// * request is valid
-        database.run('INSERT INTO User (email,password_) VALUES ($email,$password)',{
-            $email:req.body.email,
-            $password:req.body.password
-        },(err)=>{
-            if (err){
-                console.log(err)
-                errors.message = err
-                res.status(400).send(errors)
-                return
-            }
-            else{
-                res.send(`user created sucessfully redirect url is ${'http://google.com'}`)
-                return
-            }
-
-        })
-
-    }
-    else{// ! request is bad
-        res.status(400).send(errors)
-    }
-})
-
 
 module.exports = router
 

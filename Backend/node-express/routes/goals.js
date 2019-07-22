@@ -7,6 +7,7 @@ var upload = multer() // for parsing multipart/form-data
 
 let authRequired = require("../middlewares/app_level").authRequired
 let database = require('../database')
+let utils = require("../utils")
 
 // creating a router
 let router = express.Router()
@@ -14,7 +15,8 @@ let router = express.Router()
 // loading middleware
 router.use(authRequired)
 
-
+let date = new Date(Date.now())
+date = utils.getFormatedDate(date)
 
 // * Goals endpoints start here 
 router.get('/:goal_Id', (req, res) => {
@@ -67,28 +69,22 @@ router.get('/', (req, res) => {
     
 })
 
-router.post('/', (req, res) => {
+router.post('/',upload.array(), (req, res) => {
     /**
      * create a goal of currently logged In user 
      */
-    // -> Atif 
-    let body = req.body
-
+    console.log(req.body)
+    database.run("update Goal set isAchieved=true where isAchieved=false", (err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            database.run("insert into Goal (endDate, startingDate, goalWeight, isAchieved, caloriesPerDay, user_id) values (?, ?,?, ?, ?, ?)", [req.body.goalDate,date, req.body.goalWeight, false,1000, req.user.id], (err)=>{
+                console.log(err)
+                res.send("Added Sucessfully")
+            })
+        }
+    })
 })
-
-router.put('/goal/:id', (req, res) => {
-    /**
-     * Updates a goal based on id
-     */
-    // -> Atif 
-})
-
-router.delete('/goal/:id', (req, res) => {
-    /**}
-     * deletes a goal based on id
-     */
-    // -> Atif 
-})
-
 
 module.exports = router

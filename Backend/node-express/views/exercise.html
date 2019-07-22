@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% block mainContent %}
+<section class="container mb-2">
+    <div class='row pt-4 text-center'>
+        <div class="col-lg-12">
+            <h2>Exercise Log <i class="fa fa-running"></i> </h2>
+        </div>
+    </div>
+    <div class="row pt-3 justify-content-md-center">
+        <div class="col-md-4 mb-2">
+            <input type="date" class="form-control" id="date-picker">
+        </div>
+        <div class="col-lg-12">
+
+            <table class="table table-sm table-responsive-sm">
+                <thead class="labels text-white">
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Time</th>
+                        <th class="text-center">Calories Burned</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id='exercise-log-body'>
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</section>
+{% endblock mainContent %}
+
+
+
+
+{% block extraJs %}
+<script>
+    $(function () {
+        // get today 
+        let datePicker = $("#date-picker")
+        let today = new Date(Date.now())
+        // formate date
+        today = getFormatedDate(today)
+
+        datePicker.val(today)
+
+        // get todays Exercise 
+        fetchExercise(today)
+
+        // register change event
+        datePicker.change(() => {
+            let today = new Date(datePicker.val())
+            today = getFormatedDate(today)
+            fetchExercise(today)
+        })
+    })
+
+</script>
+{% endblock extraJs %}

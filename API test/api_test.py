@@ -9,4 +9,9 @@ endpoint = f"https://api.edamam.com/api/food-database/parser?ingr=red apple&app_
 print(endpoint)
 # Request
 request = r.get(endpoint)
-print(request.json())
+#print(request.json())
+
+print(r.post('http://localhost:8000/user',data={'name':'Atif Mehmood'}))
+
+
+

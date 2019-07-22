@@ -1,0 +1,165 @@
+#logo-u {
+    color: #de1700 !important;
+    font-size: 2rem;
+}
+
+.log-thead {
+    background-color: #f8f9fa !important;
+}
+
+#banner .row {
+    min-height: 100vh !important;
+}
+
+#banner-logo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800 !important;
+    font-size: 4rem !important
+}
+
+#banner-logo-u {
+    color: #de1700;
+    font-size: 10rem;
+}
+
+.btnn-primary {
+    color: white;
+    background-color: #de1700 !important;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.footer-item span {
+    padding: 0 1em 0 1em;
+}
+
+.footer-item {
+    padding: 0 0 1em 0;
+}
+
+.credits {
+    font-size: 1em
+}
+
+footer {
+    background-color: black !important;
+}
+
+.footer-hr {
+    background: rgba(255, 255, 255, 0.233);
+}
+
+.nav-icon {
+    font-weight: 200;
+    font-size: large;
+}
+
+.nav-item a {
+    color: black !important;
+}
+
+#banner {
+    margin-top: 75px;
+    background: url(../img/landing-g.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center
+}
+
+
+
+
+#testimonials {
+    background-color: black;
+    min-height: 80vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#testimonials .carousel-item {
+    padding: 0 4rem 0 4rem;
+    background-color: #de1700;
+}
+
+#testimonials .carousel-item img {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+
+.labels {
+    background-color: #de1700;
+}
+
+.table-date {
+    padding: 0 3em 0 3em;
+}
+.divider{
+    background-color: black
+}    
+
+.card {
+    /*box-shadow: 10px 10px 8px #888888*/
+}
+
+.bg-primary {
+    background-color: #de1700 !important;
+}
+.main {
+    width: 40%;
+    margin: 5px auto;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.main {
+    width: 40%;
+    margin: 5px auto;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
