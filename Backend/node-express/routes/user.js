@@ -78,10 +78,10 @@ router.post('/',  upload.array() ,(req, res) => {
         formData.email.err = "Invalid Email Format"
     }
 
-    if (!validator.isAlpha(formData.name.value)) {// If the email is correct or not
-        isValidRequest = false
-        formData.name.err = "Name Must Contain Alphabets Only"
-    }
+    // if (!validator.isAlpha(formData.name.value)) {// If the email is correct or not
+    //     isValidRequest = false
+    //     formData.name.err = "Name Must Contain Alphabets Only"
+    // }
 
     if (validator.isInt(formData.heightFeet.value, {min:2, max:10})) {
         formData.heightFeet.value = parseInt(formData.heightFeet.value)
@@ -116,19 +116,23 @@ router.post('/',  upload.array() ,(req, res) => {
         isValidRequest = false
         formData.maritalStatus.err = "Marital Status Must Be Either Married or Unmarried"
     }
-
-    res.status(401).send(formData)
     
-    // database.run("update query",(err)=>{
-    //     if (err){
-    //         console.log("error occured in user profile post")
-    //         res.status(400).send({error:"An error occured while updating the records"})
-    //         return 
-    //     }
-    //     else{
-    //         res.send({success:"Information Updated successfully"})
-    //     }
-    // })
+    res.status(401).send(formData)
+    // for email change if this email exists return error regardless any validation
+    
+    // else update
+
+    
+    database.run("update query",(err)=>{
+        if (err){
+            console.log("error occured in user profile post")
+            res.status(400).send({error:"An error occured while updating the records"})
+            return 
+        }
+        else{
+            res.send({success:"Information Updated successfully"})
+        }
+    })
 
 
 })
