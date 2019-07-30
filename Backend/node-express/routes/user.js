@@ -117,22 +117,34 @@ router.post('/',  upload.array() ,(req, res) => {
         formData.maritalStatus.err = "Marital Status Must Be Either Married or Unmarried"
     }
     
-    res.status(401).send(formData)
-    // for email change if this email exists return error regardless any validation
     
+    // for email change if this email exists return error regardless any validation
+    // database.run("select * from User where email='$'",(err)=>{
+    //     if (err){
+    //         console.log("error occured in user profile post")
+    //         res.status(400).send({error:"An error occured while updating the records"})
+    //         return 
+    //     }
+    //     else{
+    //         res.send({success:"Information Updated successfully"})
+    //         return
+    //     }
+    // })
+
+    res.status(401).send(formData)
     // else update
 
     
-    database.run("update query",(err)=>{
-        if (err){
-            console.log("error occured in user profile post")
-            res.status(400).send({error:"An error occured while updating the records"})
-            return 
-        }
-        else{
-            res.send({success:"Information Updated successfully"})
-        }
-    })
+    // database.run("update query",(err)=>{
+    //     if (err){
+    //         console.log("error occured in user profile post")
+    //         res.status(400).send({error:"An error occured while updating the records"})
+    //         return 
+    //     }
+    //     else{
+    //         res.send({success:"Information Updated successfully"})
+    //     }
+    // })
 
 
 })
