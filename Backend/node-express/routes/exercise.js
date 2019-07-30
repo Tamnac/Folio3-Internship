@@ -44,7 +44,6 @@ router.post('/', upload.array(), (req, res) => {
      */ 
     let body = req.body
     console.log(req.body)
-    let body = req.body
     let date = new Date(Date.now())
     date = utils.getFormatedDate(date)
   
@@ -73,7 +72,7 @@ router.post('/', upload.array(), (req, res) => {
     req.statusCode = 200
     res.send("On test mode")
 })
-})
+
 
 
 

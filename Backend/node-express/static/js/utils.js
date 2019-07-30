@@ -273,7 +273,7 @@ updateProfile = () => {
         type :'POST',
         url: "http://localhost:8000/user",
         statusCode: {
-            401: (data) => {
+            400: (data) => {
                 let response = data.responseJSON
                 for (key in response){
                     console.log(`#profile-${key}`,$(`#profile-${key}`),$(`#profile-${key}-err`))
