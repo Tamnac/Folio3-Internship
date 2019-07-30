@@ -1,101 +1,47 @@
-<!--Log Exercise Modal start-->
-<div class="modal fade" id="log-exercise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content container-fluid">
-                <!--Header-->
-                <div class="modal-header">
-                    <h4 class="modal-title " id="myModalLabel ">Add Exercise</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <!--button group-->
-                <div class="col-md-12 text-center">
-                    <div class="btn-group p-2" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btnn-primary btn-group-sm">My Exercises</button>
-                        <button type="button" class="btn btnn-primary">All Exercises</button>
-                    </div>
-                </div>
+<!-- Modal: Add Food -->
+<div class="modal fade" id="addExerciseModal" tabindex="-1" role="dialog" aria-labelledby="addExerciseModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Exercise</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="dropdown search">
+                            <input type="search" id="exercisesearchBar" placeholder="search food" class="form-control dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="dropdown-menu" id="exercise-search-dropdown-menu" aria-labelledby="exercisesearchBar"
+                                style="max-height: 400px;overflow-y: scroll;width:100%">
+        
+                            </div>
+                        </div>
 
-                <div class="input-group main rounded-pill">
-                    <input type="search" class="form-control" placeholder="Search Exercise">
-                    <div class="input-group-append">
-                        <button class="btn btnn-primary " type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-                <!--body-->
-                <div class="modal-body">
+                <table class="table-sm table  mt-2 text- table-hover text-center table-responsive-sm">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>#</th>
+                            <th>Exercise Name</th>
+                            <th>Duration</th>
+                            <th>Calories Burned</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="exercise-search-table">
 
-                    <table class="table-sm table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Exercise Name</th>
-                                <th>Duration</th>
-                                <th>Calories Burned</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Exercise 1</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-1">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Exercise 2</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Exercise 3</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="fa-times">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>Exercise 4</td>
-                                <td>
-                                    <form>
-                                        <div class="form-row col-xs-2">
-                                            <input class="form-control" type="number" placeholder="Duration" aria-label="Time">
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="text-center">12</td>
-                                <td><a><i class="fas fa-times"></i></a></td>
-                            </tr>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h5 class="text-center">Total Calories burned: 1102</h5>
-                </div>
-                <!--Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btnn-primary">Add</button>
-                </div>
+                    </tbody>
+                </table>
+                <h5 id="total-calories-burn">Total Calories Burned: 0</h5>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button id="add-exercise-btn" class="btn btnn-primary btn-sm text-white ">Add</button>
             </div>
         </div>
+
     </div>
-    <!--Log Exercise Modal end-->
+</div>

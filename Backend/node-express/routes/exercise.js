@@ -44,7 +44,35 @@ router.post('/', upload.array(), (req, res) => {
      */ 
     let body = req.body
     console.log(req.body)
+    let body = req.body
+    let date = new Date(Date.now())
+    date = utils.getFormatedDate(date)
+  
+    
+    database.serialize(() => {
+        for (exercise of req.body.exerciseList){
+            let data = {
+                $userId: req.user.id,
+                $foodId: food.foodId,
+                $foodName: food.foodName,
+                $qty: food.qty,
+                $calories:food.calories,
+                $date: date,
+                $mealType: req.body.mealType
+            }
+            console.log(data)
+            database.run(`INSERT into FoodLog (user_id, foodId, foodName,qty, calories, date, mealType) VALUES ($userId,$foodId,$foodName,$qty,$calories,$date,$mealType)`,
+            data,
+            (err) => {
+                console.log(err)
+            })
+        }
+        
+    })
 
+    req.statusCode = 200
+    res.send("On test mode")
+})
 })
 
 

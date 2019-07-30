@@ -90,6 +90,13 @@ postFoodLog = (foodList,mealType, callback) => {
     })
 }
 
+postExerciseLog = (exerciseList, callback) => {
+    console.log("Post request",exerciseList)
+    $.post("http://localhost:8000/exercise-log/",{exerciseList:exerciseList}, (data) =>{
+        callback()
+    })
+}
+
 
 deleteFoodLog = (date, foodId) =>{
     $.ajax({
