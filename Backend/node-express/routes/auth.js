@@ -96,7 +96,7 @@ router.post('/signup', upload.array(), (req, res) => {
                 }
             })
     }
-    else{
+    else {
         res.status(400).send(formData)
     }
 
