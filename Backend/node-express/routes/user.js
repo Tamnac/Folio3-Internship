@@ -23,59 +23,84 @@ router.get('/', (req, res) => {
     /**
      * gets a user based on id 
      */
-    
+
     res.send(req.user)
 
 })
 
-router.post('/',  upload.array() ,(req, res) => {
+router.post('/', upload.array(), (req, res) => {
     /**
      * updates user profile
      */
     console.log(req.body)
     let formData = {
-        message:{
-            value:"",
+        error:{
             err:""
         },
-        name :{
+        message: {
+            value: "",
+            err: ""
+        },
+        name: {
             value: req.body.name ? req.body.name : "",
             err: ""
         },
-        email :{
+        email: {
             value: req.body.email ? req.body.email : "",
             err: ""
         },
-        heightFeet :{
+        heightFeet: {
             value: req.body.heightFeet ? req.body.heightFeet : "",
             err: ""
         },
-        heightInches :{
-            value: req.body.heightInches  ? req.body.heightInches : "",
+        heightInches: {
+            value: req.body.heightInches ? req.body.heightInches : "",
             err: ""
         },
-        dateOfBirth :{
+        dateOfBirth: {
             value: req.body.dateOfBirth ? req.body.dateOfBirth : "",
             err: ""
         },
-        weight :{
+        weight: {
             value: req.body.weight ? req.body.weight : "",
             err: ""
         },
-        gender :{
+        gender: {
             value: req.body.gender ? req.body.gender : "",
             err: ""
         },
-        maritalStatus :{
+        maritalStatus: {
             value: req.body.maritalStatus ? req.body.maritalStatus : "",
             err: ""
         }
     }
-    console.log(formData)
     let isValidRequest = true
-    if (!validator.isEmail(formData.email.value)) {// If the email is correct or not
+    if (!validator.isEmail(formData.email.value)) {// If the email is correct 
         isValidRequest = false
         formData.email.err = "Invalid Email Format"
+
+    } else {// else email exist  
+
+        //for email change if this email exists return error regardless any validation
+        database.get("select email from User where email='$'", (err, row) => {
+            if (err) {// for any error
+                console.log("error occured in user profile post")
+                res.status(400).send({ error: "An error occured while updating the records" })
+                return
+            }
+            else {
+
+                if (row) {//if email already exist 
+                    isValidRequest = false
+                    formData.email.err = "This email is already registered"
+                }
+                else {// email doesn't exist
+                    //pass this check
+                }
+
+            }
+        })
+
     }
 
     // if (!validator.isAlpha(formData.name.value)) {// If the email is correct or not
@@ -83,29 +108,34 @@ router.post('/',  upload.array() ,(req, res) => {
     //     formData.name.err = "Name Must Contain Alphabets Only"
     // }
 
-    if (validator.isInt(formData.heightFeet.value, {min:2, max:10})) {
+    //valdiator for height feet 
+    if (validator.isInt(formData.heightFeet.value, { min: 2, max: 10 })) {
         formData.heightFeet.value = parseInt(formData.heightFeet.value)
     }
-    else{
+    else {
         isValidRequest = false
         formData.heightFeet.err = "Invalid Value For Height. Value Must Be Between 2 and 10 Feets"
     }
 
-    if (validator.isFloat(formData.heightInches.value, {min:2, max:10})) {
+    //valdiator for height inches 
+    if (validator.isFloat(formData.heightInches.value, { min: 0, max: 10 })) {
         formData.heightInches.value = parseFloat(formData.heightInches.value)
     }
-    else{
+    else {
         isValidRequest = false
-        formData.heightInches.err = "Invalid Value For Height. Value Must Be Between 2 and 10 Feets"
+        formData.heightInches.err = "Invalid Value For Height. Value Must Be Between 0 and 10 Inches"
+    }
+    
+    
+    //valdiator for weight 
+    if (validator.isFloat(formData.weight.value, { min: 22, max: 1102})) {
+        formData.weight.value = parseFloat(formData.heightInches.value)
+    }
+    else {
+        isValidRequest = false
+        formData.weight.err = "Invalid Value For Weight. Value Must Be Between 22 and 1202 Inches"
     }
 
-    if (validator.isFloat(formData.weight.value, {min:22, max:1102})) {
-        formData.weight.value = parseFloat(formData.weight.value)
-    }
-    else{
-        isValidRequest = false
-        formData.weight.err = "Invalid Value For Weight. Value Must Be Between 22 and 1102 Feets"
-    }
 
     if (!validator.isIn(formData.gender.value, ["Male", "Female"])) {
         isValidRequest = false
@@ -116,23 +146,27 @@ router.post('/',  upload.array() ,(req, res) => {
         isValidRequest = false
         formData.maritalStatus.err = "Marital Status Must Be Either Married or Unmarried"
     }
-    
-    res.status(401).send(formData)
-    // for email change if this email exists return error regardless any validation
+
+    if (isValidRequest){
+
+    }else{
+        res.status(400).send(formData)
+    }
+
     
     // else update
 
-    
-    database.run("update query",(err)=>{
-        if (err){
-            console.log("error occured in user profile post")
-            res.status(400).send({error:"An error occured while updating the records"})
-            return 
-        }
-        else{
-            res.send({success:"Information Updated successfully"})
-        }
-    })
+
+    // database.run("update query",(err)=>{
+    //     if (err){
+    //         console.log("error occured in user profile post")
+    //         res.status(400).send({error:"An error occured while updating the records"})
+    //         return 
+    //     }
+    //     else{
+    //         res.send({success:"Information Updated successfully"})
+    //     }
+    // })
 
 
 })
