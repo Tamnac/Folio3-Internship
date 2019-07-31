@@ -92,11 +92,11 @@ $(function () {
         results =[{
             label:"Exercise 1",
             id:"1",
-            caloriesBurn:122
+            caloriesBurned:122
         }]
         //console.log(results)
         for (var i = 0; i < results.length; i++) {
-            addExerciseDrpChildren(searchDrpMenu, exerciseSearchTable, results[i].label, results[i].id, results[i].caloriesBurn)
+            addExerciseDrpChildren(searchDrpMenu, exerciseSearchTable, results[i].label, results[i].id, results[i].caloriesBurned)
             console.log(exercisesToBeAdded)
         }
     })
@@ -116,7 +116,7 @@ $(function () {
             exercisesToBeAdded = []
             // cleared dropdown
             clearDrpChildren(exerciseSearchTable)
-            $("#total-calories").html("Total Calories: ")
+            $("#total-calories-burn").html("Total Calories: ")
 
 
         }

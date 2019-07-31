@@ -1,5 +1,6 @@
 const express = require('express') // imported express
 const validator = require('validator')
+const utils = require('../utils')
 //copied from docs
 var bodyParser = require('body-parser')
 var multer = require('multer') // v1.0.5
@@ -43,48 +44,41 @@ router.post('/', upload.array(), (req, res) => {
      * logs exercise of the currently logged In user 
      */ 
     let body = req.body
-    console.log(req.body)
     let date = new Date(Date.now())
     date = utils.getFormatedDate(date)
-  
+    console.log(body)
+    // get all list
     
     database.serialize(() => {
         for (exercise of req.body.exerciseList){
             let data = {
                 $userId: req.user.id,
-                $foodId: food.foodId,
-                $foodName: food.foodName,
-                $qty: food.qty,
-                $calories:food.calories,
+                $exerciseId: exercise.exerciseId,
+                $exerciseName: exercise.exerciseName,
+                $duration: exercise.qty,
+                $caloriesBurned:exercise.caloriesBurned,
                 $date: date,
                 $mealType: req.body.mealType
             }
+
             console.log(data)
-            database.run(`INSERT into FoodLog (user_id, foodId, foodName,qty, calories, date, mealType) VALUES ($userId,$foodId,$foodName,$qty,$calories,$date,$mealType)`,
+            database.run(`INSERT into ExerciseLog (user_id, exerciseId, exerciseName, duration, caloriesBurned, date) VALUES ($userId,$exerciseId,$exerciseName,$duration,$caloriesBurned,$date)`,
             data,
             (err) => {
                 console.log(err)
             })
+
+            req.statusCode = 200
+            res.send("On test mode")
         }
         
     })
 
-    req.statusCode = 200
-    res.send("On test mode")
 })
 
 
 
 
-
-router.put('/exercise-log/:id', (req, res) => {
-    /**
-     * updates today's exercise of the currently logged In user 
-     */
-    let body = req.body
-        // -> Atif 
-
-})
 
 router.delete('/exercise-log/:id', (req, res) => {
     /**

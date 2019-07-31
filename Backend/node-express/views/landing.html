@@ -140,7 +140,7 @@
         </div>
     </div>
     <hr class="pb-5">
-    <form action="http://localhost:8000/exercise-log" method="POST">
+    <form id="contact-form" >
         <div class="form-row">
             <div class="form-group col-lg-6">
                 <label>Full Name</label>
@@ -164,7 +164,7 @@
                 <textarea class="form-control" name="message" id="input_message" rows=6></textarea>
             </div>
         </div>
-        <button class="btn btn-danger">Send</button>
+        <button id="form-send-btn" class="btn btn-danger">Send</button>
     </form>
 </section>
 {% endblock mainContent %}
@@ -180,6 +180,30 @@
 
 
 {% block extraJs %}
+
+<script>
+
+    $(function () {
+        let contactForm = $("#contact-form")
+        let contactBtn = $('#form-send-btn')
+        contactBtn.click((e) => {
+            e.preventDefault()
+            data = {
+                name: $("#input_name").val(),
+                subject: $("#input_subject").val(),
+                email: $("#input_email").val(),
+                message: $("#input_message").val(),
+            }
+            console.log(data)
+            $.post("http://localhost:8000/contact", data, (data, status) => {
+                $("#input_name").val('')
+                $("#input_subject").val('')
+                $("#input_email").val('')
+                $("#input_message").val('')        
+            })
+        })
+    })
+</script>
 <script>
     $(() => {
         $("#login-btn").click(() => {
@@ -188,6 +212,7 @@
         $("#signup-btn").click(() => {
             signup()
         })
+
     })
 </script>
 {% endblock extraJs %}

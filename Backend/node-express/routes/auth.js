@@ -28,8 +28,8 @@ router.post('/login', upload.array(), (req, res) => {
         //* * got user 
         if (row) {
             if (row.password_ === formData.password) {
-                res.send({ "redirectUrl": "http://localhost:8000/dashboard" })
                 // todo: send cokies 
+                res.send({ "redirectUrl": "http://localhost:8000/dashboard" })
                 return
             }
         }
