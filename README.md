@@ -38,7 +38,7 @@ The project **Ufit** is a weight tracking web app which helps users setting thei
 
 - [dependencies](#-dependencies)
 - [run the app](#-run-the-app)
-- [project structure](#-documentation)
+- [project structure](#-project-structure)
 - [License](#-license)
 
 
