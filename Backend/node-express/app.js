@@ -13,6 +13,7 @@ const foodRouter = require("./routes/food")
 const exerciseRouter = require("./routes/exercise")
 const weightRouter = require("./routes/weight")
 const goalsRouter = require("./routes/goals")
+const graphRouter = require("./routes/graph")
 // the default port 
 const port = 8000
 
@@ -85,6 +86,9 @@ app.use('/weight-log', weightRouter)
 
 // * goals Routes
 app.use('/goals', goalsRouter)
+
+// * graph Routes
+app.use('/graph', graphRouter)
 
 //contact us
 app.post('/contact',(req, res)=>{

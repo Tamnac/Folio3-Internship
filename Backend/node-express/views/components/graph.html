@@ -1,0 +1,100 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+    window.onload = function () {
+        CanvasJS.addColorSet("greenShades",
+            [//colorSet Array
+                "red",
+            ]);
+        $.get("http://localhost:8000/graph", (weightData) => {
+            console.log(weightData)
+
+            var limit = 100000;
+            var y = 100;
+            var data = [];
+            var dataSeries = { type: "line" };
+            var dataPoints = [];
+            for (key in weightData) {
+                y += Math.round(Math.random() * 10 - 5);
+                dataPoints.push({
+                    x: new Date(weightData[key].date),
+                    y: weightData[key].weight
+                });
+            }
+
+            //Better to construct options first and then pass it as a parameter
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Yearly Weight Graph",
+                    color: "red"
+                },
+                colorSet: "greenShades",
+                axisX: {
+                    valueFormatString: "DD MMM,YY"
+                },
+                axisY: {
+                    title: "Weight (lbs)",
+                    includeZero: false,
+                    suffix: " lbs"
+                },
+                legend: {
+                    cursor: "pointer",
+                    fontSize: 16,
+                    itemclick: toggleDataSeries
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [
+                    {
+                        name: "Weight",
+                        type: "spline",
+                        yValueFormatString: "#0.## lbs",
+                        showInLegend: true,
+                        dataPoints: dataPoints
+                    }]
+            });
+            chart.render();
+
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else {
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+
+    }
+</script>
+<style>
+    #timeToRender {
+        position: absolute;
+        top: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: #d85757;
+        padding: 0px 4px;
+        color: #ffffff;
+    }
+</style>
+</head>
+
+    <div id="chartContainer" ></div>
+    <span id="timeToRender"></span>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

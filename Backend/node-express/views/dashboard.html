@@ -65,7 +65,7 @@
 
 {% block mainContent %}
 <!--Main Section start-->
-<section  class="mt-5 pt-5">
+<section class="mt-5 pt-5">
     <div class="container pt-3 pb-3">
         <div class="row pt-2 pb-2">
             <div class="col-md-6 col-sm-12 pt-2">
@@ -124,125 +124,7 @@
                 </div>
                 <br>
                 <br>
-                <script>
-                    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                    var config = {
-                        type: 'line',
-                        data: {
-                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                            datasets: [{
-                                label: '',
-                                fill: false,
-                                backgroundColor: window.chartColors.white,
-                                borderColor: "red",
-                                data: [
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor(),
-                                    randomScalingFactor()
-                                ],
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            title: {
-                                display: true,
-                                text: 'Weight Progress'
-                            },
-                            tooltips: {
-                                mode: 'index',
-                                intersect: false,
-                            },
-                            hover: {
-                                mode: 'nearest',
-                                intersect: true
-                            },
-                            scales: {
-                                xAxes: [{
-                                    display: true,
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Day'
-                                    }
-                                }],
-                                yAxes: [{
-                                    display: true,
-                                    scaleLabel: {
-                                        display: true,
-                                        labelString: 'Weight'
-                                    }
-                                }]
-                            }
-                        }
-                    };
-
-                    window.onload = function () {
-                        var ctx = document.getElementById('canvas').getContext('2d');
-                        window.myLine = new Chart(ctx, config);
-                    };
-
-                    document.getElementById('randomizeData').addEventListener('click', function () {
-                        config.data.datasets.forEach(function (dataset) {
-                            dataset.data = dataset.data.map(function () {
-                                return randomScalingFactor();
-                            });
-
-                        });
-
-                        window.myLine.update();
-                    });
-
-                    var colorNames = Object.keys(window.chartColors);
-                    document.getElementById('addDataset').addEventListener('click', function () {
-                        var colorName = colorNames[config.data.datasets.length % colorNames.length];
-                        var newColor = window.chartColors[colorName];
-                        var newDataset = {
-                            label: 'Dataset ' + config.data.datasets.length,
-                            backgroundColor: newColor,
-                            borderColor: newColor,
-                            data: [],
-                            fill: false
-                        };
-
-                        for (var index = 0; index < config.data.labels.length; ++index) {
-                            newDataset.data.push(randomScalingFactor());
-                        }
-
-                        config.data.datasets.push(newDataset);
-                        window.myLine.update();
-                    });
-
-                    document.getElementById('addData').addEventListener('click', function () {
-                        if (config.data.datasets.length > 0) {
-                            var month = MONTHS[config.data.labels.length % MONTHS.length];
-                            config.data.labels.push(month);
-
-                            config.data.datasets.forEach(function (dataset) {
-                                dataset.data.push(randomScalingFactor());
-                            });
-
-                            window.myLine.update();
-                        }
-                    });
-
-                    document.getElementById('removeDataset').addEventListener('click', function () {
-                        config.data.datasets.splice(0, 1);
-                        window.myLine.update();
-                    });
-
-                    document.getElementById('removeData').addEventListener('click', function () {
-                        config.data.labels.splice(-1, 1); // remove the label first
-
-                        config.data.datasets.forEach(function (dataset) {
-                            dataset.data.pop();
-                        });
-
-                        window.myLine.update();
-                    });
-                </script>
+                
             </div>
 
         </div>
@@ -304,33 +186,38 @@
 
 {% block extraJs %}
 <script>
-    let today = new Date(Date.now())
-    today = today = getFormatedDate(today)
-    let contactForm = $("#contact-form")
+                        let today = new Date(Date.now())
+                        today = today = getFormatedDate(today)
+                        let contactForm = $("#contact-form")
 
 
 
-    $(function () {
-        fetchIntake(today)
-        fetchSummary(today)
-        fetchExercise(today)
-        let contactBtn = $('#form-send-btn')
-        contactBtn.click((e) => {
-            e.preventDefault()
-            data = {
-                name: $("#input_name").val(),
-                subject: $("#input_subject").val(),
-                email: $("#input_email").val(),
-                message: $("#input_message").val(),
-            }
-            console.log(data)
-            $.post("http://localhost:8000/contact", data, (data, status) => {
-                $("#input_name").val('')
-                $("#input_subject").val('')
-                $("#input_email").val('')
-                $("#input_message").val('')
-            })
-        })
-    })
+                        $(function () {
+                            fetchIntake(today)
+                            fetchSummary(today)
+                            fetchExercise(today)
+                            fetchWeightProgressGraph(year)
+                            let contactBtn = $('#form-send-btn')
+                            contactBtn.click((e) => {
+                                e.preventDefault()
+                                data = {
+                                    name: $("#input_name").val(),
+                                    subject: $("#input_subject").val(),
+                                    email: $("#input_email").val(),
+                                    message: $("#input_message").val(),
+                                }
+                                console.log(data)
+                                $.post("http://localhost:8000/contact", data, (data, status) => {
+                                    $("#input_name").val('')
+                                    $("#input_subject").val('')
+                                    $("#input_email").val('')
+                                    $("#input_message").val('')
+                                })
+                            })
+                        })
+</script>
+<script>
+        
+
 </script>
 {% endblock extraJs %}

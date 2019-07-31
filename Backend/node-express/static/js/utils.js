@@ -288,3 +288,74 @@ updateProfile = () => {
         }
     })
 }
+
+let fetchWeightProgressGraph = (year) => {
+    $.get("http://localhost:8000/graph", (weightData) => {
+            console.log(weightData)
+
+            var limit = 100000;
+            var y = 100;
+            var data = [];
+            var dataSeries = { type: "line" };
+            var dataPoints = [];
+            var labels =[]
+            for (key in weightData) {
+                y += Math.round(Math.random() * 10 - 5);
+                dataPoints.push( weightData[key].weight
+                );
+                labels.push( (new Date(weightData[key].date)).toLocaleDateString()
+                );
+            }
+            var config = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '',
+                        fill: false,
+                        backgroundColor: window.chartColors.white,
+                        borderColor: "red",
+                        data: dataPoints,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Weight Progress'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Day'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Weight'
+                            }
+                        }]
+                    }
+                }
+            };
+
+            window.onload = function () {
+                var ctx = document.getElementById('canvas').getContext('2d');
+                window.myLine = new Chart(ctx, config);
+            };
+        })
+
+
+}
