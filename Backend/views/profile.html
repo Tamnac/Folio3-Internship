@@ -3,126 +3,131 @@
 
 {% block mainContent %}
 <section class="mt-5 pt-5">
-        <div class="container mb-3">
-                <form id="profile-form">
-                    <div class="form-row">
-                        <div class="form-group  col-md-6">
-                            <label for="full-name">Full Name</label>
-                            <input required type="text" class="form-control" name="name" id="profile-fullName"
-                                placeholder="Full Name" value="Atif Mehmood">
-                                <p id="profile-name-err" class="pl-1 text-danger h6">
-                                </p>
-                        </div>
-                        <div class="form-group  col-md-6  ">
-                            <label for="email">Email</label>
-                            <input required type="email" class="form-control" name="email" id="profile-email" placeholder="Email"
-                                value="am02464@st.habib.edu.pk">
-                                <p id="profile-email-err" class="pl-1 text-danger h6"></p>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12 ">
-                            <label for="input" required>Height (Feet, Inch.)</label>
-                            
-                        </div>
-                        <div class="form-group col-md-6 ">
-                            <input required type="number" name="heightFeet" class="form-control w-100" id="profile-heightFeet"
-                                required placeholder="feet" value="5">
-                                <p id="profile-heightFeet-err" class="pl-1 text-danger h6"></p>
-                        </div>
-                        <div class="form-group col-md-6 ">
-                            <input required type="number" name="heightInches" class="form-control" id="profile-heightInches"
-                                required placeholder="inches" value="4">
-                        </div>
-            
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label class="control-label" for="date">Date of Birth</label>
-                            
-                            <input required class="form-control" name="dateOfBirth" id="profile-dateOfBirth" name="date"
-                                placeholder="MM/DD/YYY" type="date" />
-                                <p id="profile-dateOfBirth-err" class="pl-1 text-danger h6"></p>
-                        </div>
-                        <div class="col-md-6 ">
-                            <label for="number">Weight</label>
-                            <input required type="number" class="form-control" name="weight" id="profile-weight" placeholder="lbs"
-                                value="110.231">
-                                <p id="profile-weight-err" class="pl-1 text-danger h6"></p>
-                        </div>
-            
-                    </div>
-                    <div class="form-row pt-2">
-                        <legend class="col-form-label col-md-6 pt-0">Gender
-                            <p id="profile-gender-err" class="pl-1 text-danger h6"></p>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input required class="form-check-input" required type="radio" name="gender"
-                                        id="profile-gender-male" value="Male" checked>
-            
-                                    <label class="form-check-label" for="gender-male">
-                                        Male
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input required class="form-check-input" required type="radio" name="gender"
-                                        id="profile-gender-female" value="Female">
-                                    <label class="form-check-label" for="gender-female">
-                                        Female
-                                    </label>
-                                </div>
-                            </div>
-                        </legend>
-                        <legend class="col-form-label col-md-6 pt-0">Marital Status
-                            <p id="profile-maritalStatus-err" class="pl-1 text-danger h6"></p>
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input required class="form-check-input" required type="radio" name="maritalStatus"
-                                        id="profile-married" value="Married" checked>
-                                    <label class="form-check-label" for="married">
-                                        Married
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input required class="form-check-input" required type="radio" name="maritalStatus"
-                                        id="profile-unmarried" value="Unmarried">
-                                    <label class="form-check-label" for="unmarried">
-                                        Unmarried
-                                    </label>
-                                </div>
-                            </div>
-                        </legend>
-                    </div>
-                    <div class="form-row">
-            
-                    </div>
-                </form>
-                <button id="profile-update-btn" class="btn btnn-primary text-white" name="submit" type="submit">Save
-                    Changes</button>
-                <hr>
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-8  mt-3">
-                            <label for="password">Current Password</label>
-                            <input required type="password" class="form-control" id="profile-password"
-                                placeholder="current password">
-                        </div>
-                    </div>
-                    <div class="form-row">
-            
-                        <div class=" form-group col-md-6  mt-3">
-                            <label for="password">New Password</label>
-                            <input required type="password" class="form-control" id="profile-password" placeholder="new password">
-                        </div>
-                        <div class=" form-group col-md-6  mt-3">
-                            <label for="password">Confirm Password</label>
-                            <input required type="password" class="form-control" id="profile-password"
-                                placeholder="confirm password">
-                        </div>
-                    </div>
-                    <button class="btn btnn-primary text-white" name="submit">Update Password</button>
-                </form>
+    <div class="container mb-3">
+        <form id="profile-form">
+            <div class="alert-div">
+                
             </div>
+            <div class="form-row">
+                <div class="form-group  col-md-6">
+                    <label for="full-name">Full Name</label>
+                    <input required type="text" class="form-control" name="name" id="profile-name"
+                        placeholder="Full Name" >
+                    <p id="profile-name-err" class="pl-1 text-danger h6">
+                    </p>
+                </div>
+                <div class="form-group  col-md-6  ">
+                    <label for="email">Email</label>
+                    <input required type="email" class="form-control" name="email" id="profile-email"
+                        placeholder="Email" >
+                    <p id="profile-email-err" class="pl-1 text-danger h6"></p>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12 ">
+                    <label for="input" required>Height (Feet, Inch.)</label>
+
+                </div>
+                <div class="form-group col-md-6 ">
+                    <input required type="number" name="heightFeet" class="form-control w-100" id="profile-heightFeet"
+                        required placeholder="feet" >
+                    <p id="profile-heightFeet-err" class="pl-1 text-danger h6"></p>
+                </div>
+                <div class="form-group col-md-6 ">
+                    <input required type="number" name="heightInches" class="form-control" id="profile-heightInches"
+                        required placeholder="inches" >
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label class="control-label" for="date">Date of Birth</label>
+
+                    <input required class="form-control" name="dateOfBirth" id="profile-dateOfBirth" name="date"
+                        placeholder="MM/DD/YYY" type="date" />
+                    <p id="profile-dateOfBirth-err" class="pl-1 text-danger h6"></p>
+                </div>
+                <div class="col-md-6 ">
+                    <label for="number">Weight</label>
+                    <input required type="number" class="form-control" name="weight" id="profile-weight"
+                        placeholder="lbs" >
+                    <p id="profile-weight-err" class="pl-1 text-danger h6"></p>
+                </div>
+
+            </div>
+            <div class="form-row pt-2">
+                <legend class="col-form-label col-md-6 pt-0">Gender
+                    <p id="profile-gender-err" class="pl-1 text-danger h6"></p>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input required class="form-check-input" required type="radio" name="gender"
+                                id="profile-gender-male" value="Male" checked>
+
+                            <label class="form-check-label" for="gender-male">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input required class="form-check-input" required type="radio" name="gender"
+                                id="profile-gender-female" value="Female">
+                            <label class="form-check-label" for="gender-female">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </legend>
+                <legend class="col-form-label col-md-6 pt-0">Marital Status
+                    <p id="profile-maritalStatus-err" class="pl-1 text-danger h6"></p>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input required class="form-check-input" required type="radio" name="maritalStatus"
+                                id="profile-married" value="Married" checked>
+                            <label class="form-check-label" for="married">
+                                Married
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input required class="form-check-input" required type="radio" name="maritalStatus"
+                                id="profile-unmarried" value="Unmarried">
+                            <label class="form-check-label" for="unmarried">
+                                Unmarried
+                            </label>
+                        </div>
+                    </div>
+                </legend>
+            </div>
+            <div class="form-row">
+
+            </div>
+        </form>
+        <button id="profile-update-btn" class="btn btnn-primary text-white" name="submit" type="submit">Save
+            Changes</button>
+        <hr>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6  mt-3">
+                    <label for="password">Current Password</label>
+                    <input required type="password" class="form-control" id="profile-password"
+                        placeholder="current password">
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class=" form-group col-md-6  mt-3">
+                    <label for="password">New Password</label>
+                    <input required type="password" class="form-control" id="profile-password"
+                        placeholder="new password">
+                </div>
+                <div class=" form-group col-md-6  mt-3">
+                    <label for="password">Confirm Password</label>
+                    <input required type="password" class="form-control" id="profile-password"
+                        placeholder="confirm password">
+                </div>
+            </div>
+            <button class="btn btnn-primary text-white" name="submit">Update Password</button>
+        </form>
+    </div>
+
 </section>
 
 {% endblock mainContent %}
@@ -137,6 +142,7 @@
         })
         $("#profile-update-btn").click(() => {
             updateProfile()
+            
         })
     })
 </script>

@@ -17,7 +17,7 @@ exports.authRequired = (req, res, next) => {
      * * Gets Logged in user's instance and adds to req
      */
 
-    database.get("select id, email from User where email='am02464@st.habib.edu.pk'", (err, row)=>{
+    database.get("select * from User where email='am02464@st.habib.edu.pk'", (err, row)=>{
         if (err || row==undefined){
             console.log("error in auth middleware",row)
             res.status(405).send("Error Authentication Failed")

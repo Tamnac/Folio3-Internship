@@ -283,7 +283,21 @@ updateProfile = () => {
             },
             200: (data) => {
                 console.log(data, status)
-                $(`#profile-message`).val(data.message.value)
+                let response = data
+                for (key in response){
+                    console.log(`#profile-${key}`,$(`#profile-${key}`),$(`#profile-${key}-err`))
+                    $(`#profile-${key}`).val(response[key].value)
+                    console.log($(`#profile-${key}-err`).html())
+                    $(`#profile-${key}-err`).html("")
+                }
+                $('.alert-div').html(
+                    `<div class="alert alert-success alert-dismissible fade show" data-dismiss="alert" role="alert">
+                                     Changes saved sucessfuly!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>`
+                )
             }
         }
     })

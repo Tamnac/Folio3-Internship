@@ -68,109 +68,45 @@ router.post('/', upload.array(), (req, res) => {
         }
     }
 
-    let validateProfiledataCaller =()=>{
-        console.log(formData)
-        return validateProfiledata(formData)
-    }
-
-    let isValidRequest = true
-    if (!validator.isEmail(formData.email.value)) {// If the email is correct 
-        isValidRequest = false
-        formData.email.err = "Invalid Email Format"
-    
     
 
-    } else {// else email exist  
+    
+    let validatedData = validateProfileData(formData)
+    formData = validatedData.formData
+    let isValidRequest = validatedData.isValidRequest
 
-        //for email change if this email exists return error regardless any validation
-        database.get("select email from User where email=?", [formData.email.value], (err, row) => {
-            if (err) {// for any error
-                console.log("error occured in user profile post")
-                res.status(400).send({ error: "An error occured while updating the records" })
-                return
-            }
-            else {
-                console.log(err, row)
-                if (row) {//if email already exist 
-                    isValidRequest = false
-                    formData.email.err = "This email is already registered"
-                    let validatedData = validateProfiledataCaller()
-                    formData = validatedData.formData
-                    isValidRequest = validatedData.isValidRequest
-                    res.status(400).send(formData)
-                }
-                else {// email doesn't exist
-                    //pass this check
+    if (isValidRequest) {
+        console.log("Valid request")
+        let attrCount = 0
+        let qry = "update User set "
 
-                    let validatedData = validateProfiledataCaller()
-                    formData = validatedData.formData
-                    isValidRequest = validatedData.isValidRequest
-
-                    if (isValidRequest){
-                        let attrCount = 0
-                        let qry = "update User set "
-                
-                        for (key in formData){
-                            attrCount+=1
-                            if(formData[key].value!==""){
-                                qry += `${key}='${formData[key].value}',`
-                              
-                            }
-                        }
-                       
-                        if (attrCount >= 1){
-                            qry = qry.slice(0,-1)
-                            qry += ` where id=${req.user.id}`
-                            console.log(qry)
-                            database.run(qry,(err)=>{
-                                console.log(err)
-                                res.status(200).send(formData)
-                            })
-                        }
-                        //database.run("update User (name, email, weight, heightFeet, heightInches)")
-                    } else {
-                        res.status(400).send(formData)
-                    }
-
-
-
-
-
-
-
-                }
+        for (key in formData) {
+            attrCount += 1
+            if (formData[key].value !== "") {
+                qry += `${key}='${formData[key].value}',`
 
             }
-        })
+        }
+
+        if (attrCount >= 1) {
+            qry = qry.slice(0, -1)
+            qry += ` where id=${req.user.id}`
+            console.log(qry)
+            database.run(qry, (err) => {
+                console.log(err)
+                res.status(200).send(formData)
+            })
+        }
+
 
     }
-
-    // if (!validator.isAlpha(formData.name.value)) {// If the email is correct or not
-    //     isValidRequest = false
-    //     formData.name.err = "Name Must Contain Alphabets Only"
-    // }
-
-
-
-
-    // else update
-
-
-    // database.run("update query",(err)=>{
-    //     if (err){
-    //         console.log("error occured in user profile post")
-    //         res.status(400).send({error:"An error occured while updating the records"})
-    //         return 
-    //     }
-    //     else{
-    //         res.send({success:"Information Updated successfully"})
-    //     }
-    // })
-
-
+    else{
+        console.log("Invalid Request")
+        res.status(400).send(formData)
+    }
 })
 
-let validateProfiledata = (formData) =>{
+let validateProfileData = (formData) => {
     //valdiator for height feet 
     let isValidRequest = true
     if (validator.isInt(formData.heightFeet.value, { min: 2, max: 10 })) {
@@ -192,7 +128,7 @@ let validateProfiledata = (formData) =>{
 
     //valdiator for weight 
     if (validator.isFloat(formData.weight.value, { min: 22, max: 1102 })) {
-        formData.weight.value = parseFloat(formData.heightInches.value)
+        formData.weight.value = parseFloat(formData.weight.value)
     }
     else {
         isValidRequest = false
@@ -209,7 +145,7 @@ let validateProfiledata = (formData) =>{
         formData.maritalStatus.err = "Marital Status Must Be Either Married or Unmarried"
     }
 
-    return {formData, isValidRequest}
+    return { formData, isValidRequest }
 }
 
 module.exports = router
