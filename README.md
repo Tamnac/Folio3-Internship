@@ -76,12 +76,6 @@ $ npm i
 The full documentation for
 
 The React Native documentation discusses components, APIs, and topics that are specific to React Native. For further documentation on the React API that is shared between React Native and React 
-## 🚀 Upgrading
-
-Upgrading to new versions of React Native may give you access to more APIs, views, developer tools 
-
-
-
 
 ## 📄 License
 
