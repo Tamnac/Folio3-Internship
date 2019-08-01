@@ -14,3 +14,4 @@ This folder contains all the design templates and database where all our data is
 
 
 ## Required Softwares
+1. **DB Designer** to database design
