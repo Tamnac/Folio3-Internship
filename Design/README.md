@@ -11,3 +11,6 @@
 
 ## Description
 This folder contains all the design templates and database where all our data is saved. It contains all the javascript and CSS files.
+
+
+## Required Softwares
