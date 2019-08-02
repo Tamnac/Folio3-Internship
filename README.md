@@ -26,7 +26,7 @@
 
 
 
-The project **Ufit** is a weight tracking web app which helps users setting their goals for weight gain, lose and maintain. It provides the following features:
+The project **Ufit** is a weight tracking web app which helps users setting their goals for weight lose. It provides the following features:
 - **Goals.** Users can set their goals for weight gain, lose and maintain weight.
 - **Daily Weight Logging.** User can log his daily weight.
 - **Daily Food Logging.** User can log his daily intake.
