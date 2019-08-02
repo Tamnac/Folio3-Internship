@@ -79,7 +79,4 @@ The React Native documentation discusses components, APIs, and topics that are s
 
 ## 📄 License
 
-React Native is MIT licensed, as found in the [LICENSE][l] file.
-
-React Native documentation is Creative Commons licensed, as found in the [LICENSE-docs][ld] file.
-
+It is an opensource project.
