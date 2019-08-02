@@ -12,28 +12,28 @@
 
 The project  **Ufit**  is a weight tracking web app which helps users setting their goals for weight  losegain, lose and maintain. It provides the following features:
 
-* **Goals.**  Users can set their goals for weight gain, lose and maintain weight.
-* **Daily Weight Logging.**  User can log his daily weight.
-* **Daily Food Logging.**  User can log his daily intake.
-* **Daily Exercise Logging.**  User can log his daily exercise.
-* **Weight Progress Visualization.**  See his yearly weight progress.
-* **User Authentication.**  The app provides basic authentication.
+-   **Goals.**  Users can set their goals for weight gain, lose and maintain weight.
+-   **Daily Weight Logging.**  User can log his daily weight.
+-   **Daily Food Logging.**  User can log his daily intake.
+-   **Daily Exercise Logging.**  User can log his daily exercise.
+-   **Weight Progress Visualization.**  See his yearly weight progress.
+-   **User Authentication.**  The app provides basic authentication.
 
 ## Contents
 
--   [dependencies](https://github.com/Tamnac/Folio3-Internship/#-dependencies)
--   [run the app](https://github.com/Tamnac/Folio3-Internship/#-run-the-app)
--   [project structure](https://github.com/Tamnac/Folio3-Internship/#-project-structure)
--   [License](https://github.com/Tamnac/Folio3-Internship/#-license)
+* [dependencies](https://github.com/Tamnac/Folio3-Internship/#-dependencies)
+* [run the app](https://github.com/Tamnac/Folio3-Internship/#-run-the-app)
+ * [project structure](https://github.com/Tamnac/Folio3-Internship/#-project-structure)
+* [License](https://github.com/Tamnac/Folio3-Internship/#-license)
 
 ## 📋  Dependencies
 
--   express: "^4.17.1"
--   multer: "^1.4.1"
--   nodemon: "^1.19.1"
--   nunjucks: "^3.2.0"
--   sqlite3: "^4.0.9"
--   validator: "^11.1.0"
+* express: "^4.17.1"
+*   multer: "^1.4.1"
+*   nodemon: "^1.19.1"
+*   nunjucks: "^3.2.0"
+*   sqlite3: "^4.0.9"
+*   validator: "^11.1.0"
 
 All the dependencies are mentioned in  [package.json](https://github.com/Tamnac/Folio3-Internship/blob/master)package.json ([https://github.com/Tamnac/Folio3-Internship/blob/master](https://github.com/Tamnac/Folio3-Internship/blob/master))file. You just have to run the following command.
 
