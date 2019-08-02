@@ -80,22 +80,6 @@ $ npm i
     you can access the web app on  **localhost:8000**
     
 
-## 📖  Project Structure
-
-The full documentation for
-
-The React Native documentation discusses components, APIs, and topics that are specific to React Native. For further documentation on the React API that is shared between React Native and React
-
--   ### Back-end
-    
-    -   Middlewares
-        -   contains all middleware
-    -   Routes
-        -   All API routes are separated in their respective folders
-    -   Static
-        -   All static files (Html, css and js) are stored in this folder in their respective folders.
-    -   Views
-        -   All html files are contained in this folder and are separated as components and base files.
 
 ## 📄  License
 
