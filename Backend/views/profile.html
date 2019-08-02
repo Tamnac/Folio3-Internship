@@ -19,7 +19,7 @@
                 <div class="form-group  col-md-6  ">
                     <label for="email">Email</label>
                     <input required type="email" class="form-control" name="email" id="profile-email"
-                        placeholder="Email" >
+                        placeholder="Email" disabled >
                     <p id="profile-email-err" class="pl-1 text-danger h6"></p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 <div class="col-md-6 ">
                     <label for="number">Weight</label>
                     <input required type="number" class="form-control" name="weight" id="profile-weight"
-                        placeholder="lbs" >
+                        placeholder="lbs" step=0.01>
                     <p id="profile-weight-err" class="pl-1 text-danger h6"></p>
                 </div>
 
@@ -96,12 +96,11 @@
                     </div>
                 </legend>
             </div>
-            <div class="form-row">
-
-            </div>
+            
+            <button id="profile-update-btn" class="btn btnn-primary text-white" name="submit" type="submit">Save
+                Changes</button>
         </form>
-        <button id="profile-update-btn" class="btn btnn-primary text-white" name="submit" type="submit">Save
-            Changes</button>
+        
         <hr>
         <form>
             <div class="form-row">
@@ -140,7 +139,8 @@
                 $(`#profile-${el}`).val(data[el])
             }
         })
-        $("#profile-update-btn").click(() => {
+        $("#profile-form").submit((e) => {  
+            e.preventDefault()
             updateProfile()
             
         })

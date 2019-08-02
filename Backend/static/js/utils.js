@@ -28,16 +28,21 @@ fetchIntake= (date) =>{
 fetchSummary= (date) =>{
     $.get(`http://localhost:8000/summary/'${date}'`, (data) => {
         let cal_consumed = $('#cal-consumed')
-        cal_consumed.html(data.caloriesConsumed)
+        cal_consumed.html(data.caloriesConsumed ? data.caloriesConsumed : 0)
 
         let cal_burned = $('#cal-burned')
-        cal_burned.html(data.caloriesBurned)
+        cal_burned.html(data.caloriesBurned ? data.caloriesBurned : 0)
 
         let net_cal = $('#net-cal')
-        net_cal.html( data.caloriesConsumed - data.caloriesBurned)    
+        net_cal.html( data.caloriesConsumed - data.caloriesBurned > 0 ? data.caloriesConsumed - data.caloriesBurned : 0)    
         
         let today_weight = $('#today-weight')
-        today_weight.html( data.todayWeight)   
+        today_weight.html( data.todayWeight)  
+
+        let today_over = $('#cal-over')
+        today_over.html( data.todayWeight !== "You Haven't Logged Yet" ? data.goalWeight - data.todayWeight : 0)   
+
+         
     })
 }
 
