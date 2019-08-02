@@ -18,6 +18,7 @@ $(function () {
         $("#total-calories-burn").html("Total Calories: " + totalCalCounter(exercisesToBeAdded))
     }
 
+    
     //!* if length is < 3 don't search
     function totalCalCounter(exerciseObj) {
         let sum = 0
@@ -51,7 +52,7 @@ $(function () {
                 exerciseId,
                 caloriesBurned: exerciseCalories,
                 exerciseName: exerciseLabel,
-                qty: 1,
+                qty: 15,
 
             })
 
@@ -59,7 +60,7 @@ $(function () {
                 `<tr  id='exercise-item-to-be-added-${exerciseId.substr(5)}'> <th scope="row">${exercisesToBeAdded.length}
                 </th><td>${exerciseLabel} 
                 </td><td><input class="form-control" type="number" min="0" max="10" placeholder="qty" value=15 aria-label="Qunatity"></td><td>
-                ${exerciseCalories} </td><td><a><i class="fas fa-times" onclick="removeSelf($('#exercise-item-to-be-added-${exerciseId.substr(5)}'),() => removeFromexerciseTobeAdded('${exerciseId}'))"></i></a></td></tr>`)
+                ${exerciseCalories} </td><td><a><i class="fas fa-times" onclick="removeSelf($('#exercise-item-to-be-added-${exerciseId.substr(5)}'),() => removeFromExerciseTobeAdded('${exerciseId}'))"></i></a></td></tr>`)
             table.append(tr)
             exerciseSearchBar.dropdown('hide')
             exerciseSearchBar.val('')
@@ -89,11 +90,63 @@ $(function () {
         //     // }
         // })
 
-        results =[{
-            label:"Exercise 1",
-            id:"1",
-            caloriesBurned:122
-        }]
+        results = [{
+            label: "push-ups",
+            id: "1",
+            caloriesBurned: 122
+        },
+        {
+            label: "pull-ups",
+            id: "1",
+            caloriesBurned: 61
+        },
+        {
+            label:"hip-raise",
+            id:"3",
+            caloriesBurned:98
+        },
+        {
+            label:"bicycle-crunch",
+            id:"4",
+            caloriesBurned:175
+        },
+        {
+            label:"running",
+            id:"5",
+            caloriesBurned:178
+        },
+        {
+            label:"swimming",
+            id:"6",
+            caloriesBurned:145
+        },
+        {
+            label:"ab-tuck",
+            id:"7",
+            caloriesBurned:77
+        },
+        {
+            label:"russian-twist",
+            id:"8",
+            caloriesBurned:87
+        },
+        {
+            label:"plank",
+            id:"9",
+            caloriesBurned:100
+        },
+        {
+            label:"leg-raise",
+            id:"10",
+            caloriesBurned:113
+        },
+        {
+            label:"hanging-knee-raise",
+            id:"11",
+            caloriesBurned:156
+        }
+
+        ]
         //console.log(results)
         for (var i = 0; i < results.length; i++) {
             addExerciseDrpChildren(searchDrpMenu, exerciseSearchTable, results[i].label, results[i].id, results[i].caloriesBurned)

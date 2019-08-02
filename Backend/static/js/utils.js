@@ -118,6 +118,21 @@ deleteFoodLog = (date, foodId) =>{
 }
 
 
+deleteExerciseLog = (date, foodId) =>{
+    $.ajax({
+        url: `http://localhost:8000/exercise-log/${foodId}`,
+        type: 'DELETE',
+        success: function(result) {
+            console.log(result)
+            fetchIntake(date)
+            fetchSummary(date)
+            fetchExercise(date)
+        }
+    });
+    
+}
+
+
 postWeightLog = (weight, date, callback) => {
     $.post("http://localhost:8000/weight-log",{weight}, (data) =>{
         callback()

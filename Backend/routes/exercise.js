@@ -89,5 +89,19 @@ router.delete('/exercise-log/:id', (req, res) => {
 
 })
 
+router.delete('/:exerciseId',upload.array(), (req, res) => {
+    /**
+     * logs food of the currently logged In user 
+     */
+    // -> Atif 
+    let body = req.body
+    console.log("we have to deleted",req.params.exerciseId)
+    database.run(`DELETE from ExerciseLog WHERE exerciseId='${req.params.exerciseId}'`,(err)=>{
+        console.log(err)
+    })
+    res.send("deleted")
+
+})
+
 
 module.exports = router
