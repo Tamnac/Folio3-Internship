@@ -1,0 +1,57 @@
+<section class="modal fade" id="addGoalModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-dark">Add Goal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-goal-form">
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                        <div class="form-group row">
+                            <label class="col-form-label text-dark">Goal Weight (lbs)</label>
+                            <div class="col-lg-8">
+                                <input type="number" id="add-goal-weight" min="22" max="1000" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-dark">Kneck (Inches)</label>
+                            <div class="col-lg-8">
+                                <input type="number" id="add-goal-kneck" min="10" max="500" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-dark">Waist (Inches)</label>
+                            <div class="col-lg-8">
+                                <input type="number" id="add-goal-waist" min="10" max="500" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-dark" >Hips (Inches)</label>
+                            <div class="col-lg-8">
+                                <input type="number" id="add-goal-hips" min="10" max="500" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label text-dark">Date of Completion</label>
+                            <div class="col-lg-8">
+                                <input type="date" id="add-goal-date" class="form-control" required>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="add-goal-btn" class="btn btnn-primary">Add Goal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

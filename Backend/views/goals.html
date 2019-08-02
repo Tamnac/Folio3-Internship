@@ -120,7 +120,7 @@
 
 
 {% block modals %}
-    {% include 'components/add-food-modal.html' %}
+    {% include 'components/add-goal-modal.html' %}
 {% endblock modals %}
     
 
@@ -128,136 +128,24 @@
 <script>
     $(() => {
         fetchGoals()
-        $("#add-goal-btn").click(() => {
+        console.log($("#add-goal-form"))
+        $("#add-goal-form").submit((e) => {
+            e.preventDefault()
+            console.log("add goals submitted")
             let goalWeight = $("#add-goal-weight").val()
             let goalDate = $("#add-goal-date").val()
+            let kneck = $("#add-goal-kneck").val()
+            let hips = $("#add-goal-hips").val()
+            let waist = $("#add-goal-waist").val()
+        
             if (goalWeight && goalDate)
-                $.post("http://localhost:8000/goals", { "goalWeight": goalWeight, "goalDate": goalDate }, (data) => {
+                $.post("http://localhost:8000/goals", { "goalWeight": goalWeight, "goalDate": goalDate, "kneck":kneck, "hips":hips, "waist":waist }, (data) => {
                     $("add-goal-weight").val(0)
                     fetchGoals()
                     $('#addGoalModal').modal('hide')
                 })
         })
     })
-</script>
-<script>
-    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var config = {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'My Second dataset',
-                fill: false,
-                backgroundColor: "red",
-                borderColor: "red",
-                data: [
-                    220.462,
-                    210.462,
-                    200.462,
-                    205,
-                    200.56,
-                    200.462,
-                    210
-                ],
-            }]
-        },
-        options: {
-            responsive: true,
-            title: {
-                display: true,
-                text: 'Weight Progress'
-            },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true
-            },
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Day'
-                    }
-                }],
-                yAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Weight'
-                    }
-                }]
-            }
-        }
-    };
-
-    window.onload = function () {
-        var ctx = document.getElementById('canvas').getContext('2d');
-        window.myLine = new Chart(ctx, config);
-    };
-
-    document.getElementById('randomizeData').addEventListener('click', function () {
-        config.data.datasets.forEach(function (dataset) {
-            dataset.data = dataset.data.map(function () {
-                return randomScalingFactor();
-            });
-
-        });
-
-        window.myLine.update();
-    });
-
-    var colorNames = Object.keys(window.chartColors);
-    document.getElementById('addDataset').addEventListener('click', function () {
-        var colorName = colorNames[config.data.datasets.length % colorNames.length];
-        var newColor = window.chartColors[colorName];
-        var newDataset = {
-            label: 'Dataset ' + config.data.datasets.length,
-            backgroundColor: newColor,
-            borderColor: newColor,
-            data: [],
-            fill: false
-        };
-
-        for (var index = 0; index < config.data.labels.length; ++index) {
-            newDataset.data.push(randomScalingFactor());
-        }
-
-        config.data.datasets.push(newDataset);
-        window.myLine.update();
-    });
-
-    document.getElementById('addData').addEventListener('click', function () {
-        if (config.data.datasets.length > 0) {
-            var month = MONTHS[config.data.labels.length % MONTHS.length];
-            config.data.labels.push(month);
-
-            config.data.datasets.forEach(function (dataset) {
-                dataset.data.push(randomScalingFactor());
-            });
-
-            window.myLine.update();
-        }
-    });
-
-    document.getElementById('removeDataset').addEventListener('click', function () {
-        config.data.datasets.splice(0, 1);
-        window.myLine.update();
-    });
-
-    document.getElementById('removeData').addEventListener('click', function () {
-        config.data.labels.splice(-1, 1); // remove the label first
-
-        config.data.datasets.forEach(function (dataset) {
-            dataset.data.pop();
-        });
-
-        window.myLine.update();
-    });
 </script>
 
 {% endblock extraJs %}

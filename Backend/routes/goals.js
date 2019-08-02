@@ -50,7 +50,6 @@ router.get('/', (req, res) => {
                 console.log(err)
             }
             else if(row){
-                console.log(row)
                 data.curentGoal = row
             }
         })
@@ -60,7 +59,6 @@ router.get('/', (req, res) => {
                 console.log(err)
             }
             else if(rows){
-                console.log(rows)
                 data.previousGoals = rows
                 res.send(data)
             }
@@ -79,8 +77,10 @@ router.post('/',upload.array(), (req, res) => {
             console.log(err)
         }
         else{
-            database.run("insert into Goal (endDate, startingDate, goalWeight, isAchieved, caloriesPerDay, user_id) values (?, ?,?, ?, ?, ?)", [req.body.goalDate,date, req.body.goalWeight, false,1000, req.user.id], (err)=>{
+            //fetch current weight
+            database.run("insert into Goal (endDate, startingDate, goalWeight, isAchieved, caloriesPerDay, user_id) values (?, ?,?, ?, ?, ?)", [req.body.goalDate,date, req.body.goalWeight, false,utils.caloriesCalculator(utils.bfat("us",req.user.gender,5,parseFloat(req.body.neck),parseFloat(req.body.waist),parseFloat(req.body.hips)),req.user.gender,100), req.user.id], (err)=>{
                 console.log(err)
+                console.log(req.user.heightFeet)
                 res.send("Added Sucessfully")
             })
         }
