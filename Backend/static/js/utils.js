@@ -54,7 +54,7 @@ fetchExercise= (date) =>{
         if (data.length!=0){
             for (log of data) {
                 console.log("erecise",log)
-                excersice_log.append(`<tr id="exercise-log-${log.exerciseId}" class="exercise-log-row"><td>${log.exerciseName}</td><td>${log.time}</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2" onclick="removeSelf($('#exercise-log-${log.exerciseId}'),() => fetchExercise('${date}'))" ></p></td>
+                excersice_log.append(`<tr id="exercise-log-${log.exerciseId}" class="exercise-log-row"><td>${log.exerciseName}</td><td>${log.duration} min</td><td class="text-center">${log.caloriesBurned}</td><td class="text-center"><p class="fa fa-trash-o pr-2" onclick="removeSelf($('#exercise-log-${log.exerciseId}'),() => fetchExercise('${date}'))" ></p></td>
                 </tr>`)
             }
         }else{
@@ -144,34 +144,19 @@ fetchGoals = ()=>{
         for (goal of data.previousGoals) {
             let singleGoalCard = `
                                     <div class="col-lg-6 pt-2">
-                                        
-                                            <div class="card card-body">
-                                                <table class="table table-borderless">
-                                                    <thead>
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>Start</th>
-                                                            <th>End</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>Date</th>
-                                                            <td>${goal.startingDate}</td>
-                                                            <td>${goal.endDate}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Weight</th>
-                                                            <td>100 lbs</td>
-                                                            <td>${goal.goalWeight} lbs</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" style="width:96% " role="progressbar" aria-valuemin="0"
-                                                        aria-valuemax="100" aria-valuenow="96">96%</div>
-                                                </div>
+                                    <div class="card">
+                                        <div class="card-header bg-primary">
+                                            <h3 class="text-white">Goal</h3> 
+                                        </div>
+                                        <div class="card card-body">
+                                            <div class="row">
+                                            <div class="col-6"> <strong>Start Date</strong></div><div class="col-6">  ${goal.startingDate}</div>
+                                            <div class="col-6"> <strong>End Date</strong></div><div class="col-6">  ${goal.endDate}</div>
+                                            <div class="col-6"> <strong>Goal Weight</strong></div><div class="col-6">  ${goal.goalWeight} lbs</div>
+                                            <div class="col-6"> <strong>Calories/day</strong></div><div class="col-6">  ${goal.caloriesPerDay} lbs</div>
                                             </div>
+                                        </div>
+                                    </div>
                                       
                                     </div>`
             $('#all-goals-div').append(singleGoalCard)
@@ -188,25 +173,29 @@ fetchGoals = ()=>{
 
     if (data.curentGoal) {
         let currentGoalElement = `
-        <h3 class="card-title text-center">Current Goal</h3>
-        <table class="table">
-            <tr>
-                <td>Goal weight</td>
-                <td class="text-right" id='goal-wgh'>${data.curentGoal.goalWeight}</td>
-            </tr>
-            <tr>
-                <td>Starting Weight (lbs)</td>
-                <td class="text-right" id='starting-wgh'>100</td>
-            </tr>
-            <tr>
-                <td>Goal Date</td>
-                <td class="text-right" id='goal-date'>${data.curentGoal.endDate}</td>
-            </tr>
-            <tr>
-                <td>Calories/day</td>
-                <td class="text-right"id='wgh-day'>${data.curentGoal.caloriesPerDay}</td>
-            </tr>
-        </table>`
+
+            
+            <table class="table">
+                <tr>
+                    <td>Goal weight</td>
+                    <td class="text-right" id='goal-wgh'>${data.curentGoal.goalWeight}</td>
+                </tr>
+                <tr>
+                    <td>Starting Weight (lbs)</td>
+                    <td class="text-right" id='starting-wgh'>100</td>
+                </tr>
+                <tr>
+                    <td>Goal Date</td>
+                    <td class="text-right" id='goal-date'>${data.curentGoal.endDate}</td>
+                </tr>
+                <tr>
+                    <td>Calories/day</td>
+                    <td class="text-right"id='wgh-day'>${data.curentGoal.caloriesPerDay}</td>
+                </tr>
+            </table>
+       
+        `
+        
         $('#current-goal-div').html(currentGoalElement)
     }
     console.log(data)

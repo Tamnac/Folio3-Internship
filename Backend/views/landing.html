@@ -206,10 +206,12 @@
 </script>
 <script>
     $(() => {
-        $("#login-btn").click(() => {
+        $("#login-form").submit((e) => {
+            e.preventDefault()
             login()
         })
-        $("#signup-btn").click(() => {
+        $("#signup-form").submit((e) => {
+            e.preventDefault()
             signup()
         })
 

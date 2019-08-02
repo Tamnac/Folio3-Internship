@@ -58,7 +58,7 @@ $(function () {
             var tr = $(
                 `<tr  id='exercise-item-to-be-added-${exerciseId.substr(5)}'> <th scope="row">${exercisesToBeAdded.length}
                 </th><td>${exerciseLabel} 
-                </td><td><input class="form-control" type="number" min="0" max="10" placeholder="qty" value=1 aria-label="Qunatity"></td><td>
+                </td><td><input class="form-control" type="number" min="0" max="10" placeholder="qty" value=15 aria-label="Qunatity"></td><td>
                 ${exerciseCalories} </td><td><a><i class="fas fa-times" onclick="removeSelf($('#exercise-item-to-be-added-${exerciseId.substr(5)}'),() => removeFromexerciseTobeAdded('${exerciseId}'))"></i></a></td></tr>`)
             table.append(tr)
             exerciseSearchBar.dropdown('hide')

@@ -13,6 +13,14 @@
     }
 </style>
 <style type="text/css">
+    thead{
+        background: rgba(0, 0, 0, 0.068) !important;
+        
+    }
+
+    thead th{
+        color: black !important;
+    }
     /* Chart.js */
     @keyframes chartjs-render-animation {
         from {
@@ -69,39 +77,47 @@
     <div class="container pt-3 pb-3">
         <div class="row pt-2 pb-2">
             <div class="col-md-6 col-sm-12 pt-2">
-                <div class="card card-body">
-                    <h3 class="card-title text-center">Daily Summary</h3>
-                    <table class="table table-sm table-responsive-xs" id="daily-summary">
-                        <tbody>
-                            <tr>
-                                <td>Calories Consumed</td>
-                                <td id="cal-consumed">0</td>
-                            </tr>
-                            <tr>
-                                <td>Calories Burned</td>
-                                <td id="cal-burned">0</td>
-                            </tr>
-                            <tr>
-                                <td>Net Calories</td>
-                                <td id="net-cal">0</td>
-                            </tr>
-                            <tr>
-                                <td>Over</td>
-                                <td id="cal-over">0</td>
-                            </tr>
-                            <tr>
-                                <td>Today's Weight</td>
-                                <td id="today-weight">0</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="form pt-4">
-                        <p id="weight-logger-err" class="text-danger"></p>
-                        <input type="number" id="weight-logger-input" placeholder="weight in lbs"
-                            class="form-control mr-1 mt-1">
-                        <button id="weight-logger-btn" class="btn btnn-primary btn-block text-white mt-1">Log</button>
+                <div class="card ">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title text-center text-white">Daily Summary</h3>
                     </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-responsive-xs" id="daily-summary">
+                            <tbody>
+                                <tr>
+                                    <td>Calories Consumed</td>
+                                    <td id="cal-consumed">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Calories Burned</td>
+                                    <td id="cal-burned">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Net Calories</td>
+                                    <td id="net-cal">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Over</td>
+                                    <td id="cal-over">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Today's Weight</td>
+                                    <td id="today-weight">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="form">
+                            <p id="weight-logger-err" class="text-danger"></p>
+                            <input type="number" id="weight-logger-input" placeholder="weight in lbs"
+                                class="form-control">
+                            <button id="weight-logger-btn"
+                                class="btn btnn-primary btn-block text-white mt-1">Log</button>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
@@ -124,51 +140,50 @@
                 </div>
                 <br>
                 <br>
-                
+
             </div>
 
         </div>
 
         <div class="row pt-2 pb-2">
             <div class="col-sm-12 col-md-6  pt-2">
-
-                <div class="card card-body">
-                    <a href="food.html">
-                        <h3 class="card-title text-center text-dark">Today's Intake</h3>
-                    </a>
-                    <hr>
-                    {% include 'components/food-table.html' %}
-                    <button type="button" class="btn btn-sm btnn-primary text-white" data-toggle="modal"
-                        data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title text-center text-white ">Today's Intake</h3>
+                    </div>
+                    <div class="">
+                        {% include 'components/food-table.html' %}
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btnn-primary btn-block text-white" data-toggle="modal"
+                            data-target="#addFoodModal" value="LOG FOOD" button-position="center">Log Food</button>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 pt-2">
-                <div class="card card-body">
-                    <a href="exercise.html">
-
-                        <h3 class="card-title text-center text-dark">Today's Exercise</h3>
-                    </a>
-                    <hr>
-                    <table class="table table-responsive-sm">
-                        <thead class="labels text-white">
-                            <tr>
-                                <th>Exercise</th>
-                                <th>Time</th>
-                                <th class="text-center">Calories Burned</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody id='exercise-log-body'>
-
-
-                        </tbody>
-                    </table>
-                    <div class="d-flex flex-row-reverse">
-                        <button class="btn btnn-primary btn-sm btn-block text-white" value="LOG FOOD"
-                            data-toggle="modal" data-target="#addExerciseModal">Log Exercise</button>
-
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h3 class="card-title text-center text-white ">Today's Intake</h3>
                     </div>
+                    <table class="table table-responsive-sm">
+                            <thead class="labels  text-white">
+                                <tr>
+                                    <th>Exercise</th>
+                                    <th>Time</th>
+                                    <th class="text-center">Calories Burned</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id='exercise-log-body'>
+                            </tbody>
+                        </table>
+                        <div class="card-footer">
+                                <button class="btn btnn-primary btn-sm btn-block text-white" value="LOG FOOD"
+                                    data-toggle="modal" data-target="#addExerciseModal">Log Exercise</button>
+        
+                            </div>
                 </div>
+               
 
             </div>
         </div>
@@ -186,38 +201,22 @@
 
 {% block extraJs %}
 <script>
-                        let today = new Date(Date.now())
-                        today = today = getFormatedDate(today)
-                        let contactForm = $("#contact-form")
+    let today = new Date(Date.now())
+    today = today = getFormatedDate(today)
+    let contactForm = $("#contact-form")
 
 
 
-                        $(function () {
-                            fetchIntake(today)
-                            fetchSummary(today)
-                            fetchExercise(today)
-                            fetchWeightProgressGraph(year)
-                            let contactBtn = $('#form-send-btn')
-                            contactBtn.click((e) => {
-                                e.preventDefault()
-                                data = {
-                                    name: $("#input_name").val(),
-                                    subject: $("#input_subject").val(),
-                                    email: $("#input_email").val(),
-                                    message: $("#input_message").val(),
-                                }
-                                console.log(data)
-                                $.post("http://localhost:8000/contact", data, (data, status) => {
-                                    $("#input_name").val('')
-                                    $("#input_subject").val('')
-                                    $("#input_email").val('')
-                                    $("#input_message").val('')
-                                })
-                            })
-                        })
+    $(function () {
+        fetchIntake(today)
+        fetchSummary(today)
+        fetchExercise(today)
+        fetchWeightProgressGraph(year)
+        
+    })
 </script>
 <script>
-        
+
 
 </script>
 {% endblock extraJs %}
