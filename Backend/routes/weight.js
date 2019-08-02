@@ -21,6 +21,7 @@ router.post('/', upload.array(), (req, res) => {
      * logs wight of the currently logged In user 
      */
     // -> Atif 
+    
     let date = getFormatedDate(new Date())
     database.get(`select id from WeightLog where user_id=? and date=?`, [req.user.id, date], (err, row) => {
         console.log(row, err)
@@ -41,7 +42,8 @@ router.post('/', upload.array(), (req, res) => {
                 });
         }
         else {
-            database.run('insert into WeightLog(user_id, date, weight) values(?,?,?)', [req.user.id, date, req.body.weight], () => {
+            database.run('insert into WeightLog(user_id, date, weight) values(?,?,?)', [req.user.id, date, req.body.weight], (err) => {
+                console.log(err)
                 res.send('done');
             })
         }

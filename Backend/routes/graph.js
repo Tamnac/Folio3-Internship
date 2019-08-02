@@ -18,7 +18,7 @@ router.get('', (req, res) => {
      * logs food of the currently logged In user 
      */
     // -> Mubashira
-    database.all(`select * from WeightLog where date>'2019-07-1'`, (err, rows)=>{
+    database.all(`select * from WeightLog where date`, (err, rows)=>{
         if (err){
             console.log(err)
         }
