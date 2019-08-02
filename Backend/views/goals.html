@@ -134,12 +134,12 @@
             console.log("add goals submitted")
             let goalWeight = $("#add-goal-weight").val()
             let goalDate = $("#add-goal-date").val()
-            let kneck = $("#add-goal-kneck").val()
+            let neck = $("#add-goal-neck").val()
             let hips = $("#add-goal-hips").val()
             let waist = $("#add-goal-waist").val()
         
             if (goalWeight && goalDate)
-                $.post("http://localhost:8000/goals", { "goalWeight": goalWeight, "goalDate": goalDate, "kneck":kneck, "hips":hips, "waist":waist }, (data) => {
+                $.post("http://localhost:8000/goals", { "goalWeight": goalWeight, "goalDate": goalDate, "neck":neck, "hips":hips, "waist":waist }, (data) => {
                     $("add-goal-weight").val(0)
                     fetchGoals()
                     $('#addGoalModal').modal('hide')

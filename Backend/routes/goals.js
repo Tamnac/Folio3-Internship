@@ -78,7 +78,7 @@ router.post('/',upload.array(), (req, res) => {
         }
         else{
             //fetch current weight
-            database.run("insert into Goal (endDate, startingDate, goalWeight, isAchieved, caloriesPerDay, user_id) values (?, ?,?, ?, ?, ?)", [req.body.goalDate,date, req.body.goalWeight, false,utils.caloriesCalculator(utils.bfat("us",req.user.gender,5,parseFloat(req.body.neck),parseFloat(req.body.waist),parseFloat(req.body.hips)),req.user.gender,100), req.user.id], (err)=>{
+            database.run("insert into Goal (endDate, startingDate, goalWeight, isAchieved, caloriesPerDay, user_id) values (?, ?,?, ?, ?, ?)", [req.body.goalDate,date, req.body.goalWeight, false,utils.caloriesCalculator(utils.bfat("us",req.user.gender,parseFloat(req.user.heightFeet),parseFloat(req.body.neck),parseFloat(req.body.waist),parseFloat(req.body.hips)),req.user.gender,100), req.user.id], (err)=>{
                 console.log(err)
                 console.log(req.user.heightFeet)
                 res.send("Added Sucessfully")

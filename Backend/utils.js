@@ -108,7 +108,7 @@ function bfat(ms, sex, height, neck, waist, hips) {
 
     }
     console.log(ibf, bfc)
-    return ibf, bfc
+    return ibf
 
 }
 
