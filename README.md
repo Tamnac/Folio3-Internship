@@ -38,7 +38,7 @@ The project **Ufit** is a weight tracking web app which helps users setting thei
 
 - [dependencies](#-dependencies)
 - [run the app](#-run-the-app)
-- [project structure](#-documentation)
+- [project structure](#-project-structure)
 - [License](#-license)
 
 
@@ -92,3 +92,5 @@ $ npm i
 
 Open source.
 
+## Extra Links 
+- github repo:  [https://github.com/Tamnac/Folio3-Internship](https://github.com/Tamnac/Folio3-Internship)
