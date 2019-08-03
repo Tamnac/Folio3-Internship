@@ -82,7 +82,7 @@ $ npm i
 	- **views**: contains all html pages and components in their respective folders.
 	- **app**: app.js is the main node-express app
 	- **utils** Contains common functions used in on server side (this file is different from the one in **static/js**)
-	 
+- **Design**: Contains html pages which are designed in the design phase. 
 - **Project Management**: Contains WBS
 - **QA**: Contains QA related artifacts  
 
