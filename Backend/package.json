@@ -13,6 +13,6 @@
     "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0",
     "sqlite3": "^4.0.9",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   }
 }
